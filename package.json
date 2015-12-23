@@ -16,10 +16,12 @@
 	],
 	"main": "./out/src/extension",
 	"contributes": {
-		"commands": [{
-			"command": "extension.sayHello",
-			"title": "Hello World"
-		}]
+		"commands": [
+			{
+				"command": "extension.sayHello",
+				"title": "Hello World"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
@@ -29,5 +31,14 @@
 	"devDependencies": {
 		"typescript": "^1.6.2",
 		"vscode": "0.10.x"
-	}
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/k--kato/docomment.git"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/k--kato/docomment/issues"
+	},
+	"homepage": "https://github.com/k--kato/docomment#readme"
 }
