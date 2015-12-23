@@ -38,7 +38,7 @@ export class DocomentCSharpDomain {
         if (!this._vsCodeApi.IsCSharp()) return;
         
         // Fire Document Comment
-        if (!this.CanFireDocComment()) return;
+        if (!this.IsTriggerDocComment()) return;
 
         // Get Code
         const code: string = this._vsCodeApi.ReadNextCodeFromCurrent();
@@ -61,11 +61,12 @@ export class DocomentCSharpDomain {
     /*-------------------------------------------------------------------------
      * Domain Method
      *-----------------------------------------------------------------------*/
-    private CanFireDocComment(): Boolean {
+    private IsTriggerDocComment(): Boolean {
         const activeChar: string = this._vsCodeApi.ReadCharAtCurrent();
         if (activeChar == null) return false;
-        const isKey: Boolean = (activeChar === '/');
-        if (!isKey) return false;
+        const isSlashKey: Boolean = (activeChar === '/');
+        const isEnterKey: Boolean = (activeChar === ''); // '' = Enter Key
+        if (!isSlashKey && !isEnterKey) return false;
 
         const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
         if (activeLine == null) return false;
@@ -73,7 +74,7 @@ export class DocomentCSharpDomain {
         if (!isDocComment) return false;
 
         const position: number = this._vsCodeApi.GetActiveCharPosition();
-        const positionDocComment: number = activeLine.lastIndexOf('///') + 2;
+        const positionDocComment: number = activeLine.lastIndexOf('///') + ((isEnterKey) ? 3 : 2);
         const isLastPosition: Boolean = (position === positionDocComment);
         if (!isLastPosition) return false;
 
