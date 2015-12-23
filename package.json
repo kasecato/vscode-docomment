@@ -1,0 +1,32 @@
+{
+	"name": "docomment",
+	"displayName": "docomment",
+	"description": "Generate XML documentation comments for Visual Studio Code (C# only).",
+	"version": "0.0.1",
+	"publisher": "k--kato",
+	"engines": {
+		"vscode": "^0.10.1"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:csharp",
+		"onCommand:extension.sayHello"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"commands": [{
+			"command": "extension.sayHello",
+			"title": "Hello World"
+		}]
+	},
+	"scripts": {
+		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
+	},
+	"devDependencies": {
+		"typescript": "^1.6.2",
+		"vscode": "0.10.x"
+	}
+}
