@@ -6,6 +6,7 @@ machine:
 dependencies:
   override:
     - npm install -g npm-install-missing
+    - curl -0 -L http://npmjs.org/install.sh | sudo sh
     - npm run vscode:prepublish
 test:
   override:
