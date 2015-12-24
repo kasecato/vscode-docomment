@@ -1,6 +1,6 @@
 # docomment
 
-[![Circle CI](https://circleci.com/gh/k--kato/docomment.svg?style=svg)](https://circleci.com/gh/k--kato/docomment)
+[![Build Status](https://travis-ci.org/k--kato/docomment.svg?branch=master)](https://travis-ci.org/k--kato/docomment)
 [![License: MIT](http://img.shields.io/badge/license-MIT-orange.svg)](LICENSE)
 
 Generate XML documentation comments for Visual Studio Code (C# only).
