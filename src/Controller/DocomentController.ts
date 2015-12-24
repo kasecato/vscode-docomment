@@ -1,24 +1,29 @@
 import {window, workspace, Disposable, TextEditor} from 'vscode';
-import {DocomentCSharpDomain} from '../Domain/DocomentCSharpDomain';
+import {IDocommentDomain} from '../Domain/IDocommentDomain';
+import {IDocommentController} from './IDocommentController';
 
-export class DocomentCSharpController {
+export class DocomentController implements IDocommentController {
 
     /*-------------------------------------------------------------------------
      * Field
      *-----------------------------------------------------------------------*/
-    private _xmlAutoCommenting: DocomentCSharpDomain;
-    private _disposable: Disposable;
+
+    /* @implements */
+    _disposable: Disposable;
+
+    /* @implements */
+    _docommentDomain: IDocommentDomain;
 
 
     /*-------------------------------------------------------------------------
-     * Public Method
+     * Entry Constructor
      *-----------------------------------------------------------------------*/
-    constructor(XmlAutoCommenting: DocomentCSharpDomain) {
-        this._xmlAutoCommenting = XmlAutoCommenting;
-        
+    constructor(docommentDomain: IDocommentDomain) {
+        this._docommentDomain = docommentDomain;
+
         const subscriptions: Disposable[] = [];
         const activeEditor: TextEditor = window.activeTextEditor;
-       
+
         /* Add Text Change Event */
         workspace.onDidChangeTextDocument(event => {
             if (activeEditor && event.document === activeEditor.document) {
@@ -29,16 +34,23 @@ export class DocomentCSharpController {
         this._disposable = Disposable.from(...subscriptions);
     }
 
+
+    /*-------------------------------------------------------------------------
+     * Public Method
+     *-----------------------------------------------------------------------*/
+
+    /* @implements */
     dispose() {
         this._disposable.dispose();
     }
+
 
     /*-------------------------------------------------------------------------
      * Event
      *-----------------------------------------------------------------------*/
     private _onEvent(activeEditor: TextEditor) {
-        this._xmlAutoCommenting.Insert(activeEditor);
+        // Insert XML document comment
+        this._docommentDomain.Execute(activeEditor);
     }
 
 }
-

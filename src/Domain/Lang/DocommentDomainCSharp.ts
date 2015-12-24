@@ -1,67 +1,18 @@
 import {TextEditor, Position} from 'vscode';
-import {VSCodeApi} from '../Api/VSCodeApi';
-import {StringUtil} from '../Utility/StringUtil';
+import {VSCodeApi} from '../../Api/VSCodeApi';
+import {StringUtil} from '../../Utility/StringUtil';
+import {DocommentDomain} from '../DocommentDomain';
+import {CodeType} from '../IDocommentDomain';
 
-/*-------------------------------------------------------------------------
- * Enum
- *-----------------------------------------------------------------------*/
-enum CodeType {
-    Namespace,
-    Class,
-    Interface,
-    Struct,
-    Enum,
-    Delegate,
-    Field,
-    Property,
-    Method,
-    Event
-}
-
-export class DocomentCSharpDomain {
-
-    /*-------------------------------------------------------------------------
-     * Field
-     *-----------------------------------------------------------------------*/
-    private _activeEditor: TextEditor;
-    private _vsCodeApi: VSCodeApi;
-
-    /*-------------------------------------------------------------------------
-     * Public Method
-     *-----------------------------------------------------------------------*/
-    public Insert(activeEditor: TextEditor) {
-
-        this._activeEditor = activeEditor;
-        this._vsCodeApi = new VSCodeApi(activeEditor);
-
-        // Detect CSharp
-        if (!this._vsCodeApi.IsCSharp()) return;
-        
-        // Fire Document Comment
-        if (!this.IsTriggerDocComment()) return;
-
-        // Get Code
-        const code: string = this._vsCodeApi.ReadNextCodeFromCurrent();
-
-        // Detect Code Type
-        const codeType: CodeType = this.GetCodeType(code);
-        console.log(codeType);
-        if (codeType === null) return;
-        
-        // Gene Comment
-        const docComment = this.GeneDocComment(codeType, code);
-        console.log(docComment);
-        if (docComment === null) return;
-        
-        // Write Comment
-        this.WriteComment(docComment);
-    }
+export class DocommentDomainCSharp extends DocommentDomain {
 
 
     /*-------------------------------------------------------------------------
      * Domain Method
      *-----------------------------------------------------------------------*/
-    private IsTriggerDocComment(): Boolean {
+     
+    /* @override */
+    public IsTriggerDocComment(): Boolean {
         const activeChar: string = this._vsCodeApi.ReadCharAtCurrent();
         if (activeChar == null) return false;
         const isSlashKey: Boolean = (activeChar === '/');
@@ -81,7 +32,8 @@ export class DocomentCSharpDomain {
         return true;
     }
 
-    private GetCodeType(code: string): CodeType {
+    /* @override */
+    public GetCodeType(code: string): CodeType {
 
         /* Namespace */
         const isNamespace: boolean = code.match(/.*namespace /) !== null;
@@ -122,7 +74,8 @@ export class DocomentCSharpDomain {
         return null;
     }
 
-    private GeneDocComment(codeType: CodeType, code: string): string {
+    /* @override */
+    public GeneDocComment(codeType: CodeType, code: string): string {
         const indent: string = StringUtil.GetIndent(code);
 
         // TODO:
@@ -158,13 +111,5 @@ export class DocomentCSharpDomain {
         return comment;
     }
 
-    private WriteComment(text: string): void {
-        const position = this._vsCodeApi.GetActivePosition();
-        const positionShift = this._vsCodeApi.ChangeVSCodePosition(position, 1);
-        this._vsCodeApi.InsertText(positionShift, text);
-    }
-
-    dispose() {
-    }
 
 }
