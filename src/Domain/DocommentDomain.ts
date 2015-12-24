@@ -1,4 +1,4 @@
-import {TextEditor} from 'vscode';
+import {TextEditor, TextDocumentContentChangeEvent} from 'vscode';
 import {VSCodeApi} from '../Api/VSCodeApi';
 import {IDocommentDomain, CodeType} from './IDocommentDomain';
 
@@ -9,10 +9,13 @@ export class DocommentDomain implements IDocommentDomain {
      *-----------------------------------------------------------------------*/
 
     /* @implements */
-    _vsCodeApi: VSCodeApi;
+    public _event: TextDocumentContentChangeEvent;
 
     /* @implements */
-    _activeEditor: TextEditor;
+    public _vsCodeApi: VSCodeApi;
+
+    /* @implements */
+    public _activeEditor: TextEditor;
 
 
     /*-------------------------------------------------------------------------
@@ -20,16 +23,17 @@ export class DocommentDomain implements IDocommentDomain {
      *-----------------------------------------------------------------------*/
      
     /* @implements */
-    public Execute(activeEditor: TextEditor) {
+    public Execute(activeEditor: TextEditor, event: TextDocumentContentChangeEvent, languageId: string) {
 
+        this._event = event;
         this._activeEditor = activeEditor;
         this._vsCodeApi = new VSCodeApi(activeEditor);
 
-        // Detect CSharp
-        if (!this._vsCodeApi.IsCSharp()) return;
-        
+        // Detect Language
+        if (!this._vsCodeApi.IsLanguage(languageId)) return;
+
         // Fire Document Comment
-        if (!this.IsTriggerDocComment()) return;
+        if (!this.IsTriggerDocomment()) return;
 
         // Get Code
         const code: string = this._vsCodeApi.ReadNextCodeFromCurrent();
@@ -38,14 +42,14 @@ export class DocommentDomain implements IDocommentDomain {
         const codeType: CodeType = this.GetCodeType(code);
         console.log(codeType);
         if (codeType === null) return;
-        
+
         // Gene Comment
-        const docComment = this.GeneDocComment(codeType, code);
-        console.log(docComment);
-        if (docComment === null) return;
-        
+        const docomment = this.GeneDocomment(codeType, code);
+        console.log(docomment);
+        if (docomment === null) return;
+
         // Write Comment
-        this.WriteComment(docComment);
+        this.WriteDocomment(docomment);
     }
 
 
@@ -54,29 +58,29 @@ export class DocommentDomain implements IDocommentDomain {
      *-----------------------------------------------------------------------*/
 
     /* @implements */
-    IsTriggerDocComment(): Boolean {
+    IsTriggerDocomment(): boolean {
         return false;
     }
 
     /* @implements */
     GetCodeType(code: string): CodeType {
+        return CodeType.None;
+    }
+
+    /* @implements */
+    GeneDocomment(codeType: CodeType, code: string): string {
         return null;
     }
 
     /* @implements */
-    GeneDocComment(codeType: CodeType, code: string): string {
-        return null;
-    }
-
-    /* @implements */
-    WriteComment(text: string): void {
+    WriteDocomment(text: string): void {
         const position = this._vsCodeApi.GetActivePosition();
         const positionShift = this._vsCodeApi.ChangeVSCodePosition(position, 1);
         this._vsCodeApi.InsertText(positionShift, text);
     }
 
     /* @implements */
-    dispose() {
+    public dispose() {
     }
 
 

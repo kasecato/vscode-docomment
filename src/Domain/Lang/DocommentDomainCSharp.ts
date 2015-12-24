@@ -10,60 +10,73 @@ export class DocommentDomainCSharp extends DocommentDomain {
     /*-------------------------------------------------------------------------
      * Domain Method
      *-----------------------------------------------------------------------*/
-     
+
     /* @override */
-    public IsTriggerDocComment(): Boolean {
+    public IsTriggerDocomment(): boolean {
+
+        // NG: KeyCode is NOT '/' or Enter
         const activeChar: string = this._vsCodeApi.ReadCharAtCurrent();
         if (activeChar == null) return false;
-        const isSlashKey: Boolean = (activeChar === '/');
-        const isEnterKey: Boolean = (activeChar === ''); // '' = Enter Key
+        const isSlashKey: boolean = (activeChar === '/');
+        const isEnterKey: boolean = (activeChar === '') && this._event.text.startsWith('\n');
         if (!isSlashKey && !isEnterKey) return false;
 
+        // NG: Line is NOT ///
         const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
         if (activeLine == null) return false;
-        const isDocComment: Boolean = (activeLine.endsWith('///'));
+        const isDocComment: boolean = (activeLine.match(/([^/]\/{3}$)|(^\/{3})/).length != 0);
         if (!isDocComment) return false;
 
+        // NG: Position is NOT ///
         const position: number = this._vsCodeApi.GetActiveCharPosition();
         const positionDocComment: number = activeLine.lastIndexOf('///') + ((isEnterKey) ? 3 : 2);
-        const isLastPosition: Boolean = (position === positionDocComment);
+        const isLastPosition: boolean = (position === positionDocComment);
         if (!isLastPosition) return false;
 
+        // NG: Previous line is XML document comment
+        const previousLine: string = this._vsCodeApi.ReadPreviousLineFromCurrent();
+        if (previousLine != null && previousLine.match(/\/{3}/)) return false;
+
+        // OK
         return true;
     }
 
     /* @override */
     public GetCodeType(code: string): CodeType {
 
-        /* Namespace */
+        /* namespace */
         const isNamespace: boolean = code.match(/.*namespace /) !== null;
         if (isNamespace) return CodeType.Namespace;
 
-        /* Type */
+        /* class */
         const isClass: boolean = code.match(/.*class /) !== null;
         if (isClass) return CodeType.Class;
 
+        /* interface */
         const isInterface: boolean = code.match(/.*interface /) !== null;
         if (isInterface) return CodeType.Interface;
 
+        /* struct */
         const isStruct: boolean = code.match(/.*struct /) !== null;
         if (isStruct) return CodeType.Struct;
 
+        /* enum */
         const isEnum: boolean = code.match(/.*enum /) !== null;
         if (isEnum) return CodeType.Enum;
 
+        /* delegate */
         const isDelegate: boolean = code.match(/.*delegate /) !== null;
         if (isDelegate) return CodeType.Delegate;
 
-        /* Event */
+        /* event */
         const isEvent: boolean = code.match(/.*event /) !== null;
         if (isEvent) return CodeType.Event;
 
-        /* Method */
+        /* method */
         const isMethod: boolean = false; // TODO:
         if (isMethod) return CodeType.Method;
 
-        /* Field */
+        /* field */
         const isField: boolean = false; // TODO:
         if (isField) return CodeType.Field;
 
@@ -71,20 +84,21 @@ export class DocommentDomainCSharp extends DocommentDomain {
         const isProperty: boolean = false; // TODO:
         if (isProperty) return CodeType.Property;
 
-        return null;
+        return CodeType.None;
     }
 
     /* @override */
-    public GeneDocComment(codeType: CodeType, code: string): string {
+    public GeneDocomment(codeType: CodeType, code: string): string {
+
         const indent: string = StringUtil.GetIndent(code);
 
         // TODO:
-        let comment:string = "";
+        let comment: string = "";
         switch (codeType) {
             case CodeType.Namespace:
                 break;
             case CodeType.Class:
-                comment =         ` <summary>\n`
+                comment = ` <summary>\n`
                     + indent + `/// \n`
                     + indent + `/// </summary>`;
                 break;
@@ -110,6 +124,5 @@ export class DocommentDomainCSharp extends DocommentDomain {
 
         return comment;
     }
-
 
 }

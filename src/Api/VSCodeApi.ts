@@ -23,8 +23,8 @@ export class VSCodeApi {
     /*-------------------------------------------------------------------------
      * VS Code API
      *-----------------------------------------------------------------------*/
-    public IsCSharp(): boolean {
-        return (this._activeEditor.document.languageId === "csharp");
+    public IsLanguage(languageId: string): boolean {
+        return (this._activeEditor.document.languageId === languageId);
     }
 
     public GetActivePosition(): Position {
@@ -66,22 +66,36 @@ export class VSCodeApi {
         const curLine: number = this.GetActiveLine();
 
         let code: string = "";
-        for (let i: number = 1; i < lineCount + curLine; i++) {
-            
+        for (let i:number = curLine; i < lineCount - 1; i++) {
+
             // Skip empty line
-            const line: string = this.ReadLine(curLine + i);
-            const isEmpty: boolean = StringUtil.IsWhiteSpace(line);
-            if (isEmpty) continue;
+            const line: string = this.ReadLine(i + 1);
+            if (StringUtil.IsWhiteSpace(line)) continue;
 
             code += line;
 
             // Detect start of code
-            const hasStartBlock: boolean = StringUtil.IsCodeBlockStart(line);
-            if (!hasStartBlock) {
+            if (!StringUtil.IsCodeBlockStart(line)) {
                 continue;
             }
 
             return StringUtil.RemoveComment(code);
+        }
+
+        return null;
+    }
+
+    public ReadPreviousLineFromCurrent(): string {
+        const lineCount: number = this.GetLineCount();
+        const curLine: number = this.GetActiveLine();
+
+        for (let i:number = curLine; 0 < i; i--) {
+
+            // Skip empty line
+            const line: string = this.ReadLine(i - 1);
+            if (StringUtil.IsWhiteSpace(line)) continue;
+
+            return line;
         }
 
         return null;

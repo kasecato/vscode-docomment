@@ -6,6 +6,7 @@ export interface IDocommentController {
     /*-------------------------------------------------------------------------
      * Field
      *-----------------------------------------------------------------------*/
+    _languageId: string;
     _disposable: Disposable;
     _docommentDomain: IDocommentDomain;
 

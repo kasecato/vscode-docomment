@@ -1,4 +1,4 @@
-import {TextEditor} from 'vscode';
+import {TextEditor, TextDocumentContentChangeEvent} from 'vscode';
 import {VSCodeApi} from '../Api/VSCodeApi';
 
 /*-------------------------------------------------------------------------
@@ -14,7 +14,8 @@ export enum CodeType {
     Field,
     Property,
     Method,
-    Event
+    Event,
+    None
 }
 
 export interface IDocommentDomain {
@@ -22,6 +23,7 @@ export interface IDocommentDomain {
     /*-------------------------------------------------------------------------
      * Field
      *-----------------------------------------------------------------------*/
+    _event: TextDocumentContentChangeEvent;
     _vsCodeApi: VSCodeApi;
     _activeEditor: TextEditor;
 
@@ -29,16 +31,16 @@ export interface IDocommentDomain {
     /*-------------------------------------------------------------------------
      * Entry Method
      *-----------------------------------------------------------------------*/
-    Execute(activeEditor: TextEditor);
+    Execute(activeEditor: TextEditor, event: TextDocumentContentChangeEvent, languageId: string);
 
 
     /*-------------------------------------------------------------------------
      * Domain Method
      *-----------------------------------------------------------------------*/
-    IsTriggerDocComment(): Boolean;
+    IsTriggerDocomment(): boolean;
     GetCodeType(code: string): CodeType;
-    GeneDocComment(codeType: CodeType, code: string): string;
-    WriteComment(text: string): void;
+    GeneDocomment(codeType: CodeType, code: string): string;
+    WriteDocomment(text: string): void;
     dispose(): void;
 
 }
