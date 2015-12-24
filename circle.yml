@@ -4,10 +4,8 @@ machine:
   node:
     version: 0.10.33
 dependencies:
-  pre:
-    - export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0
   override:
-    - npm install
+    - npm install -g npm-install-missing
     - npm run vscode:prepublish
 test:
   override:
