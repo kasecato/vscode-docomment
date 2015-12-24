@@ -4,8 +4,17 @@
 	"description": "Generate XML documentation comments for Visual Studio Code (C# only).",
 	"version": "0.0.1",
 	"publisher": "k--kato",
+	"license": "MIT",
 	"engines": {
 		"vscode": "^0.10.1"
+	},
+	"homepage": "https://github.com/k--kato/docomment#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/k--kato/docomment.git"
+	},
+	"bugs": {
+		"url": "https://github.com/k--kato/docomment/issues"
 	},
 	"categories": [
 		"Other"
@@ -19,7 +28,7 @@
 		"commands": [
 			{
 				"command": "extension.sayHello",
-				"title": "Hello World"
+				"title": "docomment"
 			}
 		]
 	},
@@ -31,14 +40,5 @@
 	"devDependencies": {
 		"typescript": "^1.6.2",
 		"vscode": "0.10.x"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/k--kato/docomment.git"
-	},
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/k--kato/docomment/issues"
-	},
-	"homepage": "https://github.com/k--kato/docomment#readme"
+	}
 }

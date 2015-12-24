@@ -2,10 +2,15 @@ machine:
   timezone:
     Asia/Tokyo
   node:
-    version: 0.10.22
+    version: 0.10.33
 dependencies:
+  pre:
+    - export CXX="g++-4.9" CC="gcc-4.9" DISPLAY=:99.0
+    - sh -e /etc/init.d/xvfb start
+    - sleep 3
   override:
-    - npm install --dev
+    - npm install
+    - npm run vscode:prepublish
 test:
   override:
     - npm test --silent
