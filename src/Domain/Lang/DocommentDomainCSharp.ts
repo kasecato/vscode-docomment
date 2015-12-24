@@ -45,44 +45,44 @@ export class DocommentDomainCSharp extends DocommentDomain {
     public GetCodeType(code: string): CodeType {
 
         /* namespace */
-        const isNamespace: boolean = code.match(/.*namespace /) !== null;
+        const isNamespace: boolean = code.match(/.*namespace[ \t]/) !== null;
         if (isNamespace) return CodeType.Namespace;
 
         /* class */
-        const isClass: boolean = code.match(/.*class /) !== null;
+        const isClass: boolean = code.match(/.*class[ \t]/) !== null;
         if (isClass) return CodeType.Class;
 
         /* interface */
-        const isInterface: boolean = code.match(/.*interface /) !== null;
+        const isInterface: boolean = code.match(/.*interface[ \t]/) !== null;
         if (isInterface) return CodeType.Interface;
 
         /* struct */
-        const isStruct: boolean = code.match(/.*struct /) !== null;
+        const isStruct: boolean = code.match(/.*struct[ \t]/) !== null;
         if (isStruct) return CodeType.Struct;
 
         /* enum */
-        const isEnum: boolean = code.match(/.*enum /) !== null;
+        const isEnum: boolean = code.match(/.*enum[ \t]/) !== null;
         if (isEnum) return CodeType.Enum;
 
         /* delegate */
-        const isDelegate: boolean = code.match(/.*delegate /) !== null;
+        const isDelegate: boolean = code.match(/.*delegate[ \t]/) !== null;
         if (isDelegate) return CodeType.Delegate;
 
         /* event */
-        const isEvent: boolean = code.match(/.*event /) !== null;
+        const isEvent: boolean = code.match(/.*event[ \t]/) !== null;
         if (isEvent) return CodeType.Event;
 
-        /* method */
-        const isMethod: boolean = false; // TODO:
-        if (isMethod) return CodeType.Method;
+        /* property */
+        const isProperty: boolean = code.match(/\w+[^)]?[ \t]*{/) !== null;
+        if (isProperty) return CodeType.Property;
 
         /* field */
-        const isField: boolean = false; // TODO:
+        const isField: boolean = code.match(/;[ \t]*$/) !== null;
         if (isField) return CodeType.Field;
 
-        /* Property */
-        const isProperty: boolean = false; // TODO:
-        if (isProperty) return CodeType.Property;
+        /* method */
+        const isMethod: boolean = code.match(/\w[ \t]\w.*\(.*\)/) !== null;
+        if (isMethod) return CodeType.Method;
 
         return CodeType.None;
     }
@@ -90,37 +90,45 @@ export class DocommentDomainCSharp extends DocommentDomain {
     /* @override */
     public GeneDocomment(codeType: CodeType, code: string): string {
 
-        const indent: string = StringUtil.GetIndent(code);
-
-        // TODO:
         let comment: string = "";
         switch (codeType) {
             case CodeType.Namespace:
+                comment = `<summary></summary>`;
                 break;
             case CodeType.Class:
-                comment = ` <summary>\n`
-                    + indent + `/// \n`
-                    + indent + `/// </summary>`;
+                comment = `<summary></summary>`;
                 break;
             case CodeType.Interface:
+                comment = `<summary></summary>`;
                 break;
             case CodeType.Struct:
+                comment = `<summary></summary>`;
                 break;
             case CodeType.Enum:
+                comment = `<summary></summary>`;
                 break;
             case CodeType.Delegate:
+                comment = `<summary></summary>`;
                 break;
             case CodeType.Event:
+                comment = `<summary></summary>`;
                 break;
             case CodeType.Method:
+                comment = `<summary></summary>`;
                 break;
             case CodeType.Field:
+                comment = `<summary></summary>`;
                 break;
             case CodeType.Property:
+                comment = `<summary></summary>`;
                 break;
             default:
                 break;
         }
+
+        // TODO: indent
+        const indent: string = StringUtil.GetIndent(code);
+
 
         return comment;
     }

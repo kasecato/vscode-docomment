@@ -5,6 +5,7 @@ import {VSCodeApi} from '../Api/VSCodeApi';
  * Enum
  *-----------------------------------------------------------------------*/
 export enum CodeType {
+    None,
     Namespace,
     Class,
     Interface,
@@ -15,7 +16,6 @@ export enum CodeType {
     Property,
     Method,
     Event,
-    None
 }
 
 export interface IDocommentDomain {

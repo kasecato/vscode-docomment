@@ -73,7 +73,7 @@ export class DocommentDomain implements IDocommentDomain {
     }
 
     /* @implements */
-    WriteDocomment(text: string): void {
+    public WriteDocomment(text: string): void {
         const position = this._vsCodeApi.GetActivePosition();
         const positionShift = this._vsCodeApi.ChangeVSCodePosition(position, 1);
         this._vsCodeApi.InsertText(positionShift, text);
