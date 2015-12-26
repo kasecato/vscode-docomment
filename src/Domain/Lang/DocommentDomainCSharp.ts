@@ -1,5 +1,3 @@
-import {TextEditor, Position} from 'vscode';
-import {VSCodeApi} from '../../Api/VSCodeApi';
 import {StringUtil} from '../../Utility/StringUtil';
 import {DocommentDomain} from '../DocommentDomain';
 import {CodeType} from '../IDocommentDomain';
@@ -24,7 +22,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
         // NG: Line is NOT ///
         const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
         if (activeLine == null) return false;
-        const isDocComment: boolean = (activeLine.match(/([^/]\/{3}$)|(^\/{3})/).length != 0);
+        const isDocComment: boolean = (activeLine.match(/([^/]\/{3}$)|(^\/{3})/).length !== 0);
         if (!isDocComment) return false;
 
         // NG: Position is NOT ///
@@ -90,7 +88,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
     /* @override */
     public GeneDocomment(codeType: CodeType, code: string): string {
 
-        let comment: string = "";
+        let comment: string = '';
         switch (codeType) {
             case CodeType.Namespace:
                 comment = `<summary></summary>`;
@@ -127,7 +125,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
         }
 
         // TODO: indent
-        const indent: string = StringUtil.GetIndent(code);
+        //const indent: string = StringUtil.GetIndent(code);
 
 
         return comment;

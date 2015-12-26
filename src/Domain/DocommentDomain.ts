@@ -21,7 +21,7 @@ export class DocommentDomain implements IDocommentDomain {
     /*-------------------------------------------------------------------------
      * Entry Method
      *-----------------------------------------------------------------------*/
-     
+
     /* @implements */
     public Execute(activeEditor: TextEditor, event: TextDocumentContentChangeEvent, languageId: string) {
 
