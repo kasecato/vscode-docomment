@@ -19,10 +19,10 @@ export class DocommentDomainCSharp extends DocommentDomain {
         const isEnterKey: boolean = (activeChar === '') && this._event.text.startsWith('\n');
         if (!isSlashKey && !isEnterKey) return false;
 
-        // NG: Line is NOT ///
+        // NG: Line is NOT /// (NG: ////)
         const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
         if (activeLine == null) return false;
-        const isDocComment: boolean = (activeLine.match(/([^/]\/{3}$)|(^\/{3})/).length !== 0);
+        const isDocComment: boolean = (activeLine.match(/(?:[^/]\/{3}$)|(?:^\/{3}[^/])|(?:^\/{3}$)/) !== null); // fixme: to simple
         if (!isDocComment) return false;
 
         // NG: Position is NOT ///
@@ -42,36 +42,47 @@ export class DocommentDomainCSharp extends DocommentDomain {
     /* @override */
     public GetCodeType(code: string): CodeType {
 
+        /*-------------------------------------------------------------------------
+         *
+         *-----------------------------------------------------------------------*/
+
         /* namespace */
-        const isNamespace: boolean = code.match(/.*namespace[ \t]/) !== null;
+        const isNamespace: boolean = code.match(/\bnamespace\b/) !== null;
         if (isNamespace) return CodeType.Namespace;
 
         /* class */
-        const isClass: boolean = code.match(/.*class[ \t]/) !== null;
+        const isClass: boolean = code.match(/\bclass\b/) !== null;
         if (isClass) return CodeType.Class;
 
         /* interface */
-        const isInterface: boolean = code.match(/.*interface[ \t]/) !== null;
+        const isInterface: boolean = code.match(/\binterface\b/) !== null;
         if (isInterface) return CodeType.Interface;
 
         /* struct */
-        const isStruct: boolean = code.match(/.*struct[ \t]/) !== null;
+        const isStruct: boolean = code.match(/\bstruct\b/) !== null;
         if (isStruct) return CodeType.Struct;
 
         /* enum */
-        const isEnum: boolean = code.match(/.*enum[ \t]/) !== null;
+        const isEnum: boolean = code.match(/\benum\b/) !== null;
         if (isEnum) return CodeType.Enum;
 
+
+        /*-------------------------------------------------------------------------
+         * 
+         *-----------------------------------------------------------------------*/
+        const isInMethod: boolean = false; // todo: detect in method 
+        if (isInMethod) return CodeType.None;
+         
         /* delegate */
-        const isDelegate: boolean = code.match(/.*delegate[ \t]/) !== null;
+        const isDelegate: boolean = code.match(/\bdelegate\b/) !== null;
         if (isDelegate) return CodeType.Delegate;
 
         /* event */
-        const isEvent: boolean = code.match(/.*event[ \t]/) !== null;
+        const isEvent: boolean = code.match(/\bevent\b/) !== null;
         if (isEvent) return CodeType.Event;
 
         /* property */
-        const isProperty: boolean = code.match(/\w+[^)]?[ \t]*{/) !== null;
+        const isProperty: boolean = code.match(/\w+[^)]?\b{/) !== null;
         if (isProperty) return CodeType.Property;
 
         /* field */
@@ -79,7 +90,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
         if (isField) return CodeType.Field;
 
         /* method */
-        const isMethod: boolean = code.match(/\w[ \t]\w.*\(.*\)/) !== null;
+        const isMethod: boolean = code.match(/\w\s\w.*\(.*\)/) !== null;
         if (isMethod) return CodeType.Method;
 
         return CodeType.None;
