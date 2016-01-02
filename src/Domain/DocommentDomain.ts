@@ -58,17 +58,17 @@ export class DocommentDomain implements IDocommentDomain {
      *-----------------------------------------------------------------------*/
 
     /* @implements */
-    IsTriggerDocomment(): boolean {
+    public IsTriggerDocomment(): boolean {
         return false;
     }
 
     /* @implements */
-    GetCodeType(code: string): CodeType {
+    public GetCodeType(code: string): CodeType {
         return CodeType.None;
     }
 
     /* @implements */
-    GeneDocomment(codeType: CodeType, code: string): string {
+    public GeneDocomment(codeType: CodeType, code: string): string {
         return null;
     }
 
@@ -81,6 +81,7 @@ export class DocommentDomain implements IDocommentDomain {
 
     /* @implements */
     public dispose() {
+        // NOP
     }
 
 

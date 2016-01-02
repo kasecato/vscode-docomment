@@ -9,13 +9,13 @@ export class DocomentController implements IDocommentController {
      *-----------------------------------------------------------------------*/
 
     /* @implements */
-    _languageId: string;
+    public _languageId: string;
 
     /* @implements */
-    _disposable: Disposable;
+    public _disposable: Disposable;
 
     /* @implements */
-    _docommentDomain: IDocommentDomain;
+    public _docommentDomain: IDocommentDomain;
 
 
     /*-------------------------------------------------------------------------

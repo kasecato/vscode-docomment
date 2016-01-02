@@ -16,9 +16,6 @@ export class VSCodeApi {
         this._activeEditor = activeEditor;
     }
 
-    dispose() {
-    }
-
 
     /*-------------------------------------------------------------------------
      * VS Code API
@@ -65,11 +62,12 @@ export class VSCodeApi {
         const lineCount: number = this.GetLineCount();
         const curLine: number = this.GetActiveLine();
 
-        let code: string = "";
-        for (let i:number = curLine; i < lineCount - 1; i++) {
+        let code = '';
+        for (let i: number = curLine; i < lineCount - 1; i++) {
+
+            const line: string = this.ReadLine(i + 1);
 
             // Skip empty line
-            const line: string = this.ReadLine(i + 1);
             if (StringUtil.IsWhiteSpace(line)) continue;
 
             code += line;
@@ -85,11 +83,34 @@ export class VSCodeApi {
         return null;
     }
 
-    public ReadPreviousLineFromCurrent(): string {
-        const lineCount: number = this.GetLineCount();
+    public ReadPreviousCodeFromCurrent(): string {
         const curLine: number = this.GetActiveLine();
 
-        for (let i:number = curLine; 0 < i; i--) {
+        let code = '';
+        for (let i: number = curLine; 0 < i; i--) {
+
+            const line: string = this.ReadLine(i - 1);
+
+            // Skip empty line
+            if (StringUtil.IsWhiteSpace(line)) continue;
+
+            code += line;
+
+            // Detect start of code
+            if (!StringUtil.IsCodeBlockStart(line)) {
+                continue;
+            }
+
+            return code;
+        }
+
+        return null;
+    }
+
+    public ReadPreviousLineFromCurrent(): string {
+        const curLine: number = this.GetActiveLine();
+
+        for (let i: number = curLine; 0 < i; i--) {
 
             // Skip empty line
             const line: string = this.ReadLine(i - 1);
