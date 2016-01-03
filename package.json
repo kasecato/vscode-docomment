@@ -1,13 +1,46 @@
 {
     "name": "docomment",
-    "displayName": "docomment",
-    "description": "Generate XML documentation comments for Visual Studio Code (C# only).",
     "version": "0.0.1",
     "publisher": "k--kato",
-    "license": "MIT",
     "engines": {
-        "vscode": "^0.10.1"
+        "vscode": "^0.10.6"
     },
+    "displayName": "C# XML Documentation Comments",
+    "description": "Generate C# XML documentation comments for Visual Studio Code.",
+    "categories": [
+        "Snippets",
+        "Languages",
+        "Other"
+    ],
+    "galleryBanner": {
+    },
+    "main": "./out/src/extension",
+    "contributes": {
+    },
+    "activationEvents": [
+        "onLanguage:csharp"
+    ],
+    "keywords": [
+        "XML Documentation Comments",
+        "C#"
+    ],
+    "dependencies": {
+    },
+    "devDependencies": {
+        "typescript": "^1.6.2",
+        "vscode": "0.10.x",
+        "tslint": "^3.2.1"
+    },
+    "extensionDependencies": [
+    ],
+    "isAMD": false,
+    "scripts": {
+        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "icon": "images/docomment.png",
+    "license": "MIT",
     "homepage": "https://github.com/k--kato/docomment#readme",
     "repository": {
         "type": "git",
@@ -15,31 +48,5 @@
     },
     "bugs": {
         "url": "https://github.com/k--kato/docomment/issues"
-    },
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "onLanguage:csharp",
-        "onCommand:extension.sayHello"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "commands": [
-            {
-                "command": "extension.sayHello",
-                "title": "docomment"
-            }
-        ]
-    },
-    "scripts": {
-        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^1.6.2",
-        "vscode": "0.10.x",
-        "tslint": "^3.2.1"
     }
 }
