@@ -15,5 +15,20 @@ Type "///", it auto-generates an XML doucumentation comment like this:
 /// </summary>
 class Foo
 {
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="y"></param>
+    /// <param name="z"></param>
+    /// <returns></returns>
+    public int bb(string s, ref int y, void * z)
+    {
+        return 1;
+    }
+
 }
+
+
 ```
