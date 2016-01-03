@@ -156,4 +156,9 @@ export class DocommentDomainCSharp extends DocommentDomain {
         return docomment;
     }
 
+    /* @implements */
+    public MoveCursorTo(docomment: string): void {
+        const curPosition = this._vsCodeApi.GetActivePosition();
+        this._vsCodeApi.MoveSelection(curPosition.line + 1, curPosition.character + 2);
+    }
 }

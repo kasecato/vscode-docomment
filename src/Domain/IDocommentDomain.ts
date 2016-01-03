@@ -40,7 +40,8 @@ export interface IDocommentDomain {
     IsTriggerDocomment(): boolean;
     GetCodeType(code: string): CodeType;
     GeneDocomment(codeType: CodeType, code: string): string;
-    WriteDocomment(text: string): void;
+    WriteDocomment(docommnet: string): void;
+    MoveCursorTo(docommnet: string): void;
     dispose(): void;
 
 }

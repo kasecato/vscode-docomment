@@ -1,4 +1,4 @@
-import {TextEditor, Position} from 'vscode';
+import {TextEditor, Position, Selection} from 'vscode';
 import {StringUtil} from '../Utility/StringUtil';
 
 export class VSCodeApi {
@@ -40,6 +40,27 @@ export class VSCodeApi {
         return this._activeEditor.selection.active.character;
     }
 
+    public GetPosition(line: number, charcter: number): Position {
+        return new Position(line, charcter);
+    }
+
+    public ShiftPositionLine(position: Position, offset: number): Position {
+        return this.GetPosition(position.line + offset, position.character);
+    }
+
+    public ShiftPositionChar(position: Position, offset: number): Position {
+        return this.GetPosition(position.line, position.character + offset);
+    }
+
+    public GetSelection(line: number, charcter: number): Selection {
+        return new Selection(line, charcter, line, charcter);
+    }
+
+    public MoveSelection(line: number, charcter: number): void {
+        const move: Selection = this.GetSelection(line, charcter);
+        this._activeEditor.selection = move;
+    }
+
     public InsertText(position: Position, text: string) {
         this._activeEditor.edit((editBuilder) => {
             editBuilder.insert(position, text);
@@ -68,7 +89,7 @@ export class VSCodeApi {
             const line: string = this.ReadLine(i + 1);
 
             // Skip empty line
-            if (StringUtil.IsWhiteSpace(line)) continue;
+            if (StringUtil.IsNullOrWhiteSpace(line)) continue;
 
             code += line;
 
@@ -92,7 +113,7 @@ export class VSCodeApi {
             const line: string = this.ReadLine(i - 1);
 
             // Skip empty line
-            if (StringUtil.IsWhiteSpace(line)) continue;
+            if (StringUtil.IsNullOrWhiteSpace(line)) continue;
 
             code += line;
 
@@ -114,17 +135,12 @@ export class VSCodeApi {
 
             // Skip empty line
             const line: string = this.ReadLine(i - 1);
-            if (StringUtil.IsWhiteSpace(line)) continue;
+            if (StringUtil.IsNullOrWhiteSpace(line)) continue;
 
             return line;
         }
 
         return null;
     }
-
-    public ChangeVSCodePosition(org: Position, offset: number): Position {
-        return new Position(org.line, org.character + offset);
-    }
-
 
 }

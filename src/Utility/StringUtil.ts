@@ -3,7 +3,7 @@ export class StringUtil {
     /*-------------------------------------------------------------------------
      * Public Method
      *-----------------------------------------------------------------------*/
-    public static IsWhiteSpace(line: string): boolean {
+    public static IsNullOrWhiteSpace(line: string): boolean {
         return (line === null || line.trim() === '');
     }
 

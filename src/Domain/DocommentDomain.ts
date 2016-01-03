@@ -1,6 +1,7 @@
-import {TextEditor, TextDocumentContentChangeEvent} from 'vscode';
+import {TextEditor, TextDocumentContentChangeEvent, Position} from 'vscode';
 import {VSCodeApi} from '../Api/VSCodeApi';
 import {IDocommentDomain, CodeType} from './IDocommentDomain';
+import {StringUtil} from '../Utility/StringUtil';
 
 export class DocommentDomain implements IDocommentDomain {
 
@@ -32,7 +33,7 @@ export class DocommentDomain implements IDocommentDomain {
         // Detect Language
         if (!this._vsCodeApi.IsLanguage(languageId)) return;
 
-        // Fire Document Comment
+        // Can Fire Document Comment
         if (!this.IsTriggerDocomment()) return;
 
         // Get Code
@@ -46,10 +47,14 @@ export class DocommentDomain implements IDocommentDomain {
         // Gene Comment
         const docomment = this.GeneDocomment(codeType, code);
         console.log(docomment);
-        if (docomment === null) return;
+        if (StringUtil.IsNullOrWhiteSpace(docomment)) return;
 
         // Write Comment
         this.WriteDocomment(docomment);
+
+        // Move Cursor to <Summary>
+        this.MoveCursorTo(docomment);
+
     }
 
 
@@ -73,10 +78,15 @@ export class DocommentDomain implements IDocommentDomain {
     }
 
     /* @implements */
-    public WriteDocomment(text: string): void {
-        const position = this._vsCodeApi.GetActivePosition();
-        const positionShift = this._vsCodeApi.ChangeVSCodePosition(position, 1);
-        this._vsCodeApi.InsertText(positionShift, text);
+    public WriteDocomment(docommnet: string): void {
+        const position: Position = this._vsCodeApi.GetActivePosition();
+        const shiftChar = this._vsCodeApi.ShiftPositionChar(position, 1);
+        this._vsCodeApi.InsertText(shiftChar, docommnet);
+    }
+
+    /* @implements */
+    public MoveCursorTo(docomment: string): void {
+        // NOP
     }
 
     /* @implements */
