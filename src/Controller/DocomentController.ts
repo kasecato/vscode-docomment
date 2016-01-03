@@ -25,10 +25,10 @@ export class DocomentController implements IDocommentController {
         this._docommentDomain = docommentDomain;
 
         const subscriptions: Disposable[] = [];
-        const activeEditor: TextEditor = window.activeTextEditor;
 
         /* Add Text Change Event */
         workspace.onDidChangeTextDocument(event => {
+            const activeEditor: TextEditor = window.activeTextEditor;
             if (activeEditor && event.document === activeEditor.document) {
                 this._onEvent(activeEditor, event.contentChanges[0]);
             }
