@@ -44,7 +44,7 @@
     "homepage": "https://github.com/k--kato/docomment#readme",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/k--kato/docomment.git"
+        "url": "https://github.com/k--kato/docomment"
     },
     "bugs": {
         "url": "https://github.com/k--kato/docomment/issues"
