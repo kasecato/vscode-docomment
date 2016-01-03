@@ -11,6 +11,8 @@
         "Other"
     ],
     "galleryBanner": {
+        "color": "#4F87FF",
+        "theme": "light"
     },
     "main": "./out/src/extension",
     "contributes": {
