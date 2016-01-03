@@ -6,10 +6,8 @@
         "vscode": "^0.10.6"
     },
     "displayName": "C# XML Documentation Comments",
-    "description": "Generate C# XML documentation comments for Visual Studio Code.",
+    "description": "Generate C# XML documentation comments for ///",
     "categories": [
-        "Snippets",
-        "Languages",
         "Other"
     ],
     "galleryBanner": {
