@@ -91,6 +91,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
     public GeneDocomment(codeType: CodeType, code: string): string {
 
         let paramNameList: Array<string> = null;
+        let hasReturn = false;
         switch (codeType) {
             case CodeType.Namespace:
                 break;
@@ -103,11 +104,14 @@ export class DocommentDomainCSharp extends DocommentDomain {
             case CodeType.Enum:
                 break;
             case CodeType.Delegate:
+                paramNameList = SyntacticAnalysisCSharp.GetMethodParamNameList(code);
+                hasReturn = SyntacticAnalysisCSharp.HasMethodReturn(code);
                 break;
             case CodeType.Event:
                 break;
             case CodeType.Method:
                 paramNameList = SyntacticAnalysisCSharp.GetMethodParamNameList(code);
+                hasReturn = SyntacticAnalysisCSharp.HasMethodReturn(code);
                 break;
             case CodeType.Field:
                 break;
@@ -119,20 +123,37 @@ export class DocommentDomainCSharp extends DocommentDomain {
                 return '';
         }
 
+
+        let docommentList: Array<string> = new Array<string>();
+
+        /* <summary> */
+        docommentList.push('<summary>');
+        docommentList.push('');
+        docommentList.push('</summary>');
+
+        /* <param> */
+        if (paramNameList !== null) {
+            paramNameList.forEach(name => {
+                docommentList.push('<param name="' + name + '"></param>');
+            });
+        }
+
+        /* <returns> */
+        if (hasReturn) {
+            docommentList.push('<returns></returns>');
+        }
+
+        // Format
         const indent: string = StringUtil.GetIndent(code);
-        let comment =
-            ' <summary>' + '\n'
-            + indent + '/// ' + '\n'
-            + indent + '/// </summary>';
+        let docomment = ' ' + docommentList[0] + '\n';
+        for (let i = 1; i < docommentList.length; i++) {
+            docomment += indent + '/// ' + docommentList[i];
+            if (i !== docommentList.length - 1) {
+                docomment += '\n';
+            }
+        }
 
-        if (paramNameList === null) return comment;
-
-        paramNameList.forEach(name => {
-            comment += '\n'
-            + indent + '/// <param name="' + name + '"></param>';
-        });
-
-        return comment;
+        return docomment;
     }
 
 }

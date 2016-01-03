@@ -40,12 +40,12 @@ export class SyntacticAnalysisCSharp {
     }
 
     public static IsMethod(code: string): boolean {
-        return code.match(/\w\s\w*\(.*\)/) !== null;
+        return code.match(/\w\s\w*\s*\(.*\)/) !== null;
     }
 
 
     public static GetMethodParamNameList(code: string): Array<string> {
-        const params: RegExpMatchArray = code.match(/\w\s\w*\((.*)\)/);
+        const params: RegExpMatchArray = code.match(/\w\s\w*\s*\((.*)\)/);
 
         if (params === null || params.length !== 2) return null;
 
@@ -58,5 +58,14 @@ export class SyntacticAnalysisCSharp {
         });
 
         return paramName;
+    }
+
+    public static HasMethodReturn(code: string): boolean {
+        const returns: RegExpMatchArray = code.match(/(\w+)\s\w+\s*\(.*\)/);
+
+        if (returns === null || returns.length !== 2) return null;
+
+        const reservedWords = /(void|event|delegate|internal|public|protected|private|static|sealed|abstract|virtual|override)/;
+        return (returns[1].match(reservedWords) === null) ? true : false;
     }
 }
