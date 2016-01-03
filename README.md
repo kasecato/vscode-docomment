@@ -33,7 +33,7 @@ public int bb(string s, ref int y, void * z)
 1. Launch Code
 1. From the command palette `Ctrl`-`Shift`-`P` (Windows, Linux) or `Cmd`-`Shift`-`P` (OSX)
 1. Select `Install Extension`
-1. Choose the extension "`docomment`"
+1. Choose the extension '`docomment`' *or* run `ext install docomment`
 1. Reload Visual Studio Code
 
 
