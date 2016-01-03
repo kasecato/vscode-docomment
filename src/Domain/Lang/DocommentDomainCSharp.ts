@@ -116,6 +116,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
             case CodeType.Field:
                 break;
             case CodeType.Property:
+                hasReturn = SyntacticAnalysisCSharp.HasPropertyReturn(code);
                 break;
             case CodeType.None:
                 return '';

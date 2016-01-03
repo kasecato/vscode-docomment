@@ -39,7 +39,7 @@ export class SyntacticAnalysisCSharp {
     }
 
     public static IsProperty(code: string): boolean {
-        return code.match(/\w+[^)]?\b{/) !== null;
+        return code.match(/[\w\S]+[^)]?\b\s*{/) !== null;
     }
 
     public static IsField(code: string): boolean {
@@ -47,12 +47,12 @@ export class SyntacticAnalysisCSharp {
     }
 
     public static IsMethod(code: string): boolean {
-        return code.match(/\w\s\w*\s*\(.*\)/) !== null;
+        return code.match(/[\w\S]\s+[\w\S]+\s*\(.*\)/) !== null;
     }
 
 
     public static GetMethodParamNameList(code: string): Array<string> {
-        const params: RegExpMatchArray = code.match(/\w\s\w*\s*\((.*)\)/);
+        const params: RegExpMatchArray = code.match(/[\w\S]\s+[\w\S]+\s*\((.*)\)/);
 
         const isMatched = (params === null || params.length !== 2);
         if (isMatched) return null;
@@ -69,11 +69,21 @@ export class SyntacticAnalysisCSharp {
     }
 
     public static HasMethodReturn(code: string): boolean {
-        const returns: RegExpMatchArray = code.match(/(\w+)\s\w+\s*\(.*\)/);
+        const returns: RegExpMatchArray = code.match(/([\w\S]+)\s+[\w\S]+\s*\(.*\)/);
 
         const isMatched = (returns === null || returns.length !== 2);
         if (isMatched) return false;
 
         return (returns[1].match(this.RESERVED_WORDS) === null) ? true : false;
     }
+
+    public static HasPropertyReturn(code: string): boolean {
+        const returns: RegExpMatchArray = code.match(/([\w\S]+)\s+[\w\S]+\s*\{/);
+
+        const isMatched = (returns === null || returns.length !== 2);
+        if (isMatched) return false;
+
+        return (returns[1].match(this.RESERVED_WORDS) === null) ? true : false;
+    }
+
 }
