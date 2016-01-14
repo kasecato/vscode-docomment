@@ -2,7 +2,7 @@ import {window, workspace, Disposable, TextEditor, TextDocumentContentChangeEven
 import {IDocommentDomain} from '../Domain/IDocommentDomain';
 import {IDocommentController} from './IDocommentController';
 
-export class DocomentController implements IDocommentController {
+export class DocommentController implements IDocommentController {
 
     /*-------------------------------------------------------------------------
      * Field

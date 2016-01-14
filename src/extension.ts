@@ -1,11 +1,11 @@
 import {ExtensionContext} from 'vscode';
 import {DocommentDomainCSharp} from './Domain/Lang/DocommentDomainCSharp';
-import {DocomentControllerCSharp} from './Controller/Lang/DocomentControllerCSharp';
+import {DocommentControllerCSharp} from './Controller/Lang/DocommentControllerCSharp';
 
 export function activate(context: ExtensionContext) {
 
     const domainCSharp = new DocommentDomainCSharp();
-    const controllerCSharp = new DocomentControllerCSharp(domainCSharp);
+    const controllerCSharp = new DocommentControllerCSharp(domainCSharp);
 
     context.subscriptions.push(controllerCSharp);
     context.subscriptions.push(domainCSharp);

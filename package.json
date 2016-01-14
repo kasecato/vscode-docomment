@@ -29,7 +29,10 @@
     "devDependencies": {
         "typescript": "^1.6.2",
         "vscode": "0.10.x",
-        "tslint": "^3.2.1"
+        "tslint": "^3.2.1",
+        "istanbul": "^0.4.2",
+        "coveralls": "^2.11.6",
+        "mocha-lcov-reporter": "^1.0.0"
     },
     "extensionDependencies": [
     ],
@@ -37,7 +40,8 @@
     "scripts": {
         "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
         "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
-        "test": "node ./node_modules/vscode/bin/test"
+        "test": "node ./node_modules/vscode/bin/test",
+        "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js"
     },
     "icon": "images/docomment.png",
     "license": "MIT",
