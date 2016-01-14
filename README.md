@@ -1,6 +1,7 @@
 # XML Documentation Comments Support for Visual Studio Code
 
 [![Build Status](https://travis-ci.org/k--kato/docomment.svg?branch=master)](https://travis-ci.org/k--kato/docomment)
+[![Coverage Status](https://coveralls.io/repos/k--kato/docomment/badge.svg?branch=master&service=github)](https://coveralls.io/github/k--kato/docomment?branch=master)
 [![License: MIT](http://img.shields.io/badge/license-MIT-orange.svg)](LICENSE)
 
 Generate XML documentation comments for Visual Studio Code.
