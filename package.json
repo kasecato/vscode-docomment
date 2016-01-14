@@ -1,6 +1,6 @@
 {
     "name": "docomment",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "k--kato",
     "engines": {
         "vscode": "^0.10.6"
@@ -32,6 +32,7 @@
         "tslint": "^3.2.1",
         "istanbul": "^0.4.2",
         "coveralls": "^2.11.6",
+        "mocha": "^2.3.4",
         "mocha-lcov-reporter": "^1.0.0"
     },
     "extensionDependencies": [
@@ -39,9 +40,11 @@
     "isAMD": false,
     "scripts": {
         "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+        "compile": "node ./node_modules/vscode/bin/compile -p ./",
+        "watch": "node ./node_modules/vscode/bin/compile -watch -p ./",
         "test": "node ./node_modules/vscode/bin/test",
-        "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js"
+        "coverage_travis": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js",
+        "coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js"
     },
     "icon": "images/docomment.png",
     "license": "MIT",

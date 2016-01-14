@@ -12,11 +12,10 @@ before_install:
     fi
 
 install:
-  - npm install mocha
   - npm install
   - npm run vscode:prepublish
 
 script:
   - npm test --silent
-  - npm run-script coverage
+  - npm run-script coverage_travis
 after_script: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
