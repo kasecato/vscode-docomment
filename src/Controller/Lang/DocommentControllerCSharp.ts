@@ -1,6 +1,6 @@
-import {DocomentController} from '../DocomentController';
+import {DocommentController} from '../DocommentController';
 
-export class DocomentControllerCSharp extends DocomentController {
+export class DocommentControllerCSharp extends DocommentController {
 
     /*-------------------------------------------------------------------------
      * Field

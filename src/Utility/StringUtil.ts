@@ -14,7 +14,7 @@ export class StringUtil {
 
     public static RemoveComment(line: string): string {
         if (line === null) return null;
-        return line.replace(/\/\/.*/, '').replace(/\/\*.*/, '');
+        return line.replace(/\/\/.*/, '').replace(/\/\*.*\*\//, '');
     }
 
     public static GetIndent(line: string): string {

@@ -1,6 +1,7 @@
 # XML Documentation Comments Support for Visual Studio Code
 
 [![Build Status](https://travis-ci.org/k--kato/docomment.svg?branch=master)](https://travis-ci.org/k--kato/docomment)
+[![Coverage Status](https://coveralls.io/repos/k--kato/docomment/badge.svg?branch=master&service=github)](https://coveralls.io/github/k--kato/docomment?branch=master)
 [![License: MIT](http://img.shields.io/badge/license-MIT-orange.svg)](LICENSE)
 
 Generate XML documentation comments for Visual Studio Code.
@@ -29,7 +30,7 @@ public int bb(string s, ref int y, void * z)
 
 ## Installation
 
-1. Install Visual Studio Code 0.10.1 or higher
+1. Install Visual Studio Code 0.10.6 or higher
 1. Launch Code
 1. From the command palette `Ctrl`-`Shift`-`P` (Windows, Linux) or `Cmd`-`Shift`-`P` (OSX)
 1. Select `Install Extension`
