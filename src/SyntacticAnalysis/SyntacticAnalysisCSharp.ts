@@ -52,7 +52,7 @@ export class SyntacticAnalysisCSharp {
 
     public static IsField(code: string): boolean {
         if (code === null) return false;
-        return code.match(/;[ \t]*$/) !== null;
+        return code.match(/[^()]+;[ \t]*$/) !== null;
     }
 
     public static IsMethod(code: string): boolean {
