@@ -124,6 +124,21 @@ export class DocommentDomainCSharp extends DocommentDomain {
                 return '';
         }
 
+        return this.GeneSummary(code, paramNameList, hasReturn);
+    }
+
+    /* @implements */
+    public MoveCursorTo(docomment: string): void {
+        const curPosition = this._vsCodeApi.GetActivePosition();
+        this._vsCodeApi.MoveSelection(curPosition.line + 1, curPosition.character + 2);
+    }
+
+
+    /*-------------------------------------------------------------------------
+     * Private Method
+     *-----------------------------------------------------------------------*/
+
+    private GeneSummary(code: string, paramNameList: Array<string>, hasReturn: boolean): string {
 
         let docommentList: Array<string> = new Array<string>();
 
@@ -157,9 +172,4 @@ export class DocommentDomainCSharp extends DocommentDomain {
         return docomment;
     }
 
-    /* @implements */
-    public MoveCursorTo(docomment: string): void {
-        const curPosition = this._vsCodeApi.GetActivePosition();
-        this._vsCodeApi.MoveSelection(curPosition.line + 1, curPosition.character + 2);
-    }
 }
