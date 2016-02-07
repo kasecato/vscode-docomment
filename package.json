@@ -54,12 +54,12 @@
     },
     "icon": "images/docomment.png",
     "license": "MIT",
-    "homepage": "https://github.com/k--kato/docomment#readme",
+    "homepage": "https://github.com/k--kato/vscode-docomment#readme",
     "repository": {
         "type": "git",
-        "url": "https://github.com/k--kato/docomment"
+        "url": "https://github.com/k--kato/vscode-docomment"
     },
     "bugs": {
-        "url": "https://github.com/k--kato/docomment/issues"
+        "url": "https://github.com/k--kato/vscode-docomment/issues"
     }
 }
