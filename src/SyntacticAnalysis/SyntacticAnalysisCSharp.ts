@@ -60,6 +60,10 @@ export class SyntacticAnalysisCSharp {
         return code.match(/[\w\S]\s+[\w\S]+\s*\(.*\)/) !== null;
     }
 
+    public static IsComment(code: string): boolean {
+        if (code === null) return false;
+        return code.match(/[ ]+/) !== null;
+    }
 
     public static GetMethodParamNameList(code: string): Array<string> {
         if (code === null) return null;

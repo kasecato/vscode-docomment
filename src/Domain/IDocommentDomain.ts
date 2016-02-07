@@ -6,6 +6,7 @@ import {VSCodeApi} from '../Api/VSCodeApi';
  *-----------------------------------------------------------------------*/
 export enum CodeType {
     None,
+    Comment,
     Namespace,
     Class,
     Interface,
@@ -39,9 +40,9 @@ export interface IDocommentDomain {
      *-----------------------------------------------------------------------*/
     IsTriggerDocomment(): boolean;
     GetCodeType(code: string): CodeType;
-    GeneDocomment(codeType: CodeType, code: string): string;
-    WriteDocomment(docommnet: string): void;
-    MoveCursorTo(docommnet: string): void;
+    GeneDocomment(code: string, codeType: CodeType): string;
+    WriteDocomment(code: string, codeType: CodeType, docommnet: string): void;
+    MoveCursorTo(code: string, codeType: CodeType, docommnet: string): void;
     dispose(): void;
 
 }

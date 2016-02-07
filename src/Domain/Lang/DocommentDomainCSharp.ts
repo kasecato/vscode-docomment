@@ -2,6 +2,7 @@ import {SyntacticAnalysisCSharp} from '../../SyntacticAnalysis/SyntacticAnalysis
 import {StringUtil} from '../../Utility/StringUtil';
 import {DocommentDomain} from '../DocommentDomain';
 import {CodeType} from '../IDocommentDomain';
+import {Position} from 'vscode';
 
 export class DocommentDomainCSharp extends DocommentDomain {
 
@@ -23,8 +24,20 @@ export class DocommentDomainCSharp extends DocommentDomain {
         // NG: Line is NOT /// (NG: ////)
         const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
         if (activeLine == null) return false;
-        const isDocComment: boolean = (activeLine.match(/(?:[^/]\/{3}$)|(?:^\/{3}[^/])|(?:^\/{3}$)/) !== null); // fixme: to simple
-        if (!isDocComment) return false;
+        
+        if (isSlashKey) {
+            const isDocComment: boolean = (activeLine.match(/(?:[^/]\/{3}$)|(?:^\/{3}[^/])|(?:^\/{3}$)/) !== null); // fixme: to simple
+            if (!isDocComment) return false;
+        }
+        if (isEnterKey) {
+            const isDocComment: boolean = (activeLine.match(/\/{3}/) !== null);
+            if (!isDocComment) return false;
+
+            const nextLine = this._vsCodeApi.ReadLine(this._vsCodeApi.GetActiveLine() + 2);
+            if (!nextLine.match(/\/{3}/)) return false;
+
+            return true;
+        }
 
         // NG: Position is NOT ///
         const position: number = this._vsCodeApi.GetActiveCharPosition();
@@ -84,11 +97,14 @@ export class DocommentDomainCSharp extends DocommentDomain {
         /* method */
         if (SyntacticAnalysisCSharp.IsMethod(code)) return CodeType.Method;
 
+        /* comment */
+        if (SyntacticAnalysisCSharp.IsComment(code)) return CodeType.Comment;
+
         return CodeType.None;
     }
 
     /* @override */
-    public GeneDocomment(codeType: CodeType, code: string): string {
+    public GeneDocomment(code: string, codeType: CodeType): string {
 
         let paramNameList: Array<string> = null;
         let hasReturn = false;
@@ -118,8 +134,10 @@ export class DocommentDomainCSharp extends DocommentDomain {
             case CodeType.Property:
                 hasReturn = SyntacticAnalysisCSharp.HasPropertyReturn(code);
                 break;
+            case CodeType.Comment:
+                return '/// ';
             case CodeType.None:
-                return '';
+                return ''
             default:
                 return '';
         }
@@ -128,9 +146,29 @@ export class DocommentDomainCSharp extends DocommentDomain {
     }
 
     /* @implements */
-    public MoveCursorTo(docomment: string): void {
+    public WriteDocomment(code: string, codeType: CodeType, docommnet: string): void {
+        const position: Position = this._vsCodeApi.GetActivePosition();
+
+        if (codeType === CodeType.Comment) {
+            const indentLen: number = StringUtil.GetIndent(code).length;
+            const insertPosition: Position = this._vsCodeApi.GetPosition(position.line + 1, indentLen);
+            this._vsCodeApi.InsertText(insertPosition, docommnet);
+        } else {
+            const insertPosition: Position = this._vsCodeApi.ShiftPositionChar(position, 1);
+            this._vsCodeApi.InsertText(insertPosition, docommnet);
+        }
+    }
+
+    /* @implements */
+    public MoveCursorTo(code: string, codeType: CodeType, docomment: string): void {
         const curPosition = this._vsCodeApi.GetActivePosition();
-        this._vsCodeApi.MoveSelection(curPosition.line + 1, curPosition.character + 2);
+        
+        if (codeType === CodeType.Comment) {
+            const indentLen: number = StringUtil.GetIndent(code).length;
+            this._vsCodeApi.MoveSelection(curPosition.line + 1, indentLen + docomment.length); 
+        } else {
+            this._vsCodeApi.MoveSelection(curPosition.line + 1, curPosition.character + 2);
+        }
     }
 
 
