@@ -1,6 +1,6 @@
 {
     "name": "docomment",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "publisher": "k--kato",
     "engines": {
         "vscode": "^0.10.6"
@@ -8,6 +8,7 @@
     "displayName": "C# XML Documentation Comments",
     "description": "Generate C# XML documentation comments for ///",
     "categories": [
+        "Snippets",
         "Other"
     ],
     "galleryBanner": {
@@ -16,6 +17,12 @@
     },
     "main": "./out/src/extension",
     "contributes": {
+        "snippets": [
+            {
+                "language": "csharp",
+                "path": "./snippets/csharp.json"
+            }
+        ]
     },
     "activationEvents": [
         "onLanguage:csharp"
@@ -27,12 +34,12 @@
     "dependencies": {
     },
     "devDependencies": {
-        "typescript": "^1.6.2",
-        "vscode": "0.10.x",
-        "tslint": "^3.2.1",
+        "typescript": "^1.7.5",
+        "vscode": "^0.10.x",
+        "tslint": "^3.3.0",
         "istanbul": "^0.4.2",
         "coveralls": "^2.11.6",
-        "mocha": "^2.3.4",
+        "mocha": "^2.4.5",
         "mocha-lcov-reporter": "^1.0.0"
     },
     "extensionDependencies": [
@@ -48,12 +55,12 @@
     },
     "icon": "images/docomment.png",
     "license": "MIT",
-    "homepage": "https://github.com/k--kato/docomment#readme",
+    "homepage": "https://github.com/k--kato/vscode-docomment#readme",
     "repository": {
         "type": "git",
-        "url": "https://github.com/k--kato/docomment"
+        "url": "https://github.com/k--kato/vscode-docomment"
     },
     "bugs": {
-        "url": "https://github.com/k--kato/docomment/issues"
+        "url": "https://github.com/k--kato/vscode-docomment/issues"
     }
 }

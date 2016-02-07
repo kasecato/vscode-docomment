@@ -23,9 +23,6 @@
     
     "tasks": [
         {
-            "taskName": "npm"
-        },
-        {
             "taskName": "build",
             "suppressTaskName": true,
 

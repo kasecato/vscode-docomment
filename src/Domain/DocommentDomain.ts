@@ -45,15 +45,15 @@ export class DocommentDomain implements IDocommentDomain {
         if (codeType === null) return;
 
         // Gene Comment
-        const docomment = this.GeneDocomment(codeType, code);
+        const docomment = this.GeneDocomment(code, codeType);
         console.log(docomment);
         if (StringUtil.IsNullOrWhiteSpace(docomment)) return;
 
         // Write Comment
-        this.WriteDocomment(docomment);
+        this.WriteDocomment(code, codeType, docomment);
 
         // Move Cursor to <Summary>
-        this.MoveCursorTo(docomment);
+        this.MoveCursorTo(code, codeType, docomment);
 
     }
 
@@ -73,19 +73,17 @@ export class DocommentDomain implements IDocommentDomain {
     }
 
     /* @implements */
-    public GeneDocomment(codeType: CodeType, code: string): string {
+    public GeneDocomment(code: string, codeType: CodeType): string {
         return null;
     }
 
     /* @implements */
-    public WriteDocomment(docommnet: string): void {
-        const position: Position = this._vsCodeApi.GetActivePosition();
-        const shiftChar = this._vsCodeApi.ShiftPositionChar(position, 1);
-        this._vsCodeApi.InsertText(shiftChar, docommnet);
+    public WriteDocomment(code: string, codeType: CodeType, docommnet: string): void {
+        // NOP
     }
 
     /* @implements */
-    public MoveCursorTo(docomment: string): void {
+    public MoveCursorTo(code: string, codeType: CodeType, docomment: string): void {
         // NOP
     }
 

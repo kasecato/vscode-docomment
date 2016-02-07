@@ -1,4 +1,4 @@
-import {TextEditor, Position, Selection} from 'vscode';
+import {TextEditor, Position, Selection, window} from 'vscode';
 import {StringUtil} from '../Utility/StringUtil';
 
 export class VSCodeApi {

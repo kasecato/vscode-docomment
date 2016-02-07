@@ -1,7 +1,7 @@
 # XML Documentation Comments Support for Visual Studio Code
 
-[![Build Status](https://travis-ci.org/k--kato/docomment.svg?branch=master)](https://travis-ci.org/k--kato/docomment)
-[![Coverage Status](https://coveralls.io/repos/k--kato/docomment/badge.svg?branch=master&service=github)](https://coveralls.io/github/k--kato/docomment?branch=master)
+[![Build Status](https://travis-ci.org/k--kato/vscode-docomment.svg?branch=master)](https://travis-ci.org/k--kato/vscode-docomment)
+[![Coverage Status](https://coveralls.io/repos/k--kato/vscode-docomment/badge.svg?branch=master&service=github)](https://coveralls.io/github/k--kato/vscode-docomment?branch=master)
 [![License: MIT](http://img.shields.io/badge/license-MIT-orange.svg)](LICENSE)
 
 Generate XML documentation comments for Visual Studio Code.
@@ -48,7 +48,7 @@ public int bb(string s, ref int y, void * z)
 Clone a copy of the repo:
 
 ```
-git clone https://github.com/k--kato/docomment.git
+git clone https://github.com/k--kato/vscode-docomment.git
 ```
 
 ### Building the code
