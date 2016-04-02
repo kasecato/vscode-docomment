@@ -20,5 +20,6 @@ namespace N  // "N:N"
       public List<int> bb<int>(string s, ref List<int> y, void * z){return 1;} // "M:N.X.bb(System.String,System.Int32@,=System.Void*)"
       int bb(string s, ref int y, void * z){return 1;} // "M:N.X.bb(System.String,System.Int32@,=System.Void*)"
       int Generate(int level);
+      public void Save(string data, Action<AchievementSavedResponse> onComplete = null);
    }
 }
