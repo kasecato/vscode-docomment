@@ -189,4 +189,23 @@ suite('SyntacticAnalysis.SyntacticAnalysisCSharp.IsClass Tests', () => {
             assert.equal(actual, true);
         });
 
+    test(`
+        Category: Black-box testing
+        Class   : SyntacticAnalysis.SyntacticAnalysisCSharp
+        Method  : GetMethodParamNameList
+        STATE   : -
+        IN      : ' public void Save(string data, Action<AchievementSavedResponse> onComplete = null) {'
+        OUT     : [0]='data', [1]='onComplete'
+    `, () => {
+            // arrange
+            const code = ' public void Save(string data, Action<AchievementSavedResponse> onComplete = null) {';
+
+            // act
+            const actual: Array<string> = SyntacticAnalysisCSharp.GetMethodParamNameList(code);
+
+            // assert
+            assert.equal(actual[0], 'data');
+            assert.equal(actual[1], 'onComplete');
+        });
+
 });
