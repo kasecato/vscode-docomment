@@ -1,15 +1,21 @@
 export class Configuration {
 
     /*-------------------------------------------------------------------------
-     * Const
+     * docomment
      *-----------------------------------------------------------------------*/
-    public static KEY: string = "docomment";
-
+    public static KEY_DOCOMMENT: string = "docomment";
     public static ACTIVATE_ON_ENTER: string = "activateOnEnter";
 
+    public activateOnEnter: boolean;
+
     /*-------------------------------------------------------------------------
-     * Field
+     * editor
      *-----------------------------------------------------------------------*/
-    public activateOnEnter: Boolean;
+    public static KEY_EDITOR: string = "editor";
+    public static INSERT_SPACES: string = "insertSpaces";
+    public static TAB_SIZE: string = "tabSize";
+
+    public insertSpaces: boolean;
+    public tabSize: number;
 
 }
