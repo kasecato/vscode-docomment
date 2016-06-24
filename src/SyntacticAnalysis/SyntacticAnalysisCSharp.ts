@@ -17,8 +17,16 @@ export class SyntacticAnalysisCSharp {
         return (activeChar === '/');
     }
 
-    public static IsDocComment(activeLine: string): boolean {
+    public static IsDocCommentStrict(activeLine: string): boolean {
         return activeLine.match(/(?:[^/]\/{3}[ \t]*$)|(?:^\/{3}[^/])|(?:^\/{3}[ \t]*$)/) !== null; // fixme: to simple
+    }
+
+    public static IsDocComment(activeLine: string): boolean {
+        return activeLine.match(/\/{3}/) !== null;
+    }
+
+    public static IsDoubleDocComment(activeLine: string): boolean {
+        return activeLine.match(/^[ \t]+\/{3} $/) !== null;
     }
 
     /*-------------------------------------------------------------------------
@@ -76,7 +84,7 @@ export class SyntacticAnalysisCSharp {
 
     public static IsComment(code: string): boolean {
         if (code === null) return false;
-        return code.match(/[ ]+/) !== null;
+        return code.match(/[ \t]+/) !== null;
     }
 
     public static GetMethodParamNameList(code: string): Array<string> {

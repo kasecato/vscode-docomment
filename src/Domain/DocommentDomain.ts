@@ -99,5 +99,4 @@ export class DocommentDomain implements IDocommentDomain {
         // NOP
     }
 
-
 }

@@ -30,7 +30,7 @@
                 "docomment.activateOnEnter": {
                     "type": "boolean",
                     "default": false,
-                    "description": "Activating the Enter key."
+                    "description": "Press the Enter key to activate a command."
                 }
             }
         }

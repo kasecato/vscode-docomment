@@ -318,7 +318,7 @@ suite('Utility.StringUtil.GetIndent Tests', () => {
             const code: string = null;
 
             // act
-            const actual: string = StringUtil.GetIndent(code);
+            const actual: string = StringUtil.GetIndent(code, true, 4);
 
             // assert
             assert.equal(actual, null);
@@ -336,7 +336,7 @@ suite('Utility.StringUtil.GetIndent Tests', () => {
             const code = '';
 
             // act
-            const actual: string = StringUtil.GetIndent(code);
+            const actual: string = StringUtil.GetIndent(code, true, 4);
 
             // assert
             assert.equal(actual, '');
@@ -354,7 +354,7 @@ suite('Utility.StringUtil.GetIndent Tests', () => {
             const code = '  foo ';
 
             // act
-            const actual: string = StringUtil.GetIndent(code);
+            const actual: string = StringUtil.GetIndent(code, true, 4);
 
             // assert
             assert.equal(actual, '  ');
@@ -366,16 +366,34 @@ suite('Utility.StringUtil.GetIndent Tests', () => {
         Method  : GetIndent
         STATE   : -
         IN      : '	 	foo '
-        OUT     : '	 	'
+        OUT     : '         '
     `, () => {
             // arrange
             const code = '	 	foo ';
 
             // act
-            const actual: string = StringUtil.GetIndent(code);
+            const actual: string = StringUtil.GetIndent(code, true, 4);
 
             // assert
-            assert.equal(actual, '	 	');
+            assert.equal(actual, '         ');
+        });
+
+    test(`
+        Category: Black-box testing
+        Class   : Utility.StringUtil
+        Method  : GetIndent
+        STATE   : -
+        IN      : '	 	foo '
+        OUT     : '			'
+    `, () => {
+            // arrange
+            const code = '	    	foo ';
+
+            // act
+            const actual: string = StringUtil.GetIndent(code, false, 4);
+
+            // assert
+            assert.equal(actual, '			');
         });
 
 });

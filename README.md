@@ -22,8 +22,12 @@ The menu under File > Preferences (Code > Preferences on Mac) provides entries t
 
 ```json
 {
-    // Press the Enter key to activate a command
-    "docomment.activateOnEnter": true
+	// Press the Enter key to activate a command (Default: false)
+	"docomment.activateOnEnter": true,
+	// Insert spaces when pressing Tab.
+	"editor.insertSpaces": true,
+	// The number of spaces a tab is equal to.
+	"editor.tabSize": 4
 }
 ```
 
