@@ -1,5 +1,6 @@
 import {Disposable} from 'vscode';
 import {IDocommentDomain} from '../Domain/IDocommentDomain';
+import {Configuration} from '../Entity/Config/Contributes/Configuration';
 
 export interface IDocommentController {
 
@@ -9,6 +10,7 @@ export interface IDocommentController {
     _languageId: string;
     _disposable: Disposable;
     _docommentDomain: IDocommentDomain;
+    _config: Configuration;
 
 
     /*-------------------------------------------------------------------------

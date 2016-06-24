@@ -1,5 +1,6 @@
 import {TextEditor, TextDocumentContentChangeEvent} from 'vscode';
 import {VSCodeApi} from '../Api/VSCodeApi';
+import {Configuration} from '../Entity/Config/Contributes/Configuration';
 
 /*-------------------------------------------------------------------------
  * Enum
@@ -27,12 +28,15 @@ export interface IDocommentDomain {
     _event: TextDocumentContentChangeEvent;
     _vsCodeApi: VSCodeApi;
     _activeEditor: TextEditor;
-
+    _config: Configuration;
 
     /*-------------------------------------------------------------------------
      * Entry Method
      *-----------------------------------------------------------------------*/
-    Execute(activeEditor: TextEditor, event: TextDocumentContentChangeEvent, languageId: string);
+    Execute(activeEditor: TextEditor
+    , event: TextDocumentContentChangeEvent
+    , languageId: string
+    , config: Configuration);
 
 
     /*-------------------------------------------------------------------------
