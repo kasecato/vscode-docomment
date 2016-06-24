@@ -17,37 +17,38 @@ export class DocommentDomainCSharp extends DocommentDomain {
         // NG: KeyCode is NOT '/' or Enter
         const activeChar: string = this._vsCodeApi.ReadCharAtCurrent();
         if (activeChar == null) return false;
-        const isSlashKey: boolean = (activeChar === '/');
-        const isEnterKey: boolean = (activeChar === '') && this._event.text.startsWith('\n');
+        const isSlashKey: boolean = SyntacticAnalysisCSharp.IsSlashKey(activeChar);
+        const isEnterKey: boolean = SyntacticAnalysisCSharp.IsEnterKey(activeChar, this._event.text);
         if (!isSlashKey && !isEnterKey) return false;
+
+        // NG: Activate on Enter NOT Slash
+        if (this._config.activateOnEnter) {
+            if (isSlashKey) {
+                return false;
+            }
+        }
 
         // NG: Line is NOT /// (NG: ////)
         const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
         if (activeLine == null) return false;
-        
         if (isSlashKey) {
-            const isDocComment: boolean = (activeLine.match(/(?:[^/]\/{3}$)|(?:^\/{3}[^/])|(?:^\/{3}$)/) !== null); // fixme: to simple
+            const isDocComment: boolean = SyntacticAnalysisCSharp.IsDocComment(activeLine); 
             if (!isDocComment) return false;
         }
         if (isEnterKey) {
-            const isDocComment: boolean = (activeLine.match(/\/{3}/) !== null);
+            const isDocComment: boolean = SyntacticAnalysisCSharp.IsDocComment(activeLine); 
             if (!isDocComment) return false;
-
-            const nextLine = this._vsCodeApi.ReadLine(this._vsCodeApi.GetActiveLine() + 2);
-            if (!nextLine.match(/\/{3}/)) return false;
-
-            return true;
         }
 
         // NG: Position is NOT ///
-        const position: number = this._vsCodeApi.GetActiveCharPosition();
-        const positionDocComment: number = activeLine.lastIndexOf('///') + ((isEnterKey) ? 3 : 2);
-        const isLastPosition: boolean = (position === positionDocComment);
-        if (!isLastPosition) return false;
+        // const position: number = this._vsCodeApi.GetActiveCharPosition();
+        // const positionDocComment: number = activeLine.lastIndexOf('///') + ((isEnterKey) ? 3 : 2);
+        // const isLastPosition: boolean = (position === positionDocComment);
+        // if (!isLastPosition) return false;
 
         // NG: Previous line is XML document comment
-        const previousLine: string = this._vsCodeApi.ReadPreviousLineFromCurrent();
-        if (previousLine != null && previousLine.match(/\/{3}/)) return false;
+        // const previousLine: string = this._vsCodeApi.ReadPreviousLineFromCurrent();
+        // if (SyntacticAnalysisCSharp.IsDocComment(previousLine)) return false;
 
         // OK
         return true;

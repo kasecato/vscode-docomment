@@ -2,6 +2,7 @@ import {TextEditor, TextDocumentContentChangeEvent, Position} from 'vscode';
 import {VSCodeApi} from '../Api/VSCodeApi';
 import {IDocommentDomain, CodeType} from './IDocommentDomain';
 import {StringUtil} from '../Utility/StringUtil';
+import {Configuration} from '../Entity/Config/Contributes/Configuration';
 
 export class DocommentDomain implements IDocommentDomain {
 
@@ -18,17 +19,23 @@ export class DocommentDomain implements IDocommentDomain {
     /* @implements */
     public _activeEditor: TextEditor;
 
+    /* @implements */
+    public _config: Configuration;
 
     /*-------------------------------------------------------------------------
      * Entry Method
      *-----------------------------------------------------------------------*/
 
     /* @implements */
-    public Execute(activeEditor: TextEditor, event: TextDocumentContentChangeEvent, languageId: string) {
+    public Execute(activeEditor: TextEditor
+    , event: TextDocumentContentChangeEvent
+    , languageId: string
+    , config: Configuration) {
 
         this._event = event;
         this._activeEditor = activeEditor;
         this._vsCodeApi = new VSCodeApi(activeEditor);
+        this._config = config;
 
         // Detect Language
         if (!this._vsCodeApi.IsLanguage(languageId)) return;

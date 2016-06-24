@@ -1,3 +1,5 @@
+using System;
+
 namespace N  // "N:N"
 {   
    public unsafe class X    // "T:N.X"
@@ -21,5 +23,6 @@ namespace N  // "N:N"
       int bb(string s, ref int y, void * z){return 1;} // "M:N.X.bb(System.String,System.Int32@,=System.Void*)"
       int Generate(int level);
       public void Save(string data, Action<AchievementSavedResponse> onComplete = null);
+      Func<string, bool> FirstClassFunction(Func<bool, int> func);
    }
 }

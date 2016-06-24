@@ -6,9 +6,23 @@ export class SyntacticAnalysisCSharp {
     private static RESERVED_WORDS: RegExp =
     /(void|event|delegate|internal|public|protected|private|static|const|new|sealed|abstract|virtual|override|extern|unsafe|readonly|volatile|implicit|explicit|operator)/;
 
+    /*-------------------------------------------------------------------------
+     * Public Method: Comment Type
+     *-----------------------------------------------------------------------*/
+    public static IsEnterKey(activeChar: string, text: string): boolean {
+        return (activeChar === '') && text.startsWith('\n');
+    }
+
+    public static IsSlashKey(activeChar: string): boolean {
+        return (activeChar === '/');
+    }
+
+    public static IsDocComment(activeLine: string): boolean {
+        return activeLine.match(/(?:[^/]\/{3}[ \t]*$)|(?:^\/{3}[^/])|(?:^\/{3}[ \t]*$)/) !== null; // fixme: to simple
+    }
 
     /*-------------------------------------------------------------------------
-     * Public Method
+     * Public Method: Code Type
      *-----------------------------------------------------------------------*/
     public static IsNamespace(code: string): boolean {
         if (code === null) return false;

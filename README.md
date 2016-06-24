@@ -14,23 +14,23 @@ Type "///", it auto-generates an XML doucumentation comment like this:
 ![docomment](images/docomment.gif)
 
 
-```csharp
-/// <summary>
-/// 
-/// </summary>
-/// <param name="s"></param>
-/// <param name="y"></param>
-/// <param name="z"></param>
-/// <returns></returns>
-public int bb(string s, ref int y, void * z)
+## Configuration
+
+The menu under File > Preferences (Code > Preferences on Mac) provides entries to configure user and workspace settings. You are provided with a list of Default Settings. Copy any setting that you want to change to the related `settings.json` file.
+
+### settings.json
+
+```json
 {
-    return 1;
+    // Press the Enter key to activate a command
+    "docomment.activateOnEnter": true
 }
 ```
 
+
 ## Installation
 
-1. Install Visual Studio Code 0.10.6 or higher
+1. Install Visual Studio Code 1.2.0 or higher
 1. Launch Code
 1. From the command palette `Ctrl`-`Shift`-`P` (Windows, Linux) or `Cmd`-`Shift`-`P` (OSX)
 1. Select `Install Extension`

@@ -1,9 +1,9 @@
 {
     "name": "docomment",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "publisher": "k--kato",
     "engines": {
-        "vscode": "^0.10.x"
+        "vscode": "^1.2.x"
     },
     "displayName": "C# XML Documentation Comments",
     "description": "Generate C# XML documentation comments for ///",
@@ -22,7 +22,18 @@
                 "language": "csharp",
                 "path": "./snippets/csharp.json"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "C# XML Documentation Comments configuration",
+            "properties": {
+                "docomment.activateOnEnter": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Activating the Enter key."
+                }
+            }
+        }
     },
     "activationEvents": [
         "onLanguage:csharp"
@@ -34,12 +45,12 @@
     "dependencies": {
     },
     "devDependencies": {
-        "typescript": "^1.8.9",
-        "vscode": "^0.11.10",
-        "tslint": "^3.6.0",
-        "istanbul": "^0.4.2",
+        "typescript": "^1.8.10",
+        "vscode": "^0.11.13",
+        "tslint": "^3.11.0",
+        "istanbul": "^0.4.4",
         "coveralls": "^2.11.9",
-        "mocha": "^2.4.5",
+        "mocha": "^2.5.3",
         "mocha-lcov-reporter": "^1.2.0"
     },
     "extensionDependencies": [

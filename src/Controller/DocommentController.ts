@@ -1,6 +1,7 @@
-import {window, workspace, Disposable, TextEditor, TextDocumentContentChangeEvent} from 'vscode';
+import {window, workspace, Disposable, TextEditor, TextDocumentContentChangeEvent, WorkspaceConfiguration} from 'vscode';
 import {IDocommentDomain} from '../Domain/IDocommentDomain';
 import {IDocommentController} from './IDocommentController';
+import {Configuration} from '../Entity/Config/Contributes/Configuration';
 
 export class DocommentController implements IDocommentController {
 
@@ -17,12 +18,17 @@ export class DocommentController implements IDocommentController {
     /* @implements */
     public _docommentDomain: IDocommentDomain;
 
+    /* @implements */
+    public _config: Configuration;
 
     /*-------------------------------------------------------------------------
      * Entry Constructor
      *-----------------------------------------------------------------------*/
     public constructor(docommentDomain: IDocommentDomain) {
         this._docommentDomain = docommentDomain;
+
+        /* Load Configuration File (.vscode/settings.json) */
+        this.loadConfig();
 
         const subscriptions: Disposable[] = [];
 
@@ -32,6 +38,11 @@ export class DocommentController implements IDocommentController {
             if (activeEditor && event.document === activeEditor.document) {
                 this._onEvent(activeEditor, event.contentChanges[0]);
             }
+        }, this, subscriptions);
+
+        /* Add Config File Change Event */
+        workspace.onDidChangeConfiguration(() => {
+            this.loadConfig();
         }, this, subscriptions);
 
         this._disposable = Disposable.from(...subscriptions);
@@ -47,13 +58,22 @@ export class DocommentController implements IDocommentController {
         this._disposable.dispose();
     }
 
+    /*-------------------------------------------------------------------------
+     * Private Method
+     *-----------------------------------------------------------------------*/
+    private loadConfig() {
+        const conf: WorkspaceConfiguration = workspace.getConfiguration(Configuration.KEY);
+
+        this._config = new Configuration();
+        this._config.activateOnEnter = conf.get<boolean>(Configuration.ACTIVATE_ON_ENTER, false);
+    }
 
     /*-------------------------------------------------------------------------
      * Event
      *-----------------------------------------------------------------------*/
     private _onEvent(activeEditor: TextEditor, event: TextDocumentContentChangeEvent) {
         // Insert XML document comment
-        this._docommentDomain.Execute(activeEditor, event, this._languageId);
+        this._docommentDomain.Execute(activeEditor, event, this._languageId, this._config);
     }
 
 }
