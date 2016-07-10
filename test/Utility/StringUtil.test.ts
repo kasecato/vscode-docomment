@@ -151,6 +151,43 @@ suite('Utility.StringUtil.IsCodeBlockStart Tests', () => {
             // assert
             assert.equal(actual, true);
         });
+
+    test(`
+        Category: Black-box testing
+        Class   : Utility.StringUtil
+        Method  : IsCodeBlockStart
+        STATE   : -
+        IN      : '[Route("{time}/{location}")]'
+        OUT     : false
+    `, () => {
+            // arrange
+            const code = '[Route("{time}/{location}")]';
+
+            // act
+            const actual: boolean = StringUtil.IsCodeBlockStart(code);
+
+            // assert
+            assert.equal(actual, false);
+        });
+
+    test(`
+        Category: Black-box testing
+        Class   : Utility.StringUtil
+        Method  : IsCodeBlockStart
+        STATE   : -
+        IN      : 'public async Task<string> GetInfoForTime(string location, double time)'
+        OUT     : true
+    `, () => {
+            // arrange
+            const code = 'public async Task<string> GetInfoForTime(string location, double time)';
+
+            // act
+            const actual: boolean = StringUtil.IsCodeBlockStart(code);
+
+            // assert
+            assert.equal(actual, true);
+        });
+
 });
 
 

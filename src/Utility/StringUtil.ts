@@ -9,7 +9,20 @@ export class StringUtil {
 
     public static IsCodeBlockStart(line: string): boolean {
         if (line === null) return false;
-        return (line.indexOf('{') !== -1) || (line.indexOf(';') !== -1);
+        
+        const isAttribute: boolean = line.trim().startsWith('['); // SKIP Attribute: [foo="bar"]
+        if (isAttribute) return false;
+
+        const isCodeBlockStart: boolean = (line.indexOf('{') !== -1);
+        if (isCodeBlockStart) return true;
+
+        const isInterface: boolean = (line.indexOf(';') !== -1)
+        if (isInterface) return true;
+
+        const isEndMethod: boolean = (line.trim().endsWith(')'))
+        if (isEndMethod) return true;
+
+        return isCodeBlockStart;
     }
 
     public static RemoveComment(line: string): string {
