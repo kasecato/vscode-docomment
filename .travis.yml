@@ -22,4 +22,4 @@ after_script: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls
 
 language: node_js
 node_js:
-  - "6.1.x"
+  - "6"
