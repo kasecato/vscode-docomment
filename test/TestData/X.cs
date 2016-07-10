@@ -24,5 +24,8 @@ namespace N  // "N:N"
         int Generate(int level);
         public void Save(string data, Action<AchievementSavedResponse> onComplete = null);
         Func<string, bool> FirstClassFunction(Func<bool, int> func);
+        [Route("{time}/{location}")]
+        [HttpGet]
+        public async Task<string> GetInfoForTime(string location, double time)
    }
 }
