@@ -56,6 +56,10 @@ export class VSCodeApi {
         return new Selection(line, charcter, line, charcter);
     }
 
+    public GetSelectionByPosition(anchor: Position, active: Position): Selection {
+        return new Selection(anchor, active);
+    }
+
     public MoveSelection(line: number, charcter: number): void {
         const move: Selection = this.GetSelection(line, charcter);
         this._activeEditor.selection = move;
@@ -64,6 +68,12 @@ export class VSCodeApi {
     public InsertText(position: Position, text: string) {
         this._activeEditor.edit((editBuilder) => {
             editBuilder.insert(position, text);
+        });
+    }
+
+    public ReplaceText(selection: Selection, text: string) {
+        this._activeEditor.edit((editBuilder) => {
+            editBuilder.replace(selection, text);
         });
     }
 

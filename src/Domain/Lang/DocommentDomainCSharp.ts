@@ -6,6 +6,11 @@ import {Position} from 'vscode';
 
 export class DocommentDomainCSharp extends DocommentDomain {
 
+    /*-------------------------------------------------------------------------
+     * Field
+     *-----------------------------------------------------------------------*/
+    private _isEnterKey: boolean = false;
+
 
     /*-------------------------------------------------------------------------
      * Domain Method
@@ -18,8 +23,8 @@ export class DocommentDomainCSharp extends DocommentDomain {
         const activeChar: string = this._vsCodeApi.ReadCharAtCurrent();
         if (activeChar == null) return false;
         const isSlashKey: boolean = SyntacticAnalysisCSharp.IsSlashKey(activeChar);
-        const isEnterKey: boolean = SyntacticAnalysisCSharp.IsEnterKey(activeChar, this._event.text);
-        if (!isSlashKey && !isEnterKey) return false;
+        this._isEnterKey = SyntacticAnalysisCSharp.IsEnterKey(activeChar, this._event.text);
+        if (!isSlashKey && !this._isEnterKey) return false;
 
         // NG: Activate on Enter NOT Slash
         if (this._config.activateOnEnter) {
@@ -38,7 +43,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
             // NG: '/' => Insert => Event => ' /// '
             if (SyntacticAnalysisCSharp.IsDoubleDocComment(activeLine)) return false;
         }
-        if (isEnterKey) {
+        if (this._isEnterKey) {
             const isDocComment: boolean = SyntacticAnalysisCSharp.IsDocComment(activeLine);
             if (!isDocComment) return false;
         }
@@ -150,28 +155,35 @@ export class DocommentDomainCSharp extends DocommentDomain {
     }
 
     /* @implements */
-    public WriteDocomment(code: string, codeType: CodeType, docommnet: string): void {
+    public WriteDocomment(code: string, codeType: CodeType, docomment: string): void {
         const position: Position = this._vsCodeApi.GetActivePosition();
 
         if (codeType === CodeType.Comment) {
             const indent: string = StringUtil.GetIndent(code, this._config.insertSpaces, this._config.tabSize);
             const indentLen: number = StringUtil.GetIndentLen(indent, this._config.insertSpaces, this._config.tabSize);
             const insertPosition: Position = this._vsCodeApi.GetPosition(position.line + 1, indentLen - 1);
-            this._vsCodeApi.InsertText(insertPosition, docommnet);
+            this._vsCodeApi.InsertText(insertPosition, docomment);
         } else {
-            const insertPosition: Position = this._vsCodeApi.ShiftPositionChar(position, 1);
-            this._vsCodeApi.InsertText(insertPosition, docommnet);
+            if (this._isEnterKey) {
+                const active: Position = this._vsCodeApi.GetActivePosition();
+                const anchor: Position = this._vsCodeApi.GetPosition(active.line + 1, active.character);
+                const replaceSelection = this._vsCodeApi.GetSelectionByPosition(anchor, active);
+                this._vsCodeApi.ReplaceText(replaceSelection, docomment);
+            } else {
+                const insertPosition: Position = this._vsCodeApi.ShiftPositionChar(position, 1)
+                this._vsCodeApi.InsertText(insertPosition, docomment);
+            }
         }
     }
 
     /* @implements */
     public MoveCursorTo(code: string, codeType: CodeType, docomment: string): void {
         const curPosition = this._vsCodeApi.GetActivePosition();
-        
+
         if (codeType === CodeType.Comment) {
             const indent: string = StringUtil.GetIndent(code, this._config.insertSpaces, this._config.tabSize);
             const indentLen: number = StringUtil.GetIndentLen(indent, this._config.insertSpaces, this._config.tabSize);
-            this._vsCodeApi.MoveSelection(curPosition.line + 1, indentLen - 1 + docomment.length); 
+            this._vsCodeApi.MoveSelection(curPosition.line + 1, indentLen - 1 + docomment.length);
         } else {
             this._vsCodeApi.MoveSelection(curPosition.line + 1, curPosition.character + 2);
         }
