@@ -153,4 +153,19 @@ export class VSCodeApi {
         return null;
     }
 
+    public ReadNextLineFromCurrent(): string {
+        const lineCount: number = this.GetLineCount();
+        const curLine: number = this.GetActiveLine();
+
+        for (let i: number = curLine; i < lineCount - 1; i++) {
+
+            // Skip empty line
+            const line: string = this.ReadLine(i + 1);
+            if (StringUtil.IsNullOrWhiteSpace(line)) continue;
+
+            return line;
+        }
+
+        return null;
+    }
 }
