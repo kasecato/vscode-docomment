@@ -36,16 +36,27 @@ export class DocommentDomainCSharp extends DocommentDomain {
         // NG: Line is NOT /// (NG: ////)
         const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
         if (activeLine == null) return false;
-        if (isSlashKey || this._isEnterKey) {
-            const isDocComment: boolean = SyntacticAnalysisCSharp.IsDocComment(activeLine);
+        if (isSlashKey) {
+            const isDocComment: boolean = SyntacticAnalysisCSharp.IsDocCommentStrict(activeLine);
             if (!isDocComment) return false;
 
-            const previousLine: string = this._vsCodeApi.ReadPreviousLineFromCurrent();
-            if (SyntacticAnalysisCSharp.IsDocComment(previousLine)) return false;
-
-            const nextLine: string = this._vsCodeApi.ReadNextLineFromCurrent();
-            if (SyntacticAnalysisCSharp.IsDocComment(nextLine)) return false;
+            // NG: '/' => Insert => Event => ' /// '
+            if (SyntacticAnalysisCSharp.IsDoubleDocComment(activeLine)) return false;
         }
+        if (this._isEnterKey) {
+            const isDocComment: boolean = SyntacticAnalysisCSharp.IsDocComment(activeLine);
+            if (!isDocComment) return false;
+        }
+
+        // NG: Position is NOT ///
+        // const position: number = this._vsCodeApi.GetActiveCharPosition();
+        // const positionDocComment: number = activeLine.lastIndexOf('///') + ((isEnterKey) ? 3 : 2);
+        // const isLastPosition: boolean = (position === positionDocComment);
+        // if (!isLastPosition) return false;
+
+        // NG: Previous line is XML document comment
+        // const previousLine: string = this._vsCodeApi.ReadPreviousLineFromCurrent();
+        // if (SyntacticAnalysisCSharp.IsDocComment(previousLine)) return false;
 
         // OK
         return true;
@@ -75,7 +86,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
 
 
         /*-------------------------------------------------------------------------
-         *
+         * 
          *-----------------------------------------------------------------------*/
         const isInMethod = false; // fixme:
         if (isInMethod) return CodeType.None;
