@@ -101,7 +101,7 @@ export class SyntacticAnalysisCSharp {
             const hasTypeInfo: boolean = param.match(/[\w\W]+\s+[\w\W]+/) !== null;
             let name: RegExpMatchArray = null;
             if (hasOptionalParam) {
-                name = param.match(/\S+\s+(\S+)\s*=.*/)
+                name = param.match(/\S+\s+(\S+)\s*=.*/);
             } else if (hasGenericParam) {
                 name = null; // SKIP
             } else if (!hasTypeInfo) {
