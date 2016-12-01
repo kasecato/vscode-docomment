@@ -1,0 +1,19 @@
+# Change Log
+
+## 0.0.8 (December 2, 2016)
+
+* bug fix - Adds extra param for `Func<T, bool>`. See [#19](https://github.com/k--kato/vscode-docomment/issues/19).
+
+## 0.0.7 (July 11, 2016)
+
+## 0.0.6 (Jun 24, 2016)
+
+## 0.0.5 (April 2, 2016)
+
+## 0.0.4 (February 7, 2016)
+
+## 0.0.3 (January 24, 2016)
+
+## 0.0.2 (January 14, 2016)
+
+## 0.0.1 (January 4, 2016)
