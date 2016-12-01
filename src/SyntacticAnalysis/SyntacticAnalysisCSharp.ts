@@ -96,10 +96,19 @@ export class SyntacticAnalysisCSharp {
 
         let paramName: Array<string> = new Array<string>();
         params[1].split(',').forEach(param => {
-            const hasOptionaParam: boolean = param.match(/\S+\s+\S+\s*=/) !== null;
-            const name: RegExpMatchArray = (hasOptionaParam) 
-                                           ? param.match(/\S+\s+(\S+)\s*=.*/)
-                                           : param.match(/(\S+)\s*$/);
+            const hasOptionalParam: boolean = param.match(/\S+\s+\S+\s*=/) !== null;
+            const hasGenericParam: boolean = param.match(/[<]/) !== null;
+            const hasTypeInfo: boolean = param.match(/[\w\W]+\s+[\w\W]+/) !== null;
+            let name: RegExpMatchArray = null;
+            if (hasOptionalParam) {
+                name = param.match(/\S+\s+(\S+)\s*=.*/);
+            } else if (hasGenericParam) {
+                name = null; // SKIP
+            } else if (!hasTypeInfo) {
+                name = null; // SKIP
+            } else {
+                name = param.match(/(\S+)\s*$/);
+            }
             if (name !== null && name.length === 2) {
                 paramName.push(name[1]);
             }

@@ -27,5 +27,7 @@ namespace N  // "N:N"
         [Route("{time}/{location}")]
         [HttpGet]
         public async Task<string> GetInfoForTime(string location, double time)
+        public Collection<T> Filter(Func<T, bool> query) { }
+        public Collection<T> Filter(Func<T, bool> queryFirst, Func<T, U, V> querySecond) { }
    }
 }
