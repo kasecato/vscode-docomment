@@ -22,11 +22,11 @@ export class SyntacticAnalysisCSharp {
     }
 
     public static IsDocComment(activeLine: string): boolean {
-        return activeLine.match(/\/{3}/) !== null;
+        return activeLine.match(/^\s*?\/{3}\s*$/) !== null;
     }
 
     public static IsDoubleDocComment(activeLine: string): boolean {
-        return activeLine.match(/^[ \t]+\/{3} $/) !== null;
+        return activeLine.match(/^[ \t]*\/{3} $/) !== null;
     }
 
     /*-------------------------------------------------------------------------
@@ -84,6 +84,7 @@ export class SyntacticAnalysisCSharp {
 
     public static IsComment(code: string): boolean {
         if (code === null) return false;
+        if (code === '') return true;
         return code.match(/[ \t]+/) !== null;
     }
 
@@ -97,13 +98,10 @@ export class SyntacticAnalysisCSharp {
         let paramName: Array<string> = new Array<string>();
         params[1].split(',').forEach(param => {
             const hasOptionalParam: boolean = param.match(/\S+\s+\S+\s*=/) !== null;
-            const hasGenericParam: boolean = param.match(/[<]/) !== null;
             const hasTypeInfo: boolean = param.match(/[\w\W]+\s+[\w\W]+/) !== null;
             let name: RegExpMatchArray = null;
             if (hasOptionalParam) {
                 name = param.match(/\S+\s+(\S+)\s*=.*/);
-            } else if (hasGenericParam) {
-                name = null; // SKIP
             } else if (!hasTypeInfo) {
                 name = null; // SKIP
             } else {

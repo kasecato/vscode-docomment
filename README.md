@@ -1,8 +1,6 @@
 # XML Documentation Comments Support for Visual Studio Code
 
-[![Build Status](https://travis-ci.org/k--kato/vscode-docomment.svg?branch=master)](https://travis-ci.org/k--kato/vscode-docomment)
-[![Coverage Status](https://coveralls.io/repos/k--kato/vscode-docomment/badge.svg?branch=master&service=github)](https://coveralls.io/github/k--kato/vscode-docomment?branch=master)
-[![License: MIT](http://img.shields.io/badge/license-MIT-orange.svg)](LICENSE)
+[![Build Status](https://travis-ci.org/k--kato/vscode-docomment.svg?branch=master)](https://travis-ci.org/k--kato/vscode-docomment) [![Coverage Status](https://coveralls.io/repos/k--kato/vscode-docomment/badge.svg?branch=master&service=github)](https://coveralls.io/github/k--kato/vscode-docomment?branch=master) [![License: MIT](http://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![Marketplace Version](http://vsmarketplacebadge.apphb.com/version/k--kato.docomment.svg)](https://marketplace.visualstudio.com/items?itemName=k--kato.docomment) [![Install](http://vsmarketplacebadge.apphb.com/installs-short/k--kato.docomment.svg)](https://marketplace.visualstudio.com/items?itemName=k--kato.docomment)
 
 Generate XML documentation comments for Visual Studio Code.
 
@@ -34,11 +32,10 @@ The menu under File > Preferences (Code > Preferences on Mac) provides entries t
 
 ## Installation
 
-1. Install Visual Studio Code 1.2.0 or higher
+1. Install Visual Studio Code 1.7.0 or higher
 1. Launch Code
-1. From the command palette `Ctrl`-`Shift`-`P` (Windows, Linux) or `Cmd`-`Shift`-`P` (OSX)
-1. Select `Install Extension`
-1. Choose the extension '`docomment`' *or* run `ext install docomment`
+1. From the extension view `Ctrl`-`Shift`-`X` (Windows, Linux) or `Cmd`-`Shift`-`X` (macOS)
+1. Search and Choose the extension `C# XML Documentation Comments`
 1. Reload Visual Studio Code
 
 
@@ -71,6 +68,10 @@ npm run compile
 
 After the initial compile, the source files will be watched and recompiled
 when changes are saved.
+
+## Contributors
+
+* [@ivanz](https://github.com/ivanz)
 
 
 ## License

@@ -1,9 +1,9 @@
 {
     "name": "docomment",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "publisher": "k--kato",
     "engines": {
-        "vscode": "^1.7.x"
+        "vscode": "^1.7.0"
     },
     "displayName": "C# XML Documentation Comments",
     "description": "Generate C# XML documentation comments for ///",

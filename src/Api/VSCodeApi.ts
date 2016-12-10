@@ -1,4 +1,4 @@
-import {TextEditor, Position, Selection, window} from 'vscode';
+import {TextEditor, Position, Selection, TextDocumentContentChangeEvent} from 'vscode';
 import {StringUtil} from '../Utility/StringUtil';
 
 export class VSCodeApi {
@@ -23,6 +23,11 @@ export class VSCodeApi {
     public IsLanguage(languageId: string): boolean {
         return (this._activeEditor.document.languageId === languageId);
     }
+
+    public IsEmptyContentChanges(event: TextDocumentContentChangeEvent): boolean {
+        return event.text === null || event.text === '';
+    }
+
 
     public GetActivePosition(): Position {
         return this._activeEditor.selection.active;
@@ -145,6 +150,22 @@ export class VSCodeApi {
 
             // Skip empty line
             const line: string = this.ReadLine(i - 1);
+            if (StringUtil.IsNullOrWhiteSpace(line)) continue;
+
+            return line;
+        }
+
+        return null;
+    }
+
+    public ReadNextLineFromCurrent(): string {
+        const lineCount: number = this.GetLineCount();
+        const curLine: number = this.GetActiveLine();
+
+        for (let i: number = curLine; i < lineCount - 1; i++) {
+
+            // Skip empty line
+            const line: string = this.ReadLine(i + 1);
             if (StringUtil.IsNullOrWhiteSpace(line)) continue;
 
             return line;
