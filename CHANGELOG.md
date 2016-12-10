@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.9 (December 11, 2016)
+
+* bug fix - Expansion is triggering in a lot of cases when it shouldn't . See [#16](https://github.com/k--kato/vscode-docomment/issues/16).
+
 ## 0.0.8 (December 2, 2016)
 
 * bug fix - Adds extra param for `Func<T, bool>`. See [#19](https://github.com/k--kato/vscode-docomment/issues/19).

@@ -19,6 +19,10 @@ export class DocommentDomainCSharp extends DocommentDomain {
     /* @override */
     public IsTriggerDocomment(): boolean {
 
+        // NG: KeyCode is EMPTY
+        const isEmpty: boolean = this._vsCodeApi.IsEmptyContentChanges(this._event);
+        if (isEmpty) return false;
+
         // NG: KeyCode is NOT '/' or Enter
         const activeChar: string = this._vsCodeApi.ReadCharAtCurrent();
         if (activeChar == null) return false;
@@ -36,16 +40,15 @@ export class DocommentDomainCSharp extends DocommentDomain {
         // NG: Line is NOT /// (NG: ////)
         const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
         if (activeLine == null) return false;
+
         if (isSlashKey) {
-            const isDocComment: boolean = SyntacticAnalysisCSharp.IsDocCommentStrict(activeLine);
-            if (!isDocComment) return false;
+            if (!SyntacticAnalysisCSharp.IsDocCommentStrict(activeLine)) return false;
 
             // NG: '/' => Insert => Event => ' /// '
             if (SyntacticAnalysisCSharp.IsDoubleDocComment(activeLine)) return false;
         }
         if (this._isEnterKey) {
-            const isDocComment: boolean = SyntacticAnalysisCSharp.IsDocComment(activeLine);
-            if (!isDocComment) return false;
+            if (!SyntacticAnalysisCSharp.IsDocComment(activeLine)) return false;
         }
 
         // NG: Position is NOT ///
@@ -146,7 +149,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
             case CodeType.Comment:
                 return '/// ';
             case CodeType.None:
-                return ''
+                return '';
             default:
                 return '';
         }
@@ -170,7 +173,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
                 const replaceSelection = this._vsCodeApi.GetSelectionByPosition(anchor, active);
                 this._vsCodeApi.ReplaceText(replaceSelection, docomment);
             } else {
-                const insertPosition: Position = this._vsCodeApi.ShiftPositionChar(position, 1)
+                const insertPosition: Position = this._vsCodeApi.ShiftPositionChar(position, 1);
                 this._vsCodeApi.InsertText(insertPosition, docomment);
             }
         }
