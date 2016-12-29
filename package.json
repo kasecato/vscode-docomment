@@ -1,9 +1,9 @@
 {
     "name": "docomment",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "publisher": "k--kato",
     "engines": {
-        "vscode": "^1.7.0"
+        "vscode": "^1.8.0"
     },
     "displayName": "C# XML Documentation Comments",
     "description": "Generate C# XML documentation comments for ///",
@@ -45,19 +45,18 @@
     "dependencies": {
     },
     "devDependencies": {
-        "typescript": "^2.0.10",
+        "typescript": "^2.1.4",
         "vscode": "^1.0.3",
-        "tslint": "^4.0.2",
+        "tslint": "^4.2.0",
         "istanbul": "^0.4.5",
         "coveralls": "^2.11.15",
         "mocha": "^3.2.0",
         "mocha-lcov-reporter": "^1.2.0",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.33"
+        "@types/node": "^6.0.54",
+        "@types/mocha": "^2.2.35"
     },
     "extensionDependencies": [
     ],
-    "isAMD": false,
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
         "compile": "tsc -watch -p ./",

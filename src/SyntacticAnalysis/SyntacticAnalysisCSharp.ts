@@ -90,7 +90,7 @@ export class SyntacticAnalysisCSharp {
 
     public static GetMethodParamNameList(code: string): Array<string> {
         if (code === null) return null;
-        const params: RegExpMatchArray = code.match(/[\w\S]\s+[\w\S]+\s*\((.*)\)/);
+        const params: RegExpMatchArray = code.match(/[\w\S]\s+[\w\S]+\s*\(([^)]*)\)/);
 
         const isMatched = (params === null || params.length !== 2);
         if (isMatched) return null;
