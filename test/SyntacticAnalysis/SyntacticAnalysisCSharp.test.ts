@@ -216,14 +216,5 @@ suite('SyntacticAnalysis.SyntacticAnalysisCSharp.IsClass Tests', () => {
             assert.equal(SyntacticAnalysisCSharp.IsDocComment('///'), true, '///');
             assert.equal(SyntacticAnalysisCSharp.IsDocComment(' ///'), true, ' ///');
             assert.equal(SyntacticAnalysisCSharp.IsDocComment(' /// '), true, ' /// ');
-
-            assert.equal(SyntacticAnalysisCSharp.IsDocComment('/// ///'), false, '/// ///');
-            assert.equal(SyntacticAnalysisCSharp.IsDocComment(' /// ///'), false, ' /// ///');
-            assert.equal(SyntacticAnalysisCSharp.IsDocComment('//////'), false, '//////');
-            assert.equal(SyntacticAnalysisCSharp.IsDocComment(' //////'), false, ' //////');
-            assert.equal(SyntacticAnalysisCSharp.IsDocComment(' /////'), false, ' /////');
-            assert.equal(SyntacticAnalysisCSharp.IsDocComment(' /// //'), false, ' /// //');
-            assert.equal(SyntacticAnalysisCSharp.IsDocComment(' //// ///'), false, ' //// ///');
-            assert.equal(SyntacticAnalysisCSharp.IsDocComment(' /// <bla>'), false, '\' /// <bla>\'');
         });
 });
