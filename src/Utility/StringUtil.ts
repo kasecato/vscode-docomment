@@ -22,6 +22,9 @@ export class StringUtil {
         const isEndMethod: boolean = (line.trim().endsWith(')'))
         if (isEndMethod) return true;
 
+        const isXml: boolean = (line.indexOf('</') !== -1);
+        if (isXml) return true;
+
         return isCodeBlockStart;
     }
 

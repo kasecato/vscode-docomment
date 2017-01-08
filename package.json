@@ -1,6 +1,6 @@
 {
     "name": "docomment",
-    "version": "0.0.10",
+    "version": "0.0.11",
     "publisher": "k--kato",
     "engines": {
         "vscode": "^1.8.0"
@@ -47,13 +47,13 @@
     "devDependencies": {
         "typescript": "^2.1.4",
         "vscode": "^1.0.3",
-        "tslint": "^4.2.0",
+        "tslint": "^4.3.1",
         "istanbul": "^0.4.5",
         "coveralls": "^2.11.15",
         "mocha": "^3.2.0",
         "mocha-lcov-reporter": "^1.2.0",
-        "@types/node": "^6.0.54",
-        "@types/mocha": "^2.2.35"
+        "@types/node": "^6.0.58",
+        "@types/mocha": "^2.2.36"
     },
     "extensionDependencies": [
     ],

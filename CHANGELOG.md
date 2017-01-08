@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.11 (January 8, 2017)
+
+* bug fix - Auto-generated /// on the new line inside <summary> tag. See [#25](https://github.com/k--kato/vscode-docomment/issues/25).
+
 ## 0.0.10 (December 29, 2016)
 
 * bug fix - Parameters not correctly identified when documenting constructor which chains to a base class constructor. See [#22](https://github.com/k--kato/vscode-docomment/issues/22).

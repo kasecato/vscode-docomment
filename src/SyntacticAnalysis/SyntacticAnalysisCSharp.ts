@@ -22,7 +22,7 @@ export class SyntacticAnalysisCSharp {
     }
 
     public static IsDocComment(activeLine: string): boolean {
-        return activeLine.match(/^\s*?\/{3}\s*$/) !== null;
+        return activeLine.match(/\/{3}/) !== null;
     }
 
     public static IsDoubleDocComment(activeLine: string): boolean {
