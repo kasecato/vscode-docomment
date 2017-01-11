@@ -1,8 +1,8 @@
 # Change Log
 
-## 0.0.11 (January 8, 2017)
+## 0.0.11 (January 11, 2017)
 
-* bug fix - Auto-generated /// on the new line inside <summary> tag. See [#25](https://github.com/k--kato/vscode-docomment/issues/25).
+* bug fix - Auto-generated /// on the new line inside &lt;summary&gt; tag. See [#25](https://github.com/k--kato/vscode-docomment/issues/25), [#26](https://github.com/k--kato/vscode-docomment/issues/26).
 
 ## 0.0.10 (December 29, 2016)
 
