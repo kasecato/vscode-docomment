@@ -18,7 +18,7 @@ export class SyntacticAnalysisCSharp {
     }
 
     public static IsDocCommentStrict(activeLine: string): boolean {
-        return activeLine.match(/(?:[^/]\/{3}[ \t]*$)|(?:^\/{3}[^/])|(?:^\/{3}[ \t]*$)/) !== null; // fixme: to simple
+        return activeLine.match(/(?:[^/]\/{3}[ \t]*$)|(?:^\/{3}[^/])|(?:^\/{3}[ \t]*$)/) !== null; // FIXME:
     }
 
     public static IsDocComment(activeLine: string): boolean {

@@ -1,4 +1,4 @@
-import {TextEditor, Position, Selection, TextDocumentContentChangeEvent} from 'vscode';
+import {TextEditor, Position, Selection} from 'vscode';
 import {StringUtil} from '../Utility/StringUtil';
 
 export class VSCodeApi {
@@ -23,11 +23,6 @@ export class VSCodeApi {
     public IsLanguage(languageId: string): boolean {
         return (this._activeEditor.document.languageId === languageId);
     }
-
-    public IsEmptyContentChanges(event: TextDocumentContentChangeEvent): boolean {
-        return event.text === null || event.text === '';
-    }
-
 
     public GetActivePosition(): Position {
         return this._activeEditor.selection.active;

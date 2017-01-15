@@ -20,46 +20,51 @@ export class DocommentDomainCSharp extends DocommentDomain {
     public IsTriggerDocomment(): boolean {
 
         // NG: KeyCode is EMPTY
-        const isEmpty: boolean = this._vsCodeApi.IsEmptyContentChanges(this._event);
-        if (isEmpty) return false;
+        const eventText: string = this._event.text;
+        if (eventText == null || eventText == '') {
+            return false;
+        }
+
+        // NG: ActiveChar is NULL
+        const activeChar: string = this._vsCodeApi.ReadCharAtCurrent();
+        if (activeChar == null) {
+            return false;
+        }
 
         // NG: KeyCode is NOT '/' or Enter
-        const activeChar: string = this._vsCodeApi.ReadCharAtCurrent();
-        if (activeChar == null) return false;
         const isSlashKey: boolean = SyntacticAnalysisCSharp.IsSlashKey(activeChar);
-        this._isEnterKey = SyntacticAnalysisCSharp.IsEnterKey(activeChar, this._event.text);
-        if (!isSlashKey && !this._isEnterKey) return false;
+        const isEnterKey: boolean = SyntacticAnalysisCSharp.IsEnterKey(activeChar, eventText);
+        if (!isSlashKey && !isEnterKey) {
+            return false;
+        }
+        this._isEnterKey = isEnterKey;
 
-        // NG: Activate on Enter NOT Slash
+        // NG: Activate on Enter NOT '/'
         if (this._config.activateOnEnter) {
             if (isSlashKey) {
                 return false;
             }
         }
 
-        // NG: Line is NOT /// (NG: ////)
+        // NG: '////'
         const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
-        if (activeLine == null) return false;
-
         if (isSlashKey) {
-            if (!SyntacticAnalysisCSharp.IsDocCommentStrict(activeLine)) return false;
+            // NG: '////'
+            if (!SyntacticAnalysisCSharp.IsDocCommentStrict(activeLine)) {
+                return false;
+            }
 
             // NG: '/' => Insert => Event => ' /// '
-            if (SyntacticAnalysisCSharp.IsDoubleDocComment(activeLine)) return false;
+            if (SyntacticAnalysisCSharp.IsDoubleDocComment(activeLine)) {
+                return false;
+            }
         }
-        if (this._isEnterKey) {
-            if (!SyntacticAnalysisCSharp.IsDocComment(activeLine)) return false;
+        if (isEnterKey) {
+            // NG: '////'
+            if (!SyntacticAnalysisCSharp.IsDocComment(activeLine)) {
+                return false;
+            }
         }
-
-        // NG: Position is NOT ///
-        // const position: number = this._vsCodeApi.GetActiveCharPosition();
-        // const positionDocComment: number = activeLine.lastIndexOf('///') + ((isEnterKey) ? 3 : 2);
-        // const isLastPosition: boolean = (position === positionDocComment);
-        // if (!isLastPosition) return false;
-
-        // NG: Previous line is XML document comment
-        // const previousLine: string = this._vsCodeApi.ReadPreviousLineFromCurrent();
-        // if (SyntacticAnalysisCSharp.IsDocComment(previousLine)) return false;
 
         // OK
         return true;
@@ -67,10 +72,6 @@ export class DocommentDomainCSharp extends DocommentDomain {
 
     /* @override */
     public GetCodeType(code: string): CodeType {
-
-        /*-------------------------------------------------------------------------
-         *
-         *-----------------------------------------------------------------------*/
 
         /* namespace */
         if (SyntacticAnalysisCSharp.IsNamespace(code)) return CodeType.Namespace;
@@ -86,13 +87,6 @@ export class DocommentDomainCSharp extends DocommentDomain {
 
         /* enum */
         if (SyntacticAnalysisCSharp.IsEnum(code)) return CodeType.Enum;
-
-
-        /*-------------------------------------------------------------------------
-         * 
-         *-----------------------------------------------------------------------*/
-        const isInMethod = false; // fixme:
-        if (isInMethod) return CodeType.None;
 
         /* delegate */
         if (SyntacticAnalysisCSharp.IsDelegate(code)) return CodeType.Delegate;
