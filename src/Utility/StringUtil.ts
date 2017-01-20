@@ -49,7 +49,7 @@ export class StringUtil {
         if (insertSpaces) {
             return indent.split(' ').length;
         } else {
-            return indent.split('\t').length * tabSize;
+            return indent.split('\t').length;
         }
     }
 
