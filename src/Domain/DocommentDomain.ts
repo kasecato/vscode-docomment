@@ -1,4 +1,4 @@
-import {TextEditor, TextDocumentContentChangeEvent, Position} from 'vscode';
+import {TextEditor, TextDocumentContentChangeEvent} from 'vscode';
 import {VSCodeApi} from '../Api/VSCodeApi';
 import {IDocommentDomain, CodeType} from './IDocommentDomain';
 import {StringUtil} from '../Utility/StringUtil';

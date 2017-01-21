@@ -68,7 +68,7 @@ export class DocommentController implements IDocommentController {
         this._config = new Configuration();
         this._config.activateOnEnter = confDocomment.get<boolean>(Configuration.ACTIVATE_ON_ENTER, false);
         this._config.insertSpaces = confEditor.get<boolean>(Configuration.INSERT_SPACES, false);
-        this._config.tabSize = confEditor.get<number>(Configuration.TAB_SIZE, 4);
+        this._config.detectIdentation = confEditor.get<boolean>(Configuration.DETECT_IDENTATION, true);
     }
 
     /*-------------------------------------------------------------------------
