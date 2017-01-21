@@ -21,7 +21,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
 
         // NG: KeyCode is EMPTY
         const eventText: string = this._event.text;
-        if (eventText == null || eventText == '') {
+        if (eventText == null || eventText === '') {
             return false;
         }
 
@@ -156,8 +156,9 @@ export class DocommentDomainCSharp extends DocommentDomain {
         const position: Position = this._vsCodeApi.GetActivePosition();
 
         if (codeType === CodeType.Comment) {
-            const indent: string = StringUtil.GetIndent(code, this._config.insertSpaces, this._config.tabSize);
-            const indentLen: number = StringUtil.GetIndentLen(indent, this._config.insertSpaces, this._config.tabSize);
+            const indentBaseLine: string = this._vsCodeApi.ReadPreviousLineFromCurrent();
+            const indent: string = StringUtil.GetIndent(code, indentBaseLine, this._config.insertSpaces, this._config.detectIdentation);
+            const indentLen: number = StringUtil.GetIndentLen(indent, this._config.insertSpaces, this._config.detectIdentation);
             const insertPosition: Position = this._vsCodeApi.GetPosition(position.line + 1, indentLen - 1);
             this._vsCodeApi.InsertText(insertPosition, docomment);
         } else {
@@ -176,14 +177,10 @@ export class DocommentDomainCSharp extends DocommentDomain {
     /* @implements */
     public MoveCursorTo(code: string, codeType: CodeType, docomment: string): void {
         const curPosition = this._vsCodeApi.GetActivePosition();
-
-        if (codeType === CodeType.Comment) {
-            const indent: string = StringUtil.GetIndent(code, this._config.insertSpaces, this._config.tabSize);
-            const indentLen: number = StringUtil.GetIndentLen(indent, this._config.insertSpaces, this._config.tabSize);
-            this._vsCodeApi.MoveSelection(curPosition.line + 1, indentLen - 1 + docomment.length);
-        } else {
-            this._vsCodeApi.MoveSelection(curPosition.line + 1, curPosition.character + 2);
-        }
+        const indentBaseLine: string = this._vsCodeApi.ReadLineAtCurrent();
+        const indent: string = StringUtil.GetIndent(code, indentBaseLine, this._config.insertSpaces, this._config.detectIdentation);
+        const indentLen: number = StringUtil.GetIndentLen(indent, this._config.insertSpaces, this._config.detectIdentation);
+        this._vsCodeApi.MoveSelection(curPosition.line + 1, indentLen - 1 + docomment.length);
     }
 
 
@@ -213,7 +210,8 @@ export class DocommentDomainCSharp extends DocommentDomain {
         }
 
         // Format
-        const indent: string = StringUtil.GetIndent(code, this._config.insertSpaces, this._config.tabSize);
+        const indentBaseLine: string = this._vsCodeApi.ReadLineAtCurrent();
+        const indent: string = StringUtil.GetIndent(code, indentBaseLine, this._config.insertSpaces, this._config.detectIdentation);
         let docomment = ' ' + docommentList[0] + '\n';
         for (let i = 1; i < docommentList.length; i++) {
             docomment += indent + '/// ' + docommentList[i];
