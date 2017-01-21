@@ -45,15 +45,15 @@
     "dependencies": {
     },
     "devDependencies": {
-        "typescript": "^2.1.4",
+        "typescript": "^2.1.5",
         "vscode": "^1.0.3",
         "tslint": "^4.3.1",
         "istanbul": "^0.4.5",
         "coveralls": "^2.11.15",
         "mocha": "^3.2.0",
         "mocha-lcov-reporter": "^1.2.0",
-        "@types/node": "^6.0.58",
-        "@types/mocha": "^2.2.36"
+        "@types/node": "^7.0.0",
+        "@types/mocha": "^2.2.38"
     },
     "extensionDependencies": [
     ],

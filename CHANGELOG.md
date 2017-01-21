@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.12 (January 21, 2017)
+
+* bug fix - Wrapping lines in the middle of text inserts /// in the wrong place. See [#29](https://github.com/k--kato/vscode-docomment/issues/29).
+
 ## 0.0.11 (January 11, 2017)
 
 * bug fix - Auto-generated /// on the new line inside &lt;summary&gt; tag. See [#25](https://github.com/k--kato/vscode-docomment/issues/25), [#26](https://github.com/k--kato/vscode-docomment/issues/26).
