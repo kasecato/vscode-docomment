@@ -34,5 +34,9 @@ namespace N  // "N:N"
         public Collection<T> Filter(Func<T, bool> queryFirst, Func<T, U, V> querySecond) { return null; }
         public void Test(string options) : base(options) { }
         public void Testing2(string String1, string String2, string String3) : base() { }
+        [HttpGet]
+        [Route("{userId}")]
+        public object Get(int userId) { return null; }
+        public object Get(int[] userId, string[] val) { return null; }
     }
 }

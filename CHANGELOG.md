@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.13 (January 31, 2017)
+
+* bug fix - Parameters are not returned . See [#32](https://github.com/k--kato/vscode-docomment/issues/32).
+
 ## 0.0.12 (January 21, 2017)
 
 * bug fix - Output document puts cursor in wrong place. See [#26](https://github.com/k--kato/vscode-docomment/issues/26).
