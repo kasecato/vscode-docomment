@@ -73,7 +73,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
     /* @override */
     public GetCode(): string {
         const code: string = this._vsCodeApi.ReadNextCodeFromCurrent(this._config.eol);
-        const removedAttr: string = code.split(this._config.eol).filter(line => !SyntacticAnalysisCSharp.IsAttribute(line.trim())).join();
+        const removedAttr: string = code.split(this._config.eol).filter(line => !SyntacticAnalysisCSharp.IsAttribute(line.trim())).join('');
         return removedAttr;
     }
 
