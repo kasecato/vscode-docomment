@@ -43,6 +43,7 @@ export interface IDocommentDomain {
      * Domain Method
      *-----------------------------------------------------------------------*/
     IsTriggerDocomment(): boolean;
+    GetCode(): string;
     GetCodeType(code: string): CodeType;
     GeneDocomment(code: string, codeType: CodeType): string;
     WriteDocomment(code: string, codeType: CodeType, docommnet: string): void;

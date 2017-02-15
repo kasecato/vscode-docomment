@@ -38,5 +38,9 @@ namespace N  // "N:N"
         [Route("{userId}")]
         public object Get(int userId) { return null; }
         public object Get(int[] userId, string[] val) { return null; }
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("{cameraId}/readings")]
+        public IActionResult GetReadingsForCamera(int[] cameraId, int[] offset, int[] limit, string orderBy) { return null; }
     }
 }
