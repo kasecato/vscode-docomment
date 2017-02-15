@@ -30,6 +30,14 @@ export class SyntacticAnalysisCSharp {
     }
 
     /*-------------------------------------------------------------------------
+     * Public Method: Code
+     *-----------------------------------------------------------------------*/
+    public static IsAttribute(code: string): boolean {
+        if (code === null) return false;
+        return code.match(/^\[.+\]$/) !== null;
+    }
+
+    /*-------------------------------------------------------------------------
      * Public Method: Code Type
      *-----------------------------------------------------------------------*/
     public static IsNamespace(code: string): boolean {

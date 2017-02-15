@@ -89,7 +89,7 @@ export class VSCodeApi {
         return this.ReadLineAtCurrent().charAt(this.GetActiveCharPosition());
     }
 
-    public ReadNextCodeFromCurrent(): string {
+    public ReadNextCodeFromCurrent(eol: string = '\n'): string {
         const lineCount: number = this.GetLineCount();
         const curLine: number = this.GetActiveLine();
 
@@ -101,7 +101,7 @@ export class VSCodeApi {
             // Skip empty line
             if (StringUtil.IsNullOrWhiteSpace(line)) continue;
 
-            code += line;
+            code += line + eol;
 
             // Detect start of code
             if (!StringUtil.IsCodeBlockStart(line)) {

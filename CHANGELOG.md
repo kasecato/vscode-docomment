@@ -1,8 +1,12 @@
 # Change Log
 
+## 0.0.14 (February 15, 2017)
+
+* bug fix - 3 Attributes bug. See [#34](https://github.com/k--kato/vscode-docomment/issues/34).
+
 ## 0.0.13 (January 31, 2017)
 
-* bug fix - Parameters are not returned . See [#32](https://github.com/k--kato/vscode-docomment/issues/32).
+* bug fix - Parameters are not returned. See [#32](https://github.com/k--kato/vscode-docomment/issues/32).
 
 ## 0.0.12 (January 21, 2017)
 

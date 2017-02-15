@@ -44,7 +44,7 @@ export class DocommentDomain implements IDocommentDomain {
         if (!this.IsTriggerDocomment()) return;
 
         // Get Code
-        const code: string = this._vsCodeApi.ReadNextCodeFromCurrent();
+        const code: string = this.GetCode();
 
         // Detect Code Type
         const codeType: CodeType = this.GetCodeType(code);
@@ -72,6 +72,11 @@ export class DocommentDomain implements IDocommentDomain {
     /* @implements */
     public IsTriggerDocomment(): boolean {
         return false;
+    }
+
+    /* @implements */
+    public GetCode(): string {
+        return null;
     }
 
     /* @implements */
