@@ -42,5 +42,6 @@ namespace N  // "N:N"
         [AllowAnonymous]
         [Route("{cameraId}/readings")]
         public IActionResult GetReadingsForCamera(int[] cameraId, int[] offset, int[] limit, string orderBy) { return null; }
+        public string Test<T>(T obj) where T : class { }
     }
 }

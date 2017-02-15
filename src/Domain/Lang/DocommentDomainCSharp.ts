@@ -80,6 +80,9 @@ export class DocommentDomainCSharp extends DocommentDomain {
     /* @override */
     public GetCodeType(code: string): CodeType {
 
+        /* method */
+        if (SyntacticAnalysisCSharp.IsMethod(code)) return CodeType.Method;
+
         /* namespace */
         if (SyntacticAnalysisCSharp.IsNamespace(code)) return CodeType.Namespace;
 
@@ -106,9 +109,6 @@ export class DocommentDomainCSharp extends DocommentDomain {
 
         /* field */
         if (SyntacticAnalysisCSharp.IsField(code)) return CodeType.Field;
-
-        /* method */
-        if (SyntacticAnalysisCSharp.IsMethod(code)) return CodeType.Method;
 
         /* comment */
         if (SyntacticAnalysisCSharp.IsComment(code)) return CodeType.Comment;
