@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.15 (May 19, 2017)
+
+* enhancement - Autocomplete order/priority? See [#41](https://github.com/k--kato/vscode-docomment/issues/41).
+
 ## 0.0.14 (February 15, 2017)
 
 * bug fix - 3 Attributes bug. See [#34](https://github.com/k--kato/vscode-docomment/issues/34).
