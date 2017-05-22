@@ -217,4 +217,18 @@ suite('SyntacticAnalysis.SyntacticAnalysisCSharp.IsClass Tests', () => {
             assert.equal(SyntacticAnalysisCSharp.IsDocComment(' ///'), true, ' ///');
             assert.equal(SyntacticAnalysisCSharp.IsDocComment(' /// '), true, ' /// ');
         });
+
+    test(`
+        Category: Back-box testing
+        Class   : SyntacticAnalysis.SyntacticAnalysisCSharp
+        Method  : IsSummaryTag
+    `, () => {
+            assert.equal(SyntacticAnalysisCSharp.IsSummaryTag('   /// <summary>'), true, 'open tag');
+            assert.equal(SyntacticAnalysisCSharp.IsSummaryTag(' /// </summary>'), true, 'closing tag');
+            assert.equal(SyntacticAnalysisCSharp.IsSummaryTag('/// hahah its a summary'), true, 'normal comment containing summary');
+
+            assert.equal(SyntacticAnalysisCSharp.IsSummaryTag('santa clause'), false, 'santa');
+            assert.equal(SyntacticAnalysisCSharp.IsSummaryTag('/// da sumary'), false, 'spelling error');
+            assert.equal(SyntacticAnalysisCSharp.IsSummaryTag('///'), false, 'no summary tag');
+        });
 });

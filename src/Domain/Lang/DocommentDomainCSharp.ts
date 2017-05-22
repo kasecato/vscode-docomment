@@ -48,6 +48,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
 
         // NG: '////'
         const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
+        const prevLine: string   = this._vsCodeApi.ReadPreviousLineFromCurrent();
         if (isSlashKey) {
             // NG: '////'
             if (!SyntacticAnalysisCSharp.IsDocCommentStrict(activeLine)) {
@@ -58,7 +59,15 @@ export class DocommentDomainCSharp extends DocommentDomain {
             if (SyntacticAnalysisCSharp.IsDoubleDocComment(activeLine)) {
                 return false;
             }
+
         }
+
+        // check if we should skip any assertions, since this is an already finished template
+        if (SyntacticAnalysisCSharp.IsSummaryTag(activeLine) ||
+            (prevLine != null && SyntacticAnalysisCSharp.IsSummaryTag(prevLine))) {
+            return false;
+        }
+
         if (isEnterKey) {
             // NG: '////'
             if (!SyntacticAnalysisCSharp.IsDocComment(activeLine)) {

@@ -29,6 +29,10 @@ export class SyntacticAnalysisCSharp {
         return activeLine.match(/^[ \t]*\/{3} $/) !== null;
     }
 
+    public static IsSummaryTag(activeLine: string): boolean {
+        return this.IsDocComment(activeLine) && activeLine.includes('summary'); // TODO: improve with some regex magic
+    }
+
     /*-------------------------------------------------------------------------
      * Public Method: Code
      *-----------------------------------------------------------------------*/
