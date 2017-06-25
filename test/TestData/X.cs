@@ -43,5 +43,6 @@ namespace N  // "N:N"
         [Route("{cameraId}/readings")]
         public IActionResult GetReadingsForCamera(int[] cameraId, int[] offset, int[] limit, string orderBy) { return null; }
         public string Test<T>(T obj) where T : class { }
+        public static BoolVector operator |(BoolScalar a, BoolVector b)
     }
 }

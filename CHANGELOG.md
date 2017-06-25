@@ -3,6 +3,7 @@
 ## 0.0.16 (Jun 25, 2017)
 
 * bug fix - Fix some duping. See [#47](https://github.com/k--kato/vscode-docomment/pull/47).
+* bug fix - Bug: return tag missing. See [#45](https://github.com/k--kato/vscode-docomment/issues/45).
 
 ## 0.0.15 (May 19, 2017)
 
