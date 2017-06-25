@@ -17,8 +17,12 @@ export class SyntacticAnalysisCSharp {
         return (activeChar === '/');
     }
 
+    /**
+     * Tests whether a line contains ONLY a doc comment and nothing else except whitespace.
+     * @param activeLine The line to test.
+     */
     public static IsDocCommentStrict(activeLine: string): boolean {
-        return activeLine.match(/(?:[^/]\/{3}[ \t]*$)|(?:^\/{3}[^/])|(?:^\/{3}[ \t]*$)/) !== null; // FIXME:
+        return activeLine.match(/^[ \t]*\/{3}[ \t]*$/) !== null; // FIXME:
     }
 
     public static IsDocComment(activeLine: string): boolean {

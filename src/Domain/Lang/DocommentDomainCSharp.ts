@@ -80,6 +80,13 @@ export class DocommentDomainCSharp extends DocommentDomain {
     /* @override */
     public GetCodeType(code: string): CodeType {
 
+        // If the previous line was a doc comment and we hit enter.
+        // Extend the doc comment without generating anything else,
+        // even if there's a method or something next line.
+        if (this._isEnterKey && SyntacticAnalysisCSharp.IsDocComment(this._vsCodeApi.ReadLineAtCurrent())) {
+            return CodeType.Comment;
+        }
+
         /* method */
         if (SyntacticAnalysisCSharp.IsMethod(code)) return CodeType.Method;
 
@@ -121,6 +128,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
 
         let paramNameList: Array<string> = null;
         let hasReturn = false;
+
         switch (codeType) {
             case CodeType.Namespace:
                 break;
