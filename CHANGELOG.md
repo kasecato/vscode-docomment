@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.16 (Jun 25, 2017)
+
+* bug fix - Fix some duping. See [#47](https://github.com/k--kato/vscode-docomment/pull/47).
+
 ## 0.0.15 (May 19, 2017)
 
 * enhancement - Autocomplete order/priority? See [#41](https://github.com/k--kato/vscode-docomment/issues/41).
