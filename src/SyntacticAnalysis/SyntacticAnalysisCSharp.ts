@@ -10,7 +10,7 @@ export class SyntacticAnalysisCSharp {
      * Public Method: Comment Type
      *-----------------------------------------------------------------------*/
     public static IsEnterKey(activeChar: string, text: string): boolean {
-        return (activeChar === '') && text.startsWith('\n');
+        return (activeChar === '') && (text.startsWith('\n') || text.startsWith("\r\n"));
     }
 
     public static IsSlashKey(activeChar: string): boolean {
