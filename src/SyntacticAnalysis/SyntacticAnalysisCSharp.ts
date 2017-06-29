@@ -129,18 +129,33 @@ export class SyntacticAnalysisCSharp {
     }
 
     public static HasMethodReturn(code: string): boolean {
-        if (code === null) return false;
+        if (code === null) {
+            return false;
+        }
+
         {
             const returns: RegExpMatchArray = code.match(/([\w\S]+)\s+[\w\S]+\s*\(.*\)/);
             const isMatched = (returns !== null && returns.length === 2);
-            const isReserved = (returns[1].match(this.RESERVED_WORDS) !== null);
-            if (isMatched && !isReserved) return true;
+            if (isMatched)
+            {
+                const isReserved = (returns[1].match(this.RESERVED_WORDS) !== null);
+                if (!isReserved)
+                {
+                    return true;
+                }
+            }
         }
         {
             const returns: RegExpMatchArray = code.match(/([\w\S]+)\s+[\w\S]+\s+[\w\S]+\s*\(.*\)/);
             const isMatched = (returns !== null && returns.length === 2);
-            const isReserved = (returns[1].match(this.RESERVED_WORDS) !== null);
-            if (isMatched && !isReserved) return true;
+            if (isMatched)
+            {
+                const isReserved = (returns[1].match(this.RESERVED_WORDS) !== null);
+                if (!isReserved)
+                {
+                    return true;
+                }
+            }
         }
 
         return false;
