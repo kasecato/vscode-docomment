@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.17 (Jun 30, 2017)
+
+* bug fix - Comments for Constructor not working. See [#49](https://github.com/k--kato/vscode-docomment/issues/49).
+
 ## 0.0.16 (Jun 25, 2017)
 
 * bug fix - Fix some duping. See [#47](https://github.com/k--kato/vscode-docomment/pull/47).
