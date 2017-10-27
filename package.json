@@ -8,7 +8,8 @@
     "displayName": "C# XML Documentation Comments",
     "description": "Generate C# XML documentation comments for ///",
     "categories": [
-        "Other"
+        "Other",
+        "Snippets"
     ],
     "galleryBanner": {
         "color": "#4F87FF",
@@ -26,7 +27,13 @@
                     "description": "Press the Enter key to activate a command."
                 }
             }
-        }
+        },
+        "snippets": [
+            {
+                "language": "csharp",
+                "path": "./snippets/csharp.json"
+            }
+        ]
     },
     "activationEvents": [
         "onLanguage:csharp"
