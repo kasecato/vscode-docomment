@@ -2,46 +2,46 @@
 
 ## 0.0.17 (Jun 30, 2017)
 
-* bug fix - Comments for Constructor not working. See [#49](https://github.com/k--kato/vscode-docomment/issues/49).
+* bug fix - Comments for Constructor not working. See [#49](https://github.com/kasecato/vscode-docomment/issues/49).
 
 ## 0.0.16 (Jun 25, 2017)
 
-* bug fix - Fix some duping. See [#47](https://github.com/k--kato/vscode-docomment/pull/47).
-* bug fix - Bug: return tag missing. See [#45](https://github.com/k--kato/vscode-docomment/issues/45).
+* bug fix - Fix some duping. See [#47](https://github.com/kasecato/vscode-docomment/pull/47).
+* bug fix - Bug: return tag missing. See [#45](https://github.com/kasecato/vscode-docomment/issues/45).
 
 ## 0.0.15 (May 19, 2017)
 
-* enhancement - Autocomplete order/priority? See [#41](https://github.com/k--kato/vscode-docomment/issues/41).
+* enhancement - Autocomplete order/priority? See [#41](https://github.com/kasecato/vscode-docomment/issues/41).
 
 ## 0.0.14 (February 15, 2017)
 
-* bug fix - 3 Attributes bug. See [#34](https://github.com/k--kato/vscode-docomment/issues/34).
-* bug fix - Please add support for generic types restrains. See [#35](https://github.com/k--kato/vscode-docomment/issues/35).
+* bug fix - 3 Attributes bug. See [#34](https://github.com/kasecato/vscode-docomment/issues/34).
+* bug fix - Please add support for generic types restrains. See [#35](https://github.com/kasecato/vscode-docomment/issues/35).
 
 ## 0.0.13 (January 31, 2017)
 
-* bug fix - Parameters are not returned. See [#32](https://github.com/k--kato/vscode-docomment/issues/32).
+* bug fix - Parameters are not returned. See [#32](https://github.com/kasecato/vscode-docomment/issues/32).
 
 ## 0.0.12 (January 21, 2017)
 
-* bug fix - Output document puts cursor in wrong place. See [#26](https://github.com/k--kato/vscode-docomment/issues/26).
-* bug fix - Wrapping lines in the middle of text inserts /// in the wrong place. See [#29](https://github.com/k--kato/vscode-docomment/issues/29).
+* bug fix - Output document puts cursor in wrong place. See [#26](https://github.com/kasecato/vscode-docomment/issues/26).
+* bug fix - Wrapping lines in the middle of text inserts /// in the wrong place. See [#29](https://github.com/kasecato/vscode-docomment/issues/29).
 
 ## 0.0.11 (January 11, 2017)
 
-* bug fix - Auto-generated /// on the new line inside &lt;summary&gt; tag. See [#25](https://github.com/k--kato/vscode-docomment/issues/25), [#26](https://github.com/k--kato/vscode-docomment/issues/26).
+* bug fix - Auto-generated /// on the new line inside &lt;summary&gt; tag. See [#25](https://github.com/kasecato/vscode-docomment/issues/25), [#26](https://github.com/kasecato/vscode-docomment/issues/26).
 
 ## 0.0.10 (December 29, 2016)
 
-* bug fix - Parameters not correctly identified when documenting constructor which chains to a base class constructor. See [#22](https://github.com/k--kato/vscode-docomment/issues/22).
+* bug fix - Parameters not correctly identified when documenting constructor which chains to a base class constructor. See [#22](https://github.com/kasecato/vscode-docomment/issues/22).
 
 ## 0.0.9 (December 11, 2016)
 
-* bug fix - Expansion is triggering in a lot of cases when it shouldn't. See [#16](https://github.com/k--kato/vscode-docomment/issues/16).
+* bug fix - Expansion is triggering in a lot of cases when it shouldn't. See [#16](https://github.com/kasecato/vscode-docomment/issues/16).
 
 ## 0.0.8 (December 2, 2016)
 
-* bug fix - Adds extra param for `Func<T, bool>`. See [#19](https://github.com/k--kato/vscode-docomment/issues/19).
+* bug fix - Adds extra param for `Func<T, bool>`. See [#19](https://github.com/kasecato/vscode-docomment/issues/19).
 
 ## 0.0.7 (July 11, 2016)
 

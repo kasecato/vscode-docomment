@@ -21,10 +21,9 @@ install:
   - npm run vscode:prepublish
 
 script:
-  - npm test --silent
   - npm run-script coverage_travis
 after_script: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
 
 language: node_js
 node_js:
-  - "6"
+  - "9"

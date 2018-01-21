@@ -1,6 +1,6 @@
 # XML Documentation Comments Support for Visual Studio Code
 
-[![Build Status](https://travis-ci.org/k--kato/vscode-docomment.svg?branch=master)](https://travis-ci.org/k--kato/vscode-docomment) [![Coverage Status](https://coveralls.io/repos/k--kato/vscode-docomment/badge.svg?branch=master&service=github)](https://coveralls.io/github/k--kato/vscode-docomment?branch=master) [![License: MIT](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/k--kato.docomment.svg)](https://marketplace.visualstudio.com/items?itemName=k--kato.docomment) [![Install](https://vsmarketplacebadge.apphb.com/installs-short/k--kato.docomment.svg)](https://marketplace.visualstudio.com/items?itemName=k--kato.docomment)
+[![Build Status](https://travis-ci.org/kasecato/vscode-docomment.svg?branch=master)](https://travis-ci.org/kasecato/vscode-docomment) [![Coverage Status](https://coveralls.io/repos/kasecato/vscode-docomment/badge.svg?branch=master&service=github)](https://coveralls.io/github/kasecato/vscode-docomment?branch=master) [![License: MIT](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/k--kato.docomment.svg)](https://marketplace.visualstudio.com/items?itemName=k--kato.docomment) [![Install](https://vsmarketplacebadge.apphb.com/installs-short/k--kato.docomment.svg)](https://marketplace.visualstudio.com/items?itemName=k--kato.docomment)
 
 Generate XML documentation comments for Visual Studio Code.
 
@@ -32,7 +32,7 @@ The menu under File > Preferences (Code > Preferences on Mac) provides entries t
 
 ## Installation
 
-1. Install Visual Studio Code 1.8.0 or higher
+1. Install Visual Studio Code 1.19.2 or higher
 1. Launch Code
 1. From the extension view `Ctrl`-`Shift`-`X` (Windows, Linux) or `Cmd`-`Shift`-`X` (macOS)
 1. Search and Choose the extension `C# XML Documentation Comments`
@@ -49,7 +49,7 @@ The menu under File > Preferences (Code > Preferences on Mac) provides entries t
 Clone a copy of the repo:
 
 ```
-git clone https://github.com/k--kato/vscode-docomment.git
+git clone https://github.com/kasecato/vscode-docomment.git
 ```
 
 ### Building the code

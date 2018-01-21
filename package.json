@@ -3,7 +3,7 @@
     "version": "0.0.17",
     "publisher": "k--kato",
     "engines": {
-        "vscode": "^1.12.2"
+        "vscode": "^1.19.2"
     },
     "displayName": "C# XML Documentation Comments",
     "description": "Generate C# XML documentation comments for ///",
@@ -35,38 +35,35 @@
         "XML Documentation Comments",
         "C#"
     ],
-    "dependencies": {
-    },
+    "dependencies": {},
     "devDependencies": {
-        "typescript": "^2.4.1",
-        "vscode": "^1.1.1",
-        "tslint": "^5.4.3",
+        "typescript": "^2.6.2",
+        "vscode": "^1.1.10",
+        "tslint": "^5.9.1",
         "istanbul": "^0.4.5",
-        "coveralls": "^2.13.1",
-        "mocha": "^3.4.2",
+        "coveralls": "^3.0.0",
+        "mocha": "^5.0.0",
         "mocha-lcov-reporter": "^1.3.0",
-        "@types/node": "^8.0.6",
-        "@types/mocha": "^2.2.41"
+        "@types/node": "^9.3.0",
+        "@types/mocha": "^2.2.46"
     },
-    "extensionDependencies": [
-    ],
+    "extensionDependencies": [],
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
         "compile": "tsc -watch -p ./",
         "watch": "node ./node_modules/vscode/bin/compile -watch -p ./",
-        "test": "node ./node_modules/vscode/bin/test",
         "coverage_travis": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js",
         "coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js",
         "postinstall": "node ./node_modules/vscode/bin/install"
     },
     "icon": "images/docomment.png",
     "license": "MIT",
-    "homepage": "https://github.com/k--kato/vscode-docomment#readme",
+    "homepage": "https://github.com/kasecato/vscode-docomment#readme",
     "repository": {
         "type": "git",
-        "url": "https://github.com/k--kato/vscode-docomment"
+        "url": "https://github.com/kasecato/vscode-docomment"
     },
     "bugs": {
-        "url": "https://github.com/k--kato/vscode-docomment/issues"
+        "url": "https://github.com/kasecato/vscode-docomment/issues"
     }
 }
