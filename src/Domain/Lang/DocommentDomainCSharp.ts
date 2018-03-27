@@ -2,6 +2,7 @@ import {SyntacticAnalysisCSharp} from '../../SyntacticAnalysis/SyntacticAnalysis
 import {StringUtil} from '../../Utility/StringUtil';
 import {DocommentDomain} from '../DocommentDomain';
 import {CodeType} from '../IDocommentDomain';
+import {isNullOrUndefined} from 'util';
 import {Position} from 'vscode';
 
 export class DocommentDomainCSharp extends DocommentDomain {
