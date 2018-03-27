@@ -18,10 +18,14 @@ export class DocommentDomainCSharp extends DocommentDomain {
 
     /* @override */
     public IsTriggerDocomment(): boolean {
+        // NG: Document is closed
+        if (isNullOrUndefined(this._event)) {
+            return false;
+        }
 
         // NG: KeyCode is EMPTY
         const eventText: string = this._event.text;
-        if (eventText == null || eventText === '') {
+        if (eventText == null || eventText.trim() === '') {
             return false;
         }
 
