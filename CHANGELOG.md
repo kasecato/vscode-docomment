@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.18 (Apr 7, 2018)
+
+* bug fix - It's wrong in this case. See [#52](https://github.com/kasecato/vscode-docomment/issues/52).
+
 ## 0.0.17 (Jun 30, 2017)
 
 * bug fix - Comments for Constructor not working. See [#49](https://github.com/kasecato/vscode-docomment/issues/49).
