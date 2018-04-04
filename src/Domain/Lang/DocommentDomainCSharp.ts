@@ -2,7 +2,6 @@ import {SyntacticAnalysisCSharp} from '../../SyntacticAnalysis/SyntacticAnalysis
 import {StringUtil} from '../../Utility/StringUtil';
 import {DocommentDomain} from '../DocommentDomain';
 import {CodeType} from '../IDocommentDomain';
-import {isNullOrUndefined} from 'util';
 import {Position} from 'vscode';
 
 export class DocommentDomainCSharp extends DocommentDomain {
@@ -19,14 +18,10 @@ export class DocommentDomainCSharp extends DocommentDomain {
 
     /* @override */
     public IsTriggerDocomment(): boolean {
-        // NG: Document is closed
-        if (isNullOrUndefined(this._event)) {
-            return false;
-        }
 
         // NG: KeyCode is EMPTY
         const eventText: string = this._event.text;
-        if (eventText == null || eventText.trim() === '') {
+        if (eventText == null || eventText === '') {
             return false;
         }
 
@@ -78,8 +73,6 @@ export class DocommentDomainCSharp extends DocommentDomain {
     /* @override */
     public GetCode(): string {
         const code: string = this._vsCodeApi.ReadNextCodeFromCurrent(this._config.eol);
-        if (isNullOrUndefined(code))
-            return '';
         const removedAttr: string = code.split(this._config.eol).filter(line => !SyntacticAnalysisCSharp.IsAttribute(line.trim())).join('');
         return removedAttr;
     }
