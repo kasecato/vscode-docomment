@@ -81,7 +81,7 @@ export class SyntacticAnalysisCSharp {
 
     public static IsProperty(code: string): boolean {
         if (code === null) return false;
-        return code.match(/[\w\S]+[^)]?\b\s*{/) !== null;
+        return code.match(/[\w\S]+[^)]?(\b)?\s*{/) !== null;
     }
 
     public static IsField(code: string): boolean {
