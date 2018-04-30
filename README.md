@@ -21,7 +21,7 @@ The menu under File > Preferences (Code > Preferences on Mac) provides entries t
 ```json
 {
 	// Press the Enter key to activate a command (Default: false)
-	"docomment.activateOnEnter": true,
+	"docomment.activateOnEnter": false,
 	// Insert spaces when pressing Tab.
 	"editor.insertSpaces": true,
 	// The number of spaces a tab is equal to.
@@ -32,7 +32,7 @@ The menu under File > Preferences (Code > Preferences on Mac) provides entries t
 
 ## Installation
 
-1. Install Visual Studio Code 1.19.2 or higher
+1. Install Visual Studio Code 1.22.0 or higher
 1. Launch Code
 1. From the extension view `Ctrl`-`Shift`-`X` (Windows, Linux) or `Cmd`-`Shift`-`X` (macOS)
 1. Search and Choose the extension `C# XML Documentation Comments`
