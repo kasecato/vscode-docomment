@@ -83,7 +83,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
         // If the previous line was a doc comment and we hit enter.
         // Extend the doc comment without generating anything else,
         // even if there's a method or something next line.
-        if (this._isEnterKey && SyntacticAnalysisCSharp.IsDocComment(this._vsCodeApi.ReadLineAtCurrent())) {
+        if (!this._config.activateOnEnter && this._isEnterKey && SyntacticAnalysisCSharp.IsDocComment(this._vsCodeApi.ReadLineAtCurrent())) {
             return CodeType.Comment;
         }
 
