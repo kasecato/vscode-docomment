@@ -18,7 +18,7 @@ The menu under File > Preferences (Code > Preferences on Mac) provides entries t
 
 ### settings.json
 
-```json
+```js
 {
 	// Press the Enter key to activate a command (Default: false)
 	"docomment.activateOnEnter": false,
@@ -29,6 +29,16 @@ The menu under File > Preferences (Code > Preferences on Mac) provides entries t
 }
 ```
 
+To enable publishing XML documentation:
+
+### project.csproj
+
+```xml
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\YourApi.XML</DocumentationFile>
+  </PropertyGroup>
+```
 
 ## Installation
 
