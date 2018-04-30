@@ -3,7 +3,7 @@
     "version": "0.0.18",
     "publisher": "k--kato",
     "engines": {
-        "vscode": "^1.21.1"
+        "vscode": "^1.22.0"
     },
     "displayName": "C# XML Documentation Comments",
     "description": "Generate C# XML documentation comments for ///",
@@ -37,21 +37,21 @@
     ],
     "dependencies": {},
     "devDependencies": {
-        "typescript": "^2.8.1",
-        "vscode": "^1.1.14",
+        "typescript": "^2.8.3",
+        "vscode": "^1.1.16",
         "tslint": "^5.9.1",
         "istanbul": "^0.4.5",
         "coveralls": "^3.0.0",
-        "mocha": "^5.0.5",
+        "mocha": "^5.1.1",
         "mocha-lcov-reporter": "^1.3.0",
-        "@types/node": "^9.6.2",
-        "@types/mocha": "^5.0.0"
+        "@types/node": "^10.0.0",
+        "@types/mocha": "^5.2.0"
     },
     "extensionDependencies": [],
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "watch": "node ./node_modules/vscode/bin/compile -watch -p ./",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
         "coverage_travis": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js",
         "coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js",
         "postinstall": "node ./node_modules/vscode/bin/install"

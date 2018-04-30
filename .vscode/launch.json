@@ -10,7 +10,8 @@
 			"args": ["--extensionDevelopmentPath=${workspaceRoot}" ],
 			"stopOnEntry": false,
 			"sourceMaps": true,
-			"outFiles": ["${workspaceRoot}/out/src"]
+			"outFiles": ["${workspaceRoot}/out/src"],
+			"preLaunchTask": "compile"
 		},
 		{
 			"name": "Launch Tests",

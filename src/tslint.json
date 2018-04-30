@@ -10,12 +10,7 @@
     "label-undefined": true,
     "max-line-length": [true, 200],
     "member-access": true,
-    "member-ordering": [true,
-      "public-before-private",
-      "static-before-instance",
-      "variables-before-functions"
-    ],
-    "no-arg": true,
+    "member-ordering": true,
     "no-bitwise": true,
     "no-console": [true,
       "debug",
