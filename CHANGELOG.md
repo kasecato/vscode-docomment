@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0 (May 3, 2018)
+
+* enhancement - Please also generate documentation for generic type. See [#32](https://github.com/kasecato/vscode-docomment/issues/32).
+
 ## 0.0.19 (Apr 30, 2018)
 
 * bug fix - I cant get this extension working. See [#62](https://github.com/kasecato/vscode-docomment/issues/62).
