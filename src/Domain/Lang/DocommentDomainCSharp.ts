@@ -87,9 +87,6 @@ export class DocommentDomainCSharp extends DocommentDomain {
             return CodeType.Comment;
         }
 
-        /* method */
-        if (SyntacticAnalysisCSharp.IsMethod(code)) return CodeType.Method;
-
         /* namespace */
         if (SyntacticAnalysisCSharp.IsNamespace(code)) return CodeType.Namespace;
 
@@ -111,6 +108,9 @@ export class DocommentDomainCSharp extends DocommentDomain {
         /* event */
         if (SyntacticAnalysisCSharp.IsEvent(code)) return CodeType.Event;
 
+        /* method */
+        if (SyntacticAnalysisCSharp.IsMethod(code)) return CodeType.Method;
+
         /* property */
         if (SyntacticAnalysisCSharp.IsProperty(code)) return CodeType.Property;
 
@@ -126,6 +126,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
     /* @override */
     public GeneDocomment(code: string, codeType: CodeType): string {
 
+        let genericList: Array<string> = null;
         let paramNameList: Array<string> = null;
         let hasReturn = false;
 
@@ -133,20 +134,24 @@ export class DocommentDomainCSharp extends DocommentDomain {
             case CodeType.Namespace:
                 break;
             case CodeType.Class:
+                genericList = SyntacticAnalysisCSharp.GetGenericList(code);
                 break;
             case CodeType.Interface:
+                genericList = SyntacticAnalysisCSharp.GetGenericList(code);
                 break;
             case CodeType.Struct:
                 break;
             case CodeType.Enum:
                 break;
             case CodeType.Delegate:
+                genericList = SyntacticAnalysisCSharp.GetGenericMethodsList(code);
                 paramNameList = SyntacticAnalysisCSharp.GetMethodParamNameList(code);
                 hasReturn = SyntacticAnalysisCSharp.HasMethodReturn(code);
                 break;
             case CodeType.Event:
                 break;
             case CodeType.Method:
+                genericList = SyntacticAnalysisCSharp.GetGenericMethodsList(code);
                 paramNameList = SyntacticAnalysisCSharp.GetMethodParamNameList(code);
                 hasReturn = SyntacticAnalysisCSharp.HasMethodReturn(code);
                 break;
@@ -163,7 +168,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
                 return '';
         }
 
-        return this.GeneSummary(code, paramNameList, hasReturn);
+        return this.GeneSummary(code, genericList, paramNameList, hasReturn);
     }
 
     /* @implements */
@@ -203,7 +208,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
      * Private Method
      *-----------------------------------------------------------------------*/
 
-    private GeneSummary(code: string, paramNameList: Array<string>, hasReturn: boolean): string {
+    private GeneSummary(code: string, genericList: Array<string>, paramNameList: Array<string>, hasReturn: boolean): string {
 
         let docommentList: Array<string> = new Array<string>();
 
@@ -216,6 +221,13 @@ export class DocommentDomainCSharp extends DocommentDomain {
         if (paramNameList !== null) {
             paramNameList.forEach(name => {
                 docommentList.push('<param name="' + name + '"></param>');
+            });
+        }
+
+        /* <typeparam> */
+        if (genericList !== null) {
+            genericList.forEach(name => {
+                docommentList.push('<typeparam name="' + name + '"></typeparam>');
             });
         }
 

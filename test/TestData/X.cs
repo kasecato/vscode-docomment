@@ -46,4 +46,28 @@ namespace N  // "N:N"
         public static BoolVector operator |(BoolScalar a, BoolVector b) { }
         public string[] ss = new string[2] { }
     }
+    class NodeItem<T> where T : System.IComparable<T>, new() { }
+    class SpecialNodeItem<T> : NodeItem<T> where T : System.IComparable<T>, new() { }
+
+    class SuperKeyType<K, V, U>
+        where U : System.IComparable<U>
+        where V : new()
+    { }
+
+    class Stack<T> where T : System.IComparable<T>, IEnumerable<T>
+    {
+    }
+
+    interface IDictionary<K, V>{}
+    interface IBaseInterface2<T, U> { }
+    class SampleClass2<T> : IBaseInterface2<T, string> { }
+
+    void SwapIfGreater<T>(ref T lhs, ref T rhs) where T : System.IComparable<T>{}
+    void DoWork<T> () { }
+    void DoWork<T, U>
+    () { }
+
+    public delegate void Del<T>(T item);
+    delegate void StackEventHandler<T, U>(T sender, U eventArgs);
+    public delegate List<T> StackEventHandler<T, U>(T sender, U eventArgs);
 }

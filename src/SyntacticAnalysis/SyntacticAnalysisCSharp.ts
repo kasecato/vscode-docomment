@@ -100,6 +100,42 @@ export class SyntacticAnalysisCSharp {
         return code.match(/[ \t]+/) !== null;
     }
 
+    public static GetGenericList(code: string): Array<string> {
+        if (code === null) return null;
+        const generics: RegExpMatchArray = code.match(/<([^<>]*)>/);
+
+        const isMatched = (generics === null || generics.length !== 2);
+        if (isMatched) return null;
+
+        let genericNames: Array<string> = new Array<string>();
+        generics[1].split(',').forEach(param => {
+            const name: RegExpMatchArray = param.match(/(\S+)\s*$/);
+            if (name !== null && name.length === 2) {
+                genericNames.push(name[1]);
+            }
+        });
+
+        return genericNames;
+    }
+
+    public static GetGenericMethodsList(code: string): Array<string> {
+        if (code === null) return null;
+        const generics: RegExpMatchArray = code.match(/<([^<>]*)>\s*\(/);
+
+        const isMatched = (generics === null || generics.length !== 2);
+        if (isMatched) return null;
+
+        let genericNames: Array<string> = new Array<string>();
+        generics[1].split(',').forEach(param => {
+            const name: RegExpMatchArray = param.match(/(\S+)\s*$/);
+            if (name !== null && name.length === 2) {
+                genericNames.push(name[1]);
+            }
+        });
+
+        return genericNames;
+    }
+
     public static GetMethodParamNameList(code: string): Array<string> {
         if (code === null) return null;
         const removedAttrCode: string = code.replace(/^\s*\[.+?\]/, ''); // FIXME:
