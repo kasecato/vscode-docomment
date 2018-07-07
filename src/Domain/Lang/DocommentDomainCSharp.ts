@@ -129,6 +129,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
         let genericList: Array<string> = null;
         let paramNameList: Array<string> = null;
         let hasReturn = false;
+        let hasValue = false;
 
         switch (codeType) {
             case CodeType.Namespace:
@@ -158,7 +159,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
             case CodeType.Field:
                 break;
             case CodeType.Property:
-                hasReturn = SyntacticAnalysisCSharp.HasPropertyReturn(code);
+                hasValue = true;
                 break;
             case CodeType.Comment:
                 return '/// ';
@@ -168,7 +169,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
                 return '';
         }
 
-        return this.GeneSummary(code, genericList, paramNameList, hasReturn);
+        return this.GeneSummary(code, genericList, paramNameList, hasReturn, hasValue);
     }
 
     /* @implements */
@@ -208,7 +209,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
      * Private Method
      *-----------------------------------------------------------------------*/
 
-    private GeneSummary(code: string, genericList: Array<string>, paramNameList: Array<string>, hasReturn: boolean): string {
+    private GeneSummary(code: string, genericList: Array<string>, paramNameList: Array<string>, hasReturn: boolean, hasValue: boolean): string {
 
         let docommentList: Array<string> = new Array<string>();
 
@@ -234,6 +235,11 @@ export class DocommentDomainCSharp extends DocommentDomain {
         /* <returns> */
         if (hasReturn) {
             docommentList.push('<returns></returns>');
+        }
+
+        /* <value> */
+        if (hasValue) {
+            docommentList.push('<value></value>');
         }
 
         // Format

@@ -45,6 +45,8 @@ namespace N  // "N:N"
         public string Test<T>(T obj) where T : class { }
         public static BoolVector operator |(BoolScalar a, BoolVector b) { }
         public string[] ss = new string[2] { }
+        public string Foo { get; set; }
+        public string Bar { get; set; } = "bar";
     }
     class NodeItem<T> where T : System.IComparable<T>, new() { }
     class SpecialNodeItem<T> : NodeItem<T> where T : System.IComparable<T>, new() { }
