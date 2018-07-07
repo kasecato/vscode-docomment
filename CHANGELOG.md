@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.1 (July 7, 2018)
+
+* bug fix - Incorrect for properties. See [#68](https://github.com/kasecato/vscode-docomment/issues/68).
+
 ## 0.1.0 (May 3, 2018)
 
 * enhancement - Please also generate documentation for generic type. See [#32](https://github.com/kasecato/vscode-docomment/issues/32).
