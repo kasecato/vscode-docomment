@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.2 (July 11, 2018)
+
+* enhancement - Add user-controllable options. See [#68](https://github.com/kasecato/vscode-docomment/issues/68).
+
 ## 0.1.1 (July 7, 2018)
 
 * bug fix - Incorrect for properties. See [#68](https://github.com/kasecato/vscode-docomment/issues/68).
