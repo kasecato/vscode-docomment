@@ -6,18 +6,18 @@ import {Configuration} from '../Entity/Config/Contributes/Configuration';
  * Enum
  *-----------------------------------------------------------------------*/
 export enum CodeType {
-    None,
-    Comment,
-    Namespace,
-    Class,
-    Interface,
-    Struct,
-    Enum,
-    Delegate,
-    Field,
-    Property,
-    Method,
-    Event,
+    None = 'none',
+    Comment = 'comment',
+    Namespace = 'namespace',
+    Class = 'class',
+    Interface = 'interface',
+    Struct = 'struct',
+    Enum = 'enum',
+    Delegate = 'delegate',
+    Field = 'field',
+    Property = 'property',
+    Method = 'method',
+    Event = 'event',
 }
 
 export interface IDocommentDomain {

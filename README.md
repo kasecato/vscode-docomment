@@ -22,6 +22,41 @@ The menu under File > Preferences (Code > Preferences on Mac) provides entries t
 {
 	// Press the Enter key to activate a command (Default: false)
 	"docomment.activateOnEnter": false,
+	// User-controllable options
+	"docomment.advanced": {
+		"cs": {
+			"namespace" : {
+				"attributes" : ["summary"]
+			},
+			"class" : {
+				"attributes" : ["summary", "typeparam"]
+			},
+			"interface" : {
+				"attributes" : ["summary", "typeparam"]
+			},
+			"struct" : {
+				"attributes" : ["summary"]
+			},
+			"enum" : {
+				"attributes" : ["summary"]
+			},
+			"delegate" : {
+				"attributes" : ["summary", "param", "typeparam", "returns"]
+			},
+			"field" : {
+				"attributes" : ["summary"]
+			},
+			"property" : {
+				"attributes" : ["summary", "value"]
+			},
+			"method" : {
+				"attributes" : ["summary", "param", "typeparam", "returns"]
+			},
+			"event" : {
+				"attributes" : ["summary"]
+			}
+		}
+	},
 	// Insert spaces when pressing Tab.
 	"editor.insertSpaces": true,
 	// The number of spaces a tab is equal to.
@@ -42,7 +77,7 @@ To enable publishing XML documentation:
 
 ## Installation
 
-1. Install Visual Studio Code 1.22.0 or higher
+1. Install Visual Studio Code 1.25.0 or higher
 1. Launch Code
 1. From the extension view `Ctrl`-`Shift`-`X` (Windows, Linux) or `Cmd`-`Shift`-`X` (macOS)
 1. Search and Choose the extension `C# XML Documentation Comments`

@@ -1,8 +1,9 @@
-import {SyntacticAnalysisCSharp} from '../../SyntacticAnalysis/SyntacticAnalysisCSharp';
-import {StringUtil} from '../../Utility/StringUtil';
-import {DocommentDomain} from '../DocommentDomain';
-import {CodeType} from '../IDocommentDomain';
-import {Position} from 'vscode';
+import { SyntacticAnalysisCSharp } from '../../SyntacticAnalysis/SyntacticAnalysisCSharp';
+import { StringUtil } from '../../Utility/StringUtil';
+import { DocommentDomain } from '../DocommentDomain';
+import { CodeType } from '../IDocommentDomain';
+import { Position } from 'vscode';
+import { ConfigAdvancedCSharp, Attribute } from '../../Entity/Config/Lang/ConfigAdvancedCSharp';
 
 export class DocommentDomainCSharp extends DocommentDomain {
 
@@ -169,7 +170,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
                 return '';
         }
 
-        return this.GeneSummary(code, genericList, paramNameList, hasReturn, hasValue);
+        return this.GeneSummary(code, codeType, genericList, paramNameList, hasReturn, hasValue);
     }
 
     /* @implements */
@@ -201,7 +202,9 @@ export class DocommentDomainCSharp extends DocommentDomain {
         const indentBaseLine: string = this._vsCodeApi.ReadLineAtCurrent();
         const indent: string = StringUtil.GetIndent(code, indentBaseLine, this._config.insertSpaces, this._config.detectIdentation);
         const indentLen: number = StringUtil.GetIndentLen(indent, this._config.insertSpaces, this._config.detectIdentation);
-        this._vsCodeApi.MoveSelection(curPosition.line + 1, indentLen - 1 + docomment.length);
+        const line = curPosition.line + 1;
+        const character = indentLen - 1 + docomment.length;
+        this._vsCodeApi.MoveSelection(line, character);
     }
 
 
@@ -209,37 +212,47 @@ export class DocommentDomainCSharp extends DocommentDomain {
      * Private Method
      *-----------------------------------------------------------------------*/
 
-    private GeneSummary(code: string, genericList: Array<string>, paramNameList: Array<string>, hasReturn: boolean, hasValue: boolean): string {
+    private GeneSummary(code: string, codeType: CodeType, genericList: Array<string>, paramNameList: Array<string>, hasReturn: boolean, hasValue: boolean): string {
 
         let docommentList: Array<string> = new Array<string>();
 
-        /* <summary> */
-        docommentList.push('<summary>');
-        docommentList.push('');
-        docommentList.push('</summary>');
+        if (ConfigAdvancedCSharp.HasAttribute(this._config.advanced, codeType, Attribute.summary)) {
+            /* <summary> */
+            docommentList.push('<summary>');
+            docommentList.push('');
+            docommentList.push('</summary>');
+        }
 
         /* <param> */
-        if (paramNameList !== null) {
-            paramNameList.forEach(name => {
-                docommentList.push('<param name="' + name + '"></param>');
-            });
+        if (ConfigAdvancedCSharp.HasAttribute(this._config.advanced, codeType, Attribute.param)) {
+            if (paramNameList !== null) {
+                paramNameList.forEach(name => {
+                    docommentList.push('<param name="' + name + '"></param>');
+                });
+            }
         }
 
         /* <typeparam> */
-        if (genericList !== null) {
-            genericList.forEach(name => {
-                docommentList.push('<typeparam name="' + name + '"></typeparam>');
-            });
+        if (ConfigAdvancedCSharp.HasAttribute(this._config.advanced, codeType, Attribute.typeparam)) {
+            if (genericList !== null) {
+                genericList.forEach(name => {
+                    docommentList.push('<typeparam name="' + name + '"></typeparam>');
+                });
+            }
         }
 
         /* <returns> */
-        if (hasReturn) {
-            docommentList.push('<returns></returns>');
+        if (ConfigAdvancedCSharp.HasAttribute(this._config.advanced, codeType, Attribute.returns)) {
+            if (hasReturn) {
+                docommentList.push('<returns></returns>');
+            }
         }
 
         /* <value> */
-        if (hasValue) {
-            docommentList.push('<value></value>');
+        if (ConfigAdvancedCSharp.HasAttribute(this._config.advanced, codeType, Attribute.value)) {
+            if (hasValue) {
+                docommentList.push('<value></value>');
+            }
         }
 
         // Format

@@ -3,7 +3,7 @@
     "version": "0.1.1",
     "publisher": "k--kato",
     "engines": {
-        "vscode": "^1.23.0"
+        "vscode": "^1.25.0"
     },
     "displayName": "C# XML Documentation Comments",
     "description": "Generate C# XML documentation comments for ///",
@@ -24,6 +24,158 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Press the Enter key to activate a command."
+                },
+                "docomment.advanced": {
+                    "type": "object",
+                    "description": "User-controllable options.",
+                    "properties": {
+                        "cs": {
+                            "type": "object",
+                            "description": "C# options.",
+                            "properties": {
+                                "namespace": {
+                                    "type": "object",
+                                    "properties": {
+                                        "attributes": {
+                                            "type": "array",
+                                            "default": ["summary"],
+                                            "items": {
+                                                "attribute": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "class": {
+                                    "type": "object",
+                                    "properties": {
+                                        "attributes": {
+                                            "type": "array",
+                                            "default": ["summary", "typeparam"],
+                                            "items": {
+                                                "attribute": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "interface": {
+                                    "type": "object",
+                                    "properties": {
+                                        "attributes": {
+                                            "type": "array",
+                                            "default": ["summary", "typeparam"],
+                                            "items": {
+                                                "attribute": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "struct": {
+                                    "type": "object",
+                                    "properties": {
+                                        "attributes": {
+                                            "type": "array",
+                                            "default": ["summary"],
+                                            "items": {
+                                                "attribute": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "enum": {
+                                    "type": "object",
+                                    "properties": {
+                                        "attributes": {
+                                            "type": "array",
+                                            "default": ["summary"],
+                                            "items": {
+                                                "attribute": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "delegate": {
+                                    "type": "object",
+                                    "properties": {
+                                        "attributes": {
+                                            "type": "array",
+                                            "default": ["summary", "param", "typeparam", "returns"],
+                                            "items": {
+                                                "attribute": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "field": {
+                                    "type": "object",
+                                    "properties": {
+                                        "attributes": {
+                                            "type": "array",
+                                            "default": ["summary", "value"],
+                                            "items": {
+                                                "attribute": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "property": {
+                                    "type": "object",
+                                    "properties": {
+                                        "attributes": {
+                                            "type": "array",
+                                            "default": ["summary", "value"],
+                                            "items": {
+                                                "attribute": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "method": {
+                                    "type": "object",
+                                    "properties": {
+                                        "attributes": {
+                                            "type": "array",
+                                            "default": ["summary", "param", "typeparam", "returns"],
+                                            "items": {
+                                                "attribute": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "event": {
+                                    "type": "object",
+                                    "properties": {
+                                        "attributes": {
+                                            "type": "array",
+                                            "default": ["summary"],
+                                            "items": {
+                                                "attribute": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
