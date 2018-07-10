@@ -1,6 +1,6 @@
 {
     "name": "docomment",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "publisher": "k--kato",
     "engines": {
         "vscode": "^1.25.0"
@@ -38,7 +38,9 @@
                                     "properties": {
                                         "attributes": {
                                             "type": "array",
-                                            "default": ["summary"],
+                                            "default": [
+                                                "summary"
+                                            ],
                                             "items": {
                                                 "attribute": {
                                                     "type": "string"
@@ -52,7 +54,10 @@
                                     "properties": {
                                         "attributes": {
                                             "type": "array",
-                                            "default": ["summary", "typeparam"],
+                                            "default": [
+                                                "summary",
+                                                "typeparam"
+                                            ],
                                             "items": {
                                                 "attribute": {
                                                     "type": "string"
@@ -66,7 +71,10 @@
                                     "properties": {
                                         "attributes": {
                                             "type": "array",
-                                            "default": ["summary", "typeparam"],
+                                            "default": [
+                                                "summary",
+                                                "typeparam"
+                                            ],
                                             "items": {
                                                 "attribute": {
                                                     "type": "string"
@@ -80,7 +88,9 @@
                                     "properties": {
                                         "attributes": {
                                             "type": "array",
-                                            "default": ["summary"],
+                                            "default": [
+                                                "summary"
+                                            ],
                                             "items": {
                                                 "attribute": {
                                                     "type": "string"
@@ -94,7 +104,9 @@
                                     "properties": {
                                         "attributes": {
                                             "type": "array",
-                                            "default": ["summary"],
+                                            "default": [
+                                                "summary"
+                                            ],
                                             "items": {
                                                 "attribute": {
                                                     "type": "string"
@@ -108,7 +120,12 @@
                                     "properties": {
                                         "attributes": {
                                             "type": "array",
-                                            "default": ["summary", "param", "typeparam", "returns"],
+                                            "default": [
+                                                "summary",
+                                                "param",
+                                                "typeparam",
+                                                "returns"
+                                            ],
                                             "items": {
                                                 "attribute": {
                                                     "type": "string"
@@ -122,7 +139,10 @@
                                     "properties": {
                                         "attributes": {
                                             "type": "array",
-                                            "default": ["summary", "value"],
+                                            "default": [
+                                                "summary",
+                                                "value"
+                                            ],
                                             "items": {
                                                 "attribute": {
                                                     "type": "string"
@@ -136,7 +156,10 @@
                                     "properties": {
                                         "attributes": {
                                             "type": "array",
-                                            "default": ["summary", "value"],
+                                            "default": [
+                                                "summary",
+                                                "value"
+                                            ],
                                             "items": {
                                                 "attribute": {
                                                     "type": "string"
@@ -150,7 +173,12 @@
                                     "properties": {
                                         "attributes": {
                                             "type": "array",
-                                            "default": ["summary", "param", "typeparam", "returns"],
+                                            "default": [
+                                                "summary",
+                                                "param",
+                                                "typeparam",
+                                                "returns"
+                                            ],
                                             "items": {
                                                 "attribute": {
                                                     "type": "string"
@@ -164,7 +192,9 @@
                                     "properties": {
                                         "attributes": {
                                             "type": "array",
-                                            "default": ["summary"],
+                                            "default": [
+                                                "summary"
+                                            ],
                                             "items": {
                                                 "attribute": {
                                                     "type": "string"
