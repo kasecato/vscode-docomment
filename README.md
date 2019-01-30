@@ -7,7 +7,7 @@ Generate XML documentation comments for Visual Studio Code.
 
 ## Usage
 
-Type "///", it auto-generates an XML doucumentation comment like this:
+Type "///", it auto-generates an XML documentation comment like this:
 
 ![docomment](images/docomment.gif)
 
