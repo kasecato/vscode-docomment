@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.3 (Feb 1, 2019)
+
+* enhancement - Upgrade libraries.
+* bug fix - Correct minor typo. See [#73](https://github.com/kasecato/vscode-docomment/pull/73).
+
 ## 0.1.2 (July 11, 2018)
 
 * enhancement - Add user-controllable options. See [#68](https://github.com/kasecato/vscode-docomment/issues/68).
