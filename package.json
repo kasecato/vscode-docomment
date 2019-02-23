@@ -1,6 +1,6 @@
 {
     "name": "docomment",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "publisher": "k--kato",
     "engines": {
         "vscode": "^1.30.0"
