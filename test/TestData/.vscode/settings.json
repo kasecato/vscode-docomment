@@ -1,6 +1,6 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "docomment.syntax": "single",
+    "docomment.syntax": "delimited",
     // Press the Enter key to activate a command (Default: false)
     "docomment.activateOnEnter": false,
     "docomment.advanced": {

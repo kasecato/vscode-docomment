@@ -43,8 +43,7 @@ export class SyntacticAnalysisCSharp {
             case CommentSyntax.single:
                 return activeLine.match(/\/{3}/) !== null;
             case CommentSyntax.delimited:
-                return activeLine.match(/\/\*{2}/) !== null
-                    || activeLine.match(/\*{1}/) !== null;
+                return activeLine.match(/^[ \t]*\*{1}[^\/]/) !== null;
         }
     }
 
