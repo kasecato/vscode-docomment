@@ -48,12 +48,12 @@ export class DocommentDomain implements IDocommentDomain {
 
         // Detect Code Type
         const codeType: CodeType = this.GetCodeType(code);
-        console.log(codeType);
+        console.debug(codeType);
         if (codeType === null) return;
 
         // Gene Comment
         const docomment = this.GeneDocomment(code, codeType);
-        console.log(docomment);
+        console.debug(docomment);
         if (StringUtil.IsNullOrWhiteSpace(docomment)) return;
 
         // Write Comment

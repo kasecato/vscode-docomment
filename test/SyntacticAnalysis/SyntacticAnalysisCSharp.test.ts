@@ -1,5 +1,6 @@
 import * as assert from 'assert';
 import {SyntacticAnalysisCSharp} from '../../src/SyntacticAnalysis/SyntacticAnalysisCSharp';
+import { CommentSyntax } from '../../src/Entity/Config/Contributes/Configuration';
 
 suite('SyntacticAnalysis.SyntacticAnalysisCSharp.IsNamespace Tests', () => {
 
@@ -213,8 +214,8 @@ suite('SyntacticAnalysis.SyntacticAnalysisCSharp.IsClass Tests', () => {
         Class   : SyntacticAnalysis.SyntacticAnalysisCSharp
         Method  : IsDocComment
     `, () => {
-            assert.equal(SyntacticAnalysisCSharp.IsDocComment('///'), true, '///');
-            assert.equal(SyntacticAnalysisCSharp.IsDocComment(' ///'), true, ' ///');
-            assert.equal(SyntacticAnalysisCSharp.IsDocComment(' /// '), true, ' /// ');
+            assert.equal(SyntacticAnalysisCSharp.IsDocComment('///', CommentSyntax.single), true, '///');
+            assert.equal(SyntacticAnalysisCSharp.IsDocComment(' ///', CommentSyntax.single), true, ' ///');
+            assert.equal(SyntacticAnalysisCSharp.IsDocComment(' /// ', CommentSyntax.single), true, ' /// ');
         });
 });

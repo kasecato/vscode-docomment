@@ -1,10 +1,13 @@
+import { CommentSyntax } from "../Entity/Config/Contributes/Configuration";
+import { CodeType } from "../Domain/IDocommentDomain";
+
 export class SyntacticAnalysisCSharp {
 
     /*-------------------------------------------------------------------------
      * Field
      *-----------------------------------------------------------------------*/
     private static RESERVED_WORDS: RegExp =
-    /(void|event|delegate|internal|public|protected|private|static|const|new|sealed|abstract|virtual|override|extern|unsafe|readonly|volatile|implicit|explicit|operator)/;
+        /(void|event|delegate|internal|public|protected|private|static|const|new|sealed|abstract|virtual|override|extern|unsafe|readonly|volatile|implicit|explicit|operator)/;
 
     /*-------------------------------------------------------------------------
      * Public Method: Comment Type
@@ -13,24 +16,45 @@ export class SyntacticAnalysisCSharp {
         return (activeChar === '') && (text.startsWith('\n') || text.startsWith("\r\n"));
     }
 
-    public static IsSlashKey(activeChar: string): boolean {
-        return (activeChar === '/');
+    public static IsActivationKey(activeChar: string, syntax: CommentSyntax): boolean {
+        switch (syntax) {
+            case CommentSyntax.single:
+                return activeChar === '/';
+            case CommentSyntax.delimited:
+                return activeChar === '*';
+        }
     }
 
     /**
      * Tests whether a line contains ONLY a doc comment and nothing else except whitespace.
      * @param activeLine The line to test.
      */
-    public static IsDocCommentStrict(activeLine: string): boolean {
-        return activeLine.match(/^[ \t]*\/{3}[ \t]*$/) !== null; // FIXME:
+    public static IsDocCommentStrict(activeLine: string, syntax: CommentSyntax): boolean {
+        switch (syntax) {
+            case CommentSyntax.single:
+                return activeLine.match(/^[ \t]*\/{3}[ \t]*$/) !== null; // FIXME:
+            case CommentSyntax.delimited:
+                return activeLine.match(/^[ \t]*\/\*{2}[ \t]*\*\/*[ \t]*$/) !== null; // FIXME:
+        }
     }
 
-    public static IsDocComment(activeLine: string): boolean {
-        return activeLine.match(/\/{3}/) !== null;
+    public static IsDocComment(activeLine: string, syntax: CommentSyntax): boolean {
+        switch (syntax) {
+            case CommentSyntax.single:
+                return activeLine.match(/\/{3}/) !== null;
+            case CommentSyntax.delimited:
+                return activeLine.match(/\/\*{2}/) !== null
+                    || activeLine.match(/\*{1}/) !== null;
+        }
     }
 
-    public static IsDoubleDocComment(activeLine: string): boolean {
-        return activeLine.match(/^[ \t]*\/{3} $/) !== null;
+    public static IsDoubleDocComment(activeLine: string, syntax: CommentSyntax): boolean {
+        switch (syntax) {
+            case CommentSyntax.single:
+                return activeLine.match(/^[ \t]*\/{3} $/) !== null;
+            case CommentSyntax.delimited:
+                return activeLine.match(/^[ \t]*\*{1} $/) !== null;
+        }
     }
 
     /*-------------------------------------------------------------------------
@@ -98,6 +122,15 @@ export class SyntacticAnalysisCSharp {
         if (code === null) return false;
         if (code === '') return true;
         return code.match(/[ \t]+/) !== null;
+    }
+
+    public static GetCommentSyntax(syntax: CommentSyntax): string {
+        switch (syntax) {
+            case CommentSyntax.single:
+                return '///';
+            case CommentSyntax.delimited:
+                return '*';
+        }
     }
 
     public static GetGenericList(code: string): Array<string> {
@@ -172,11 +205,9 @@ export class SyntacticAnalysisCSharp {
         {
             const returns: RegExpMatchArray = code.match(/([\w\S]+)\s+[\w\S]+\s*\(.*\)/);
             const isMatched = (returns !== null && returns.length === 2);
-            if (isMatched)
-            {
+            if (isMatched) {
                 const isReserved = (returns[1].match(this.RESERVED_WORDS) !== null);
-                if (!isReserved)
-                {
+                if (!isReserved) {
                     return true;
                 }
             }
@@ -184,11 +215,9 @@ export class SyntacticAnalysisCSharp {
         {
             const returns: RegExpMatchArray = code.match(/([\w\S]+)\s+[\w\S]+\s+[\w\S]+\s*\(.*\)/);
             const isMatched = (returns !== null && returns.length === 2);
-            if (isMatched)
-            {
+            if (isMatched) {
                 const isReserved = (returns[1].match(this.RESERVED_WORDS) !== null);
-                if (!isReserved)
-                {
+                if (!isReserved) {
                     return true;
                 }
             }
@@ -205,6 +234,23 @@ export class SyntacticAnalysisCSharp {
         if (isMatched) return false;
 
         return (returns[1].match(this.RESERVED_WORDS) === null) ? true : false;
+    }
+
+    /*-------------------------------------------------------------------------
+     * Public Method: Cursor
+     *-----------------------------------------------------------------------*/
+    public static GetLineOffset(syntax: CommentSyntax, codeType: CodeType) {
+        switch (syntax) {
+            case CommentSyntax.single:
+                return 1;
+            case CommentSyntax.delimited:
+                switch (codeType) {
+                    case CodeType.Comment:
+                        return 1;
+                    default:
+                        return 2;
+                }
+        }
     }
 
 }

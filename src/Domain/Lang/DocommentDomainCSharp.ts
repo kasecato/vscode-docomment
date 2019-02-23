@@ -1,9 +1,10 @@
+import { Position } from 'vscode';
+import { Attribute, ConfigAdvancedCSharp } from '../../Entity/Config/Lang/ConfigAdvancedCSharp';
+import { FormatterCSharp } from '../../Formatter/FormatterCSharp';
 import { SyntacticAnalysisCSharp } from '../../SyntacticAnalysis/SyntacticAnalysisCSharp';
 import { StringUtil } from '../../Utility/StringUtil';
 import { DocommentDomain } from '../DocommentDomain';
 import { CodeType } from '../IDocommentDomain';
-import { Position } from 'vscode';
-import { ConfigAdvancedCSharp, Attribute } from '../../Entity/Config/Lang/ConfigAdvancedCSharp';
 
 export class DocommentDomainCSharp extends DocommentDomain {
 
@@ -33,36 +34,36 @@ export class DocommentDomainCSharp extends DocommentDomain {
         }
 
         // NG: KeyCode is NOT '/' or Enter
-        const isSlashKey: boolean = SyntacticAnalysisCSharp.IsSlashKey(activeChar);
+        const isActivationKey: boolean = SyntacticAnalysisCSharp.IsActivationKey(activeChar, this._config.syntax);
         const isEnterKey: boolean = SyntacticAnalysisCSharp.IsEnterKey(activeChar, eventText);
-        if (!isSlashKey && !isEnterKey) {
+        if (!isActivationKey && !isEnterKey) {
             return false;
         }
         this._isEnterKey = isEnterKey;
 
         // NG: Activate on Enter NOT '/'
         if (this._config.activateOnEnter) {
-            if (isSlashKey) {
+            if (isActivationKey) {
                 return false;
             }
         }
 
         // NG: '////'
         const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
-        if (isSlashKey) {
+        if (isActivationKey) {
             // NG: '////'
-            if (!SyntacticAnalysisCSharp.IsDocCommentStrict(activeLine)) {
+            if (!SyntacticAnalysisCSharp.IsDocCommentStrict(activeLine, this._config.syntax)) {
                 return false;
             }
 
             // NG: '/' => Insert => Event => ' /// '
-            if (SyntacticAnalysisCSharp.IsDoubleDocComment(activeLine)) {
+            if (SyntacticAnalysisCSharp.IsDoubleDocComment(activeLine, this._config.syntax)) {
                 return false;
             }
         }
         if (isEnterKey) {
             // NG: '////'
-            if (!SyntacticAnalysisCSharp.IsDocComment(activeLine)) {
+            if (!SyntacticAnalysisCSharp.IsDocComment(activeLine, this._config.syntax)) {
                 return false;
             }
         }
@@ -84,7 +85,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
         // If the previous line was a doc comment and we hit enter.
         // Extend the doc comment without generating anything else,
         // even if there's a method or something next line.
-        if (!this._config.activateOnEnter && this._isEnterKey && SyntacticAnalysisCSharp.IsDocComment(this._vsCodeApi.ReadLineAtCurrent())) {
+        if (!this._config.activateOnEnter && this._isEnterKey && SyntacticAnalysisCSharp.IsDocComment(this._vsCodeApi.ReadLineAtCurrent(), this._config.syntax)) {
             return CodeType.Comment;
         }
 
@@ -163,7 +164,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
                 hasValue = true;
                 break;
             case CodeType.Comment:
-                return '/// ';
+                return SyntacticAnalysisCSharp.GetCommentSyntax(this._config.syntax) + ' ';
             case CodeType.None:
                 return '';
             default:
@@ -202,11 +203,10 @@ export class DocommentDomainCSharp extends DocommentDomain {
         const indentBaseLine: string = this._vsCodeApi.ReadLineAtCurrent();
         const indent: string = StringUtil.GetIndent(code, indentBaseLine, this._config.insertSpaces, this._config.detectIdentation);
         const indentLen: number = StringUtil.GetIndentLen(indent, this._config.insertSpaces, this._config.detectIdentation);
-        const line = curPosition.line + 1;
+        const line = curPosition.line + SyntacticAnalysisCSharp.GetLineOffset(this._config.syntax, codeType);
         const character = indentLen - 1 + docomment.length;
         this._vsCodeApi.MoveSelection(line, character);
     }
-
 
     /*-------------------------------------------------------------------------
      * Private Method
@@ -258,14 +258,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
         // Format
         const indentBaseLine: string = this._vsCodeApi.ReadLineAtCurrent();
         const indent: string = StringUtil.GetIndent(code, indentBaseLine, this._config.insertSpaces, this._config.detectIdentation);
-        let docomment = ' ' + docommentList[0] + '\n';
-        for (let i = 1; i < docommentList.length; i++) {
-            docomment += indent + '/// ' + docommentList[i];
-            if (i !== docommentList.length - 1) {
-                docomment += '\n';
-            }
-        }
-
+        const docomment: string = FormatterCSharp.Format(docommentList, indent, this._config.syntax);
         return docomment;
     }
 

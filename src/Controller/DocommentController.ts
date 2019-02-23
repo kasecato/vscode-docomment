@@ -1,7 +1,7 @@
-import {window, workspace, Disposable, TextEditor, TextDocumentContentChangeEvent, WorkspaceConfiguration} from 'vscode';
-import {IDocommentDomain} from '../Domain/IDocommentDomain';
-import {IDocommentController} from './IDocommentController';
-import {Configuration} from '../Entity/Config/Contributes/Configuration';
+import { Disposable, TextDocumentContentChangeEvent, TextEditor, window, workspace, WorkspaceConfiguration } from 'vscode';
+import { IDocommentDomain } from '../Domain/IDocommentDomain';
+import { CommentSyntax, Configuration } from '../Entity/Config/Contributes/Configuration';
+import { IDocommentController } from './IDocommentController';
 
 export class DocommentController implements IDocommentController {
 
@@ -67,6 +67,7 @@ export class DocommentController implements IDocommentController {
         const confEditor: WorkspaceConfiguration = workspace.getConfiguration(Configuration.KEY_EDITOR);
 
         this._config = new Configuration();
+        this._config.syntax = CommentSyntax[confDocomment.get<string>(Configuration.SYNTAX, CommentSyntax.single)];
         this._config.activateOnEnter = confDocomment.get<boolean>(Configuration.ACTIVATE_ON_ENTER, false);
         this._config.advanced = confDocomment.get<Object>(Configuration.ADVANCED);
         this._config.eol = confFiles.get<string>(Configuration.EOL, '\n');

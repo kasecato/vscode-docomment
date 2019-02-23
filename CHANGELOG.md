@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.4 (Feb 23, 2019)
+
+* enhancement - Upgrade libraries.
+* enhancement - Support delimited comment syntax /** */? See [#75](https://github.com/kasecato/vscode-docomment/issues/75).
+
 ## 0.1.3 (Feb 1, 2019)
 
 * enhancement - Upgrade libraries.

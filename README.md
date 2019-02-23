@@ -20,6 +20,8 @@ The menu under File > Preferences (Code > Preferences on Mac) provides entries t
 
 ```js
 {
+	// Comments are single-line comments that start with three slashes (///) ("single"), or delimited comments that start with a slash and two stars (/**) ("delimited").
+	"docomment.syntax": "single",
 	// Press the Enter key to activate a command (Default: false)
 	"docomment.activateOnEnter": false,
 	// User-controllable options
