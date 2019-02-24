@@ -6,12 +6,12 @@ export class FormatterCSharp {
     /*-------------------------------------------------------------------------
      * Public Method: Formatter
      *-----------------------------------------------------------------------*/
-    public static Format(docommentList: string[], indent: string, syntax: CommentSyntax) {
+    public static Format(docommentList: string[], indent: string, syntax: CommentSyntax, activateOnEnter: boolean) {
         switch (syntax) {
             case CommentSyntax.single:
                 return FormatterCSharp.FormatAsSingle(docommentList, indent, syntax);
             case CommentSyntax.delimited:
-                return FormatterCSharp.FormatAsDelimited(docommentList, indent, syntax);
+                return FormatterCSharp.FormatAsDelimited(docommentList, indent, syntax, activateOnEnter);
         }
     }
 
@@ -29,7 +29,7 @@ export class FormatterCSharp {
         return docomment;
     }
 
-    private static FormatAsDelimited(docommentList: string[], indent: string, syntax: CommentSyntax) {
+    private static FormatAsDelimited(docommentList: string[], indent: string, syntax: CommentSyntax, activateOnEnter: boolean) {
         let docomment = '\n';
         for (let i = 0; i < docommentList.length; i++) {
             docomment += indent + ' ' + SyntacticAnalysisCSharp.GetCommentSyntax(syntax) + ' ' + docommentList[i];
@@ -39,6 +39,9 @@ export class FormatterCSharp {
         }
         docomment += '\n';
         docomment += indent;
+        if (activateOnEnter) {
+            docomment += ' */';
+        }
         return docomment;
     }
 

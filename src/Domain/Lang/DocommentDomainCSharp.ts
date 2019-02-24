@@ -61,9 +61,17 @@ export class DocommentDomainCSharp extends DocommentDomain {
                 return false;
             }
         }
+
+        // Comment Line
         if (isEnterKey) {
+            if (this._config.activateOnEnter) {
+                // NG: '////'
+                if (!SyntacticAnalysisCSharp.IsDocCommentOnActivationEnter(activeLine, this._config.syntax)) {
+                    return false;
+                }
+            }
             // NG: '////'
-            if (!SyntacticAnalysisCSharp.IsDocComment(activeLine, this._config.syntax)) {
+            else if (!SyntacticAnalysisCSharp.IsDocComment(activeLine, this._config.syntax)) {
                 return false;
             }
         }
@@ -258,7 +266,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
         // Format
         const indentBaseLine: string = this._vsCodeApi.ReadLineAtCurrent();
         const indent: string = StringUtil.GetIndent(code, indentBaseLine, this._config.insertSpaces, this._config.detectIdentation);
-        const docomment: string = FormatterCSharp.Format(docommentList, indent, this._config.syntax);
+        const docomment: string = FormatterCSharp.Format(docommentList, indent, this._config.syntax, this._config.activateOnEnter);
         return docomment;
     }
 

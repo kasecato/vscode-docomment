@@ -1,6 +1,8 @@
 // Place your settings in this file to overwrite default and user settings.
 {
-    "docomment.syntax": "delimited",
+    // single: Comments are single-line comments that start with three slashes (///) (Default)
+    // delimited: Delimited comments that start with a slash and two stars (/**)
+    "docomment.syntax": "single",
     // Press the Enter key to activate a command (Default: false)
     "docomment.activateOnEnter": false,
     "docomment.advanced": {

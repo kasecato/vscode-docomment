@@ -1,5 +1,5 @@
-import { CommentSyntax } from "../Entity/Config/Contributes/Configuration";
 import { CodeType } from "../Domain/IDocommentDomain";
+import { CommentSyntax } from "../Entity/Config/Contributes/Configuration";
 
 export class SyntacticAnalysisCSharp {
 
@@ -47,6 +47,16 @@ export class SyntacticAnalysisCSharp {
         }
     }
 
+    public static IsDocCommentOnActivationEnter(activeLine: string, syntax: CommentSyntax): boolean {
+        switch (syntax) {
+            case CommentSyntax.single:
+                return activeLine.match(/^[ \t]*\/{3} $/) !== null;
+            case CommentSyntax.delimited:
+                return activeLine.match(/^[ \t]*\/\*{2}[ \t]*$/) !== null
+                    || SyntacticAnalysisCSharp.IsDocComment(activeLine, syntax);
+        }
+    }
+
     public static IsDoubleDocComment(activeLine: string, syntax: CommentSyntax): boolean {
         switch (syntax) {
             case CommentSyntax.single:
@@ -55,6 +65,7 @@ export class SyntacticAnalysisCSharp {
                 return activeLine.match(/^[ \t]*\*{1} $/) !== null;
         }
     }
+
 
     /*-------------------------------------------------------------------------
      * Public Method: Code

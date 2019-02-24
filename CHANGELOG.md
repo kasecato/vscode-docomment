@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.6 (Feb 24, 2019)
+
+* bug fix - Support delimited comment syntax /** */? See [#75](https://github.com/kasecato/vscode-docomment/issues/75).
+
 ## 0.1.5 (Feb 23, 2019)
 
 * bug fix - Support delimited comment syntax /** */? See [#75](https://github.com/kasecato/vscode-docomment/issues/75).
