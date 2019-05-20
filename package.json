@@ -232,11 +232,11 @@
         "@types/node": "^11.9.5",
         "coveralls": "^3.0.3",
         "istanbul": "^0.4.5",
-        "mocha": "^6.0.1",
+        "mocha": "^6.1.4",
         "mocha-lcov-reporter": "^1.3.0",
         "tslint": "^5.12.1",
         "typescript": "^3.3.3333",
-        "vscode": "^1.1.30"
+        "vscode": "^1.1.34"
     },
     "extensionDependencies": [],
     "scripts": {
