@@ -2,92 +2,92 @@
     ".source.charp": {
         "c": {
             "prefix": "<c>",
-            "body": [ "<c>${text}</c>"],
-            "description": "The <c> tag gives you a way to indicate that text within a description should be marked as code.Use <code> to indicate multiple lines as code."
+            "body": ["<c>${text}</c>"],
+            "description": "The <c> tag gives you a way to indicate that text within a description should be marked as code. Use <code> to indicate multiple lines as code."
         },
         "code": {
             "prefix": "<code>",
-            "body": [ "<code>${content}</code>"],
-            "description": "The <code> tag gives you a way to indicate multiple lines as code.Use <c> to indicate that text within a description should be marked as code."
+            "body": ["<code>${content}</code>"],
+            "description": "The <code> tag gives you a way to indicate multiple lines as code. Use <c> to indicate that text within a description should be marked as code."
         },
         "example": {
             "prefix": "<example>",
-            "body": [ "<example>${description}</example>"],
-            "description": "The <example> tag lets you specify an example of how to use a method or other library member.This commonly involves using the <code> tag."
+            "body": ["<example>${description}</example>"],
+            "description": "The <example> tag lets you specify an example of how to use a method or other library member. This commonly involves using the <code> tag."
         },
         "exception": {
             "prefix": "<exception>",
-            "body": [ "<exception cref=\"${member}\">${description}</exception>"],
-            "description": "The <exception> tag lets you specify which exceptions can be thrown.This tag can be applied to definitions for methods, properties, events, and indexers."
+            "body": ["<exception cref=\"${member}\">${description}</exception>"],
+            "description": "The <exception> tag lets you specify which exceptions can be thrown. This tag can be applied to definitions for methods, properties, events, and indexers."
         },
         "include": {
             "prefix": "<include>",
-            "body": [ "<include file='${filename}' path='${tagpath}[@name=\"${id}\"]' />"],
+            "body": ["<include file='${filename}' path='${tagpath}[@name=\"${id}\"]' />"],
             "description": "The <include> tag lets you refer to comments in another file that describe the types and members in your source code."
         },
         "list": {
             "prefix": "<list>",
-            "body": [ "<list type=\"${bullet}\"></list>"],
-            "description": "The <listheader> block is used to define the heading row of either a table or definition list.When defining a table, you only need to supply an entry for term in the heading."
+            "body": ["<list type=\"${bullet}\"></list>"],
+            "description": "The <listheader> block is used to define the heading row of either a table or definition list. When defining a table, you only need to supply an entry for term in the heading."
         },
         "para": {
             "prefix": "<para>",
-            "body": [ "<para>${content}</para>"],
+            "body": ["<para>${content}</para>"],
             "description": "The <para> tag is for use inside a tag, such as <summary>, <remarks>, or <returns>, and lets you add structure to the text."
         },
         "param": {
             "prefix": "<param>",
-            "body": [ "<param name=\"${name}\">${description}</param>"],
-            "description": "The <param> tag should be used in the comment for a method declaration to describe one of the parameters for the method.To document multiple parameters, use multiple <param> tags."
+            "body": ["<param name=\"${name}\">${description}</param>"],
+            "description": "The <param> tag should be used in the comment for a method declaration to describe one of the parameters for the method. To document multiple parameters, use multiple <param> tags."
         },
         "paramref": {
             "prefix": "<paramref>",
-            "body": [ "<paramref name=\"${name}\"/>"],
+            "body": ["<paramref name=\"${name}\"/>"],
             "description": "The <paramref> tag gives you a way to indicate that a word in the code comments, for example in a <summary> or <remarks> block refers to a parameter."
         },
         "permission": {
             "prefix": "<permission>",
-            "body": [ "<permission cref=\"${member}\">${description}</permission>"],
-            "description": "The <permission> tag lets you document the access of a member.The PermissionSet class lets you specify access to a member."
+            "body": ["<permission cref=\"${member}\">${description}</permission>"],
+            "description": "The <permission> tag lets you document the access of a member. The PermissionSet class lets you specify access to a member."
         },
         "remarks": {
             "prefix": "<remarks>",
-            "body": [ "<remarks>${description}</remarks>"],
+            "body": ["<remarks>${description}</remarks>"],
             "description": "The <remarks> tag is used to add information about a type, supplementing the information specified with <summary>."
         },
         "returns": {
             "prefix": "<returns>",
-            "body": [ "<returns>${description}</returns>"],
+            "body": ["<returns>${description}</returns>"],
             "description": "The <returns> tag should be used in the comment for a method declaration to describe the return value."
         },
         "see": {
             "prefix": "<see>",
-            "body": [ "<see cref=\"${member}\"/>"],
+            "body": ["<see cref=\"${member}\"/>"],
             "description": "The <see> tag lets you specify a link from within text.Use <seealso> to indicate that text should be placed in a See Also section."
         },
         "seealso": {
             "prefix": "<seealso>",
-            "body": [ "<seealso cref=\"${member}\"/>"],
-            "description": "The <seealso> tag lets you specify the text that you might want to appear in a See Also section.Use <see> to specify a link from within text."
+            "body": ["<seealso cref=\"${member}\"/>"],
+            "description": "The <seealso> tag lets you specify the text that you might want to appear in a See Also section. Use <see> to specify a link from within text."
         },
         "summary": {
             "prefix": "<summary>",
-            "body": [ "<summary>${description}</summary>"],
-            "description": "The <summary> tag should be used to describe a type or a type member.Use <remarks> to add supplemental information to a type description."
+            "body": ["<summary>${description}</summary>"],
+            "description": "The <summary> tag should be used to describe a type or a type member. Use <remarks> to add supplemental information to a type description."
         },
         "typeparam": {
             "prefix": "<typeparam>",
-            "body": [ "<typeparam name=\"${name}\">${description}</typeparam>"],
+            "body": ["<typeparam name=\"${name}\">${description}</typeparam>"],
             "description": "The <typeparam> tag should be used in the comment for a generic type or method declaration to describe a type parameter."
         },
         "typeparamref": {
             "prefix": "<typeparamref>",
-            "body": [ "<typeparamref name=\"${name}\"/>"],
+            "body": ["<typeparamref name=\"${name}\"/>"],
             "description": "Use this tag to enable consumers of the documentation file to format the word in some distinct way, for example in italics."
         },
         "value": {
             "prefix": "<value>",
-            "body": [ "<value>${property-description}</value>"],
+            "body": ["<value>${property-description}</value>"],
             "description": "The <value> tag lets you describe the value that a property represents."
         }
     }
