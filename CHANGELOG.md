@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.8 (June 16, 2019)
+
+* bug fix - Should not generate typeparam for non-generic classes. See [#76](https://github.com/kasecato/vscode-docomment/issues/76).
+
 ## 0.1.7 (May 20, 2019)
 
 * bug fix - Update packages to fix vulnerabilities. See [#77](https://github.com/kasecato/vscode-docomment/pull/77).

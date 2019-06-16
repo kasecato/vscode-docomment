@@ -145,10 +145,17 @@ export class SyntacticAnalysisCSharp {
 
     public static GetGenericList(code: string): Array<string> {
         if (code === null) return null;
-        const generics: RegExpMatchArray = code.match(/<([^<>]*)>/);
 
-        const isMatched = (generics === null || generics.length !== 2);
-        if (isMatched) return null;
+        const isAfterExtends: boolean = code.match(/:.+<([^<>]*)>/) !== null;
+        if (isAfterExtends) {
+            const isBeforeExtends: boolean = code.match(/<([^<>]*)>.+:/) !== null;
+            if (!isBeforeExtends) return null;
+        }
+
+        const generics: RegExpMatchArray = code.match(/<([^<>]*)>/);
+        
+        const isUnMatched = (generics === null || generics.length !== 2);
+        if (isUnMatched) return null;
 
         let genericNames: Array<string> = new Array<string>();
         generics[1].split(',').forEach(param => {
@@ -165,8 +172,8 @@ export class SyntacticAnalysisCSharp {
         if (code === null) return null;
         const generics: RegExpMatchArray = code.match(/<([^<>]*)>\s*\(/);
 
-        const isMatched = (generics === null || generics.length !== 2);
-        if (isMatched) return null;
+        const isUnMatched = (generics === null || generics.length !== 2);
+        if (isUnMatched) return null;
 
         let genericNames: Array<string> = new Array<string>();
         generics[1].split(',').forEach(param => {

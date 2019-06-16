@@ -175,8 +175,6 @@ export class DocommentDomainCSharp extends DocommentDomain {
                 return SyntacticAnalysisCSharp.GetCommentSyntax(this._config.syntax) + ' ';
             case CodeType.None:
                 return '';
-            default:
-                return '';
         }
 
         return this.GeneSummary(code, codeType, genericList, paramNameList, hasReturn, hasValue);

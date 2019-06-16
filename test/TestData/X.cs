@@ -72,4 +72,6 @@ namespace N  // "N:N"
     public delegate void Del<T>(T item);
     delegate void StackEventHandler<T, U>(T sender, U eventArgs);
     public delegate List<T> StackEventHandler<T, U>(T sender, U eventArgs);
+
+    public class Foo : Bar<string> { }
 }
