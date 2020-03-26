@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.9 (May 26, 2020)
+
+* upgrade libs
+
 ## 0.1.8 (June 16, 2019)
 
 * bug fix - Should not generate typeparam for non-generic classes. See [#76](https://github.com/kasecato/vscode-docomment/issues/76).
