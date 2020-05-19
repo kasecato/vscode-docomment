@@ -188,14 +188,22 @@ export class SyntacticAnalysisCSharp {
 
     public static GetMethodParamNameList(code: string): Array<string> {
         if (code === null) return null;
-        const removedAttrCode: string = code.replace(/^\s*\[.+?\]/, ''); // FIXME:
-        const params: RegExpMatchArray = removedAttrCode.match(/[\w\S]\s+[\w\S]+\s*\(([^)]*)\)/);
+        const removedAttrCode: string = code.replace(/^\s*\[.+?\]/, '');       // FIXME:
+        const removedExtendsCode: string = removedAttrCode.replace(/:.+/, ''); // FIXME:
+        const params: RegExpMatchArray = removedExtendsCode.match(/.+\(([^)]*)\)/);
 
         const isMatched = (params === null || params.length !== 2);
         if (isMatched) return null;
 
         let paramNames: Array<string> = new Array<string>();
         params[1].split(',').forEach(param => {
+            const hasOpen: boolean = param.match(/</) !== null;
+            const hasClose: boolean = param.match(/>/) !== null;
+            const isHighOrderParam = hasOpen && !hasClose;
+            if (isHighOrderParam) {
+                return;
+            }
+
             const hasOptionalParam: boolean = param.match(/\S+\s+\S+\s*=/) !== null;
             const hasTypeInfo: boolean = param.match(/[\w\W]+\s+[\w\W]+/) !== null;
             let name: RegExpMatchArray = null;
