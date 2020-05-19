@@ -153,7 +153,7 @@ export class SyntacticAnalysisCSharp {
         }
 
         const generics: RegExpMatchArray = code.match(/<([^<>]*)>/);
-        
+
         const isUnMatched = (generics === null || generics.length !== 2);
         if (isUnMatched) return null;
 
@@ -194,7 +194,7 @@ export class SyntacticAnalysisCSharp {
         const isMatched = (params === null || params.length !== 2);
         if (isMatched) return null;
 
-        let paramName: Array<string> = new Array<string>();
+        let paramNames: Array<string> = new Array<string>();
         params[1].split(',').forEach(param => {
             const hasOptionalParam: boolean = param.match(/\S+\s+\S+\s*=/) !== null;
             const hasTypeInfo: boolean = param.match(/[\w\W]+\s+[\w\W]+/) !== null;
@@ -207,11 +207,15 @@ export class SyntacticAnalysisCSharp {
                 name = param.match(/(\S+)\s*$/);
             }
             if (name !== null && name.length === 2) {
-                paramName.push(name[1]);
+                const hasIdentifer = name[1].startsWith('@');
+                const paramName = (hasIdentifer)
+                    ? name[1].replace('@', '')
+                    : name[1];
+                paramNames.push(paramName);
             }
         });
 
-        return paramName;
+        return paramNames;
     }
 
     public static HasMethodReturn(code: string): boolean {
