@@ -196,6 +196,13 @@ export class SyntacticAnalysisCSharp {
 
         let paramNames: Array<string> = new Array<string>();
         params[1].split(',').forEach(param => {
+            const hasOpen: boolean = param.match(/</) !== null;
+            const hasClose: boolean = param.match(/>/) !== null;
+            const isHighOrderParam = hasOpen && !hasClose;
+            if (isHighOrderParam) {
+                return;
+            }
+
             const hasOptionalParam: boolean = param.match(/\S+\s+\S+\s*=/) !== null;
             const hasTypeInfo: boolean = param.match(/[\w\W]+\s+[\w\W]+/) !== null;
             let name: RegExpMatchArray = null;

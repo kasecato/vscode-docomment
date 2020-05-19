@@ -76,4 +76,8 @@ namespace N  // "N:N"
     public class Foo : Bar<string> { }
 
     void DoSomething(bool @checked) { }
+
+    public static List<object> ComplexFunctionsSignatureOne(List<object> someList,
+                                                            Func<object, bool> delegateOne = null,
+                                                            Func<object, bool> delegateTwo = null) { }
 }
