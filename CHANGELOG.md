@@ -1,6 +1,11 @@
 # Change Log
 
-## 0.1.9 (May 26, 2020)
+## 0.1.10 (May 19, 2020)
+
+* bug fix - When using @ prefixed identifiers, the prefix should be removed in the generated param name. See [#86](https://github.com/kasecato/vscode-docomment/issues/86).
+* upgrade libs
+
+## 0.1.9 (March 26, 2020)
 
 * upgrade libs
 

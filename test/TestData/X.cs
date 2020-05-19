@@ -74,4 +74,6 @@ namespace N  // "N:N"
     public delegate List<T> StackEventHandler<T, U>(T sender, U eventArgs);
 
     public class Foo : Bar<string> { }
+
+    void DoSomething(bool @checked) { }
 }
