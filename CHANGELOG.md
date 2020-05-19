@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.11 (May 20, 2020)
+
+* bug fix - Erroneous code comments on complex function signatures. See [#88](https://github.com/kasecato/vscode-docomment/issues/88).
+
 ## 0.1.10 (May 19, 2020)
 
 * bug fix - When using @ prefixed identifiers, the prefix should be removed in the generated param name. See [#86](https://github.com/kasecato/vscode-docomment/issues/86).
