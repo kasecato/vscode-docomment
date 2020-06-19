@@ -1,7 +1,7 @@
 out
 node_modules
 *.vsix
-coverage
+.nyc_output
 .vscode-test
 npm-debug.log
 obj

@@ -3,7 +3,7 @@
     "tasks": [
         {
             "type": "npm",
-            "identifier": "compile",
+            "label": "compile",
             "script": "compile",
             "group": {
                 "kind": "build",

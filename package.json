@@ -229,23 +229,23 @@
     "dependencies": {},
     "devDependencies": {
         "@types/mocha": "^7.0.2",
-        "@types/node": "^14.0.1",
+        "@types/node": "^14.0.13",
+        "@types/vscode": "^1.46.0",
         "coveralls": "^3.1.0",
-        "istanbul": "^0.4.5",
-        "mocha": "^7.1.2",
+        "eslint": "^7.2.0",
+        "mocha": "^8.0.1",
         "mocha-lcov-reporter": "^1.3.0",
-        "tslint": "^6.1.2",
-        "typescript": "^3.9.2",
-        "vscode": "^1.1.37"
+        "nyc": "^15.1.0",
+        "typescript": "^3.9.5",
+        "vscode-test": "^1.4.0"
     },
     "extensionDependencies": [],
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
-        "coverage_travis": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js",
-        "coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js",
-        "postinstall": "node ./node_modules/vscode/bin/install"
+        "coverage_travis": "./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js",
+        "coverage": "./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js"
     },
     "icon": "images/docomment.png",
     "license": "MIT",
