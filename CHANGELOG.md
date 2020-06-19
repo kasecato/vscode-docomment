@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.12 (June 19, 2020)
+
+* bug fix - Generation for Expression-bodied methods fails in most cases. See [#91](https://github.com/kasecato/vscode-docomment/issues/91).
+* upgrade libs
+
 ## 0.1.11 (May 20, 2020)
 
 * bug fix - Erroneous code comments on complex function signatures. See [#88](https://github.com/kasecato/vscode-docomment/issues/88).
