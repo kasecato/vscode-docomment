@@ -82,4 +82,10 @@ namespace N  // "N:N"
                                                             Func<object, bool> delegateTwo = null) { }
 
     public static (object result, string name) ComplexFunctionSignatureTwo() { }
+
+    public int GoodAdd(int a, int b) => a + b;
+    public int Add(int a, int b) => (a + b);
+    public bool Has(IList<int> a, int b) => a.Any(x => x == b);
+    public bool DoesntHas(IList<int> a, int b) => a.Any(x => x != b);
+    public IEnumerable<int> ZipAdd(IList<int> a, IList<int> b) => a.Zip(b, (s, t) => s + t);
 }
