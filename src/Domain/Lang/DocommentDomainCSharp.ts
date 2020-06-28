@@ -74,6 +74,10 @@ export class DocommentDomainCSharp extends DocommentDomain {
             else if (!SyntacticAnalysisCSharp.IsDocComment(activeLine, this._config.syntax)) {
                 return false;
             }
+            // NG: Undo comment lines with the enter key
+            else if (SyntacticAnalysisCSharp.IsDocComment(eventText, this._config.syntax)) {
+                return false;
+            }
         }
 
         // OK
@@ -93,8 +97,10 @@ export class DocommentDomainCSharp extends DocommentDomain {
         // If the previous line was a doc comment and we hit enter.
         // Extend the doc comment without generating anything else,
         // even if there's a method or something next line.
-        if (!this._config.activateOnEnter && this._isEnterKey && SyntacticAnalysisCSharp.IsDocComment(this._vsCodeApi.ReadLineAtCurrent(), this._config.syntax)) {
-            return CodeType.Comment;
+        if (!this._config.activateOnEnter && this._isEnterKey) {
+            if (SyntacticAnalysisCSharp.IsDocComment(this._vsCodeApi.ReadLineAtCurrent(), this._config.syntax)) {
+                return CodeType.Comment;
+            }
         }
 
         /* namespace */
