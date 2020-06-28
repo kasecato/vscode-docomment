@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.13 (June 28, 2020)
+
+* bug fix - Extra `///` added when undoing line deletion. See [#93](https://github.com/kasecato/vscode-docomment/issues/93).
+
 ## 0.1.12 (June 19, 2020)
 
 * bug fix - Generation for Expression-bodied methods fails in most cases. See [#91](https://github.com/kasecato/vscode-docomment/issues/91).
