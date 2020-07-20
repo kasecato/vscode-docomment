@@ -89,3 +89,11 @@ namespace N  // "N:N"
     public bool DoesntHas(IList<int> a, int b) => a.Any(x => x != b);
     public IEnumerable<int> ZipAdd(IList<int> a, IList<int> b) => a.Zip(b, (s, t) => s + t);
 }
+
+namespace ns {
+    public class C {
+        public int c() {
+            return 1;
+        }
+    }
+}

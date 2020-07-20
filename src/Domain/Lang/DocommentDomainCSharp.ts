@@ -191,7 +191,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
         const position: Position = this._vsCodeApi.GetActivePosition();
 
         if (codeType === CodeType.Comment) {
-            const indentBaseLine: string = this._vsCodeApi.ReadPreviousLineFromCurrent();
+            const indentBaseLine: string = this._vsCodeApi.ReadLineAtCurrent();
             const indent: string = StringUtil.GetIndent(code, indentBaseLine, this._config.insertSpaces, this._config.detectIdentation);
             const indentLen: number = StringUtil.GetIndentLen(indent, this._config.insertSpaces, this._config.detectIdentation);
             const insertPosition: Position = this._vsCodeApi.GetPosition(position.line + 1, indentLen - 1);
