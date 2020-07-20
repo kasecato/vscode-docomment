@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.14 (July 20, 2020)
+
+* bug fix - Enter behind <summary>, input too many "///"！. See [#95](https://github.com/kasecato/vscode-docomment/issues/95).
+
 ## 0.1.13 (June 28, 2020)
 
 * bug fix - Extra `///` added when undoing line deletion. See [#93](https://github.com/kasecato/vscode-docomment/issues/93).
