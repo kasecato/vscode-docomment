@@ -2,7 +2,7 @@
 
 ## 0.1.14 (July 20, 2020)
 
-* bug fix - Enter behind <summary>, input too many "///"！. See [#95](https://github.com/kasecato/vscode-docomment/issues/95).
+* bug fix - Enter behind &lt;summary&gt;, input too many "///"！. See [#95](https://github.com/kasecato/vscode-docomment/issues/95).
 * upgrade libs
 
 ## 0.1.13 (June 28, 2020)
