@@ -42,6 +42,7 @@ export interface IDocommentDomain {
     /*-------------------------------------------------------------------------
      * Domain Method
      *-----------------------------------------------------------------------*/
+    Init();
     IsTriggerDocomment(): boolean;
     GetCode(): string;
     GetCodeType(code: string): CodeType;

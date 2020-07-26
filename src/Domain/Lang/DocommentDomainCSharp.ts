@@ -12,11 +12,17 @@ export class DocommentDomainCSharp extends DocommentDomain {
      * Field
      *-----------------------------------------------------------------------*/
     private _isEnterKey: boolean = false;
+    private _isInsertDocCommentLineAbove: boolean = false;
 
 
     /*-------------------------------------------------------------------------
      * Domain Method
      *-----------------------------------------------------------------------*/
+    /* @override */
+    public Init() {
+        this._isEnterKey = false;
+        this._isInsertDocCommentLineAbove = false;
+    }
 
     /* @override */
     public IsTriggerDocomment(): boolean {
@@ -70,12 +76,23 @@ export class DocommentDomainCSharp extends DocommentDomain {
                     return false;
                 }
             }
+
             // NG: '////'
-            else if (!SyntacticAnalysisCSharp.IsDocComment(activeLine, this._config.syntax)) {
-                return false;
+            const isInsertLineAbove = SyntacticAnalysisCSharp.IsInsertLineAbove(activeLine);
+            if (isInsertLineAbove) {
+                const nextLine = this._vsCodeApi.ReadNextLineFromCurrent();
+                const isInsertDocCommentLineAbove = SyntacticAnalysisCSharp.IsDocComment(nextLine, this._config.syntax);
+                if (!isInsertDocCommentLineAbove) {
+                    return false;
+                }
+                this._isInsertDocCommentLineAbove = isInsertDocCommentLineAbove;
+            } else {
+                if (!SyntacticAnalysisCSharp.IsDocComment(activeLine, this._config.syntax)) {
+                    return false;
+                }
             }
             // NG: Undo comment lines with the enter key
-            else if (SyntacticAnalysisCSharp.IsDocComment(eventText, this._config.syntax)) {
+            if (SyntacticAnalysisCSharp.IsDocComment(eventText, this._config.syntax)) {
                 return false;
             }
         }
@@ -194,7 +211,9 @@ export class DocommentDomainCSharp extends DocommentDomain {
             const indentBaseLine: string = this._vsCodeApi.ReadLineAtCurrent();
             const indent: string = StringUtil.GetIndent(code, indentBaseLine, this._config.insertSpaces, this._config.detectIdentation);
             const indentLen: number = StringUtil.GetIndentLen(indent, this._config.insertSpaces, this._config.detectIdentation);
-            const insertPosition: Position = this._vsCodeApi.GetPosition(position.line + 1, indentLen - 1);
+            const lineOffset = this._isInsertDocCommentLineAbove ? 0 : 1;
+            const charOffset = this._isInsertDocCommentLineAbove ? 0 : -1;
+            const insertPosition: Position = this._vsCodeApi.GetPosition(position.line + lineOffset, indentLen + charOffset);
             this._vsCodeApi.InsertText(insertPosition, docomment);
         } else {
             if (this._isEnterKey) {
@@ -216,8 +235,9 @@ export class DocommentDomainCSharp extends DocommentDomain {
         const indent: string = StringUtil.GetIndent(code, indentBaseLine, this._config.insertSpaces, this._config.detectIdentation);
         const indentLen: number = StringUtil.GetIndentLen(indent, this._config.insertSpaces, this._config.detectIdentation);
         const line = curPosition.line + SyntacticAnalysisCSharp.GetLineOffset(this._config.syntax, codeType);
+        const lineOffset = this._isInsertDocCommentLineAbove ? -1 : 0;
         const character = indentLen - 1 + docomment.length;
-        this._vsCodeApi.MoveSelection(line, character);
+        this._vsCodeApi.MoveSelection(line + lineOffset, character);
     }
 
     /*-------------------------------------------------------------------------

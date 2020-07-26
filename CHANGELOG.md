@@ -2,6 +2,7 @@
 
 ## 0.1.15 (July 26, 2020)
 
+* bug fix - ctrl-enter (insert line below, insert line above) in middle of line not adding `///`. See [#98](https://github.com/kasecato/vscode-docomment/issues/98).
 * bug fix - Delimited comment "/**" doen't work. See [#100](https://github.com/kasecato/vscode-docomment/issues/100).
 
 ## 0.1.14 (July 20, 2020)
