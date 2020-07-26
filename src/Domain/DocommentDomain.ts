@@ -40,6 +40,9 @@ export class DocommentDomain implements IDocommentDomain {
         // Detect Language
         if (!this._vsCodeApi.IsLanguage(languageId)) return;
 
+        // Initalize
+        this.Init();
+
         // Can Fire Document Comment
         if (!this.IsTriggerDocomment()) return;
 
@@ -68,6 +71,11 @@ export class DocommentDomain implements IDocommentDomain {
     /*-------------------------------------------------------------------------
      * Domain Method
      *-----------------------------------------------------------------------*/
+
+    /* @implements */
+    public Init() {
+        // NOP
+    }
 
     /* @implements */
     public IsTriggerDocomment(): boolean {

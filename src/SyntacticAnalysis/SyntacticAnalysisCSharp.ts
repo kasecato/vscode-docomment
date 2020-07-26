@@ -16,6 +16,10 @@ export class SyntacticAnalysisCSharp {
         return (activeChar === '') && (text.startsWith('\n') || text.startsWith("\r\n"));
     }
 
+    public static IsInsertLineAbove(activeLine: string): boolean {
+        return activeLine !== null && activeLine.trim().length === 0 ;
+    }
+
     public static IsActivationKey(activeChar: string, syntax: CommentSyntax): boolean {
         switch (syntax) {
             case CommentSyntax.single:
