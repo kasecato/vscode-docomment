@@ -39,9 +39,7 @@ export class FormatterCSharp {
         }
         docomment += '\n';
         docomment += indent;
-        if (activateOnEnter) {
-            docomment += ' */';
-        }
+        docomment += ' */';
         return docomment;
     }
 

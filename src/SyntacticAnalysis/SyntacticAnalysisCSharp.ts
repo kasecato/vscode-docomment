@@ -34,7 +34,7 @@ export class SyntacticAnalysisCSharp {
             case CommentSyntax.single:
                 return activeLine.match(/^[ \t]*\/{3}[ \t]*$/) !== null; // FIXME:
             case CommentSyntax.delimited:
-                return activeLine.match(/^[ \t]*\/\*{2}[ \t]*\*\/*[ \t]*$/) !== null; // FIXME:
+                return activeLine.match(/^[ \t]*\/\*{2}[ \t]*$/) !== null; // FIXME:
         }
     }
 
