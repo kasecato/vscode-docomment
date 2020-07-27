@@ -54,7 +54,7 @@ export class SyntacticAnalysisCSharp {
     public static IsDocCommentOnActivationEnter(activeLine: string, syntax: CommentSyntax): boolean {
         switch (syntax) {
             case CommentSyntax.single:
-                return activeLine.match(/^[ \t]*\/{3} $/) !== null;
+                return activeLine.match(/^[ \t]*\/{3}$/) !== null;
             case CommentSyntax.delimited:
                 return activeLine.match(/^[ \t]*\/\*{2}[ \t]*$/) !== null
                     || SyntacticAnalysisCSharp.IsDocComment(activeLine, syntax);

@@ -3,6 +3,7 @@
 ## 0.1.16 (July 27, 2020)
 
 * bug fix - ctrl-enter (insert line below, insert line above) in middle of line not adding `///`. See [#98](https://github.com/kasecato/vscode-docomment/issues/98).
+* bug fix - Not working activateOnEnter. See [#104](https://github.com/kasecato/vscode-docomment/issues/104).
 
 ## 0.1.15 (July 26, 2020)
 
