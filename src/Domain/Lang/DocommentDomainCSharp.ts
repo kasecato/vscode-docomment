@@ -203,7 +203,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
         if (codeType === CodeType.Comment) {
             const indentBaseLine: string = this._vsCodeApi.ReadLineAtCurrent();
             const indent: string = StringUtil.GetIndent(code, indentBaseLine, this._config.insertSpaces, this._config.detectIdentation);
-            const indentLen: number = StringUtil.GetIndentLen(indent, this._config.insertSpaces, this._config.detectIdentation);
+            const indentLen: number = StringUtil.GetIndentLen(indent, this._config.syntax, this._config.insertSpaces, this._config.detectIdentation);
             const lineOffset = this._isInsertDocCommentLineAbove ? 0 : 1;
             const charOffset = this._isInsertDocCommentLineAbove ? 0 : -1;
             const insertPosition: Position = this._vsCodeApi.GetPosition(position.line + lineOffset, indentLen + charOffset);
@@ -226,7 +226,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
         const curPosition = this._vsCodeApi.GetActivePosition();
         const indentBaseLine: string = this._vsCodeApi.ReadLineAtCurrent();
         const indent: string = StringUtil.GetIndent(code, indentBaseLine, this._config.insertSpaces, this._config.detectIdentation);
-        const indentLen: number = StringUtil.GetIndentLen(indent, this._config.insertSpaces, this._config.detectIdentation);
+        const indentLen: number = StringUtil.GetIndentLen(indent, this._config.syntax, this._config.insertSpaces, this._config.detectIdentation);
         const line = curPosition.line + SyntacticAnalysisCSharp.GetLineOffset(this._config.syntax, codeType);
         const lineOffset = this._isInsertDocCommentLineAbove ? -1 : 0;
         const character = indentLen - 1 + docomment.length;

@@ -1,3 +1,5 @@
+import { CommentSyntax } from "../Entity/Config/Contributes/Configuration";
+
 export class StringUtil {
 
     /*-------------------------------------------------------------------------
@@ -50,7 +52,7 @@ export class StringUtil {
         }
     }
 
-    public static GetIndentLen(indent: string, insertSpaces: boolean, detectIdentation: boolean): number {
+    public static GetIndentLen(indent: string, commentSyntax: CommentSyntax, insertSpaces: boolean, detectIdentation: boolean): number {
         if (indent === null) return 0;
 
         if (detectIdentation) {
@@ -61,7 +63,8 @@ export class StringUtil {
         if (insertSpaces) {
             return indent.split(' ').length;
         } else {
-            return indent.split('\t').length;
+            const offset = commentSyntax == CommentSyntax.delimited ? 1 : 0;
+            return indent.split('\t').length + offset;
         }
     }
 
