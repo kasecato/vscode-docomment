@@ -49,7 +49,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
 
         // NG: Activate on Enter NOT '/'
         if (this._config.activateOnEnter) {
-            if (isActivationKey) {
+            if (!isEnterKey) {
                 return false;
             }
         }
@@ -70,13 +70,6 @@ export class DocommentDomainCSharp extends DocommentDomain {
 
         // Comment Line
         if (isEnterKey) {
-            if (this._config.activateOnEnter) {
-                // NG: '////'
-                if (!SyntacticAnalysisCSharp.IsDocCommentOnActivationEnter(activeLine, this._config.syntax)) {
-                    return false;
-                }
-            }
-
             // NG: '////'
             const isInsertLineAbove = SyntacticAnalysisCSharp.IsInsertLineAbove(activeLine);
             if (isInsertLineAbove) {
