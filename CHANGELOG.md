@@ -4,6 +4,7 @@
 
 * bug fix - ctrl-enter (insert line below, insert line above) in middle of line not adding `///`. See [#98](https://github.com/kasecato/vscode-docomment/issues/98).
 * bug fix - Not working activateOnEnter. See [#104](https://github.com/kasecato/vscode-docomment/issues/104).
+* bug fix - Strange tab indent. See [#106](https://github.com/kasecato/vscode-docomment/issues/106).
 
 ## 0.1.15 (July 26, 2020)
 
