@@ -41,7 +41,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
 
         // NG: KeyCode is NOT '/' or Enter
         const isActivationKey: boolean = SyntacticAnalysisCSharp.IsActivationKey(activeChar, this._config.syntax);
-        const isEnterKey: boolean = SyntacticAnalysisCSharp.IsEnterKey(activeChar, eventText);
+        const isEnterKey: boolean = SyntacticAnalysisCSharp.IsEnterKey(eventText);
         if (!isActivationKey && !isEnterKey) {
             return false;
         }
