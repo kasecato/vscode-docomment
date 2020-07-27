@@ -5,6 +5,7 @@ import { SyntacticAnalysisCSharp } from '../../SyntacticAnalysis/SyntacticAnalys
 import { StringUtil } from '../../Utility/StringUtil';
 import { DocommentDomain } from '../DocommentDomain';
 import { CodeType } from '../IDocommentDomain';
+import { CommentSyntax } from '../../Entity/Config/Contributes/Configuration';
 
 export class DocommentDomainCSharp extends DocommentDomain {
 
@@ -48,15 +49,25 @@ export class DocommentDomainCSharp extends DocommentDomain {
         this._isEnterKey = isEnterKey;
 
         // NG: Activate on Enter NOT '/'
+        const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
+        let isActivateKeyDelimited: boolean;
         if (this._config.activateOnEnter) {
             if (!isEnterKey) {
                 return false;
             }
+            if (this._config.syntax === CommentSyntax.delimited) {
+                isActivateKeyDelimited = SyntacticAnalysisCSharp.IsDocCommentStrict(activeLine, this._config.syntax);
+            }
+        }
+
+        // NG: After Insert DocComment
+        const isAfterDocComment: boolean = (activeChar == ' ') && !isActivationKey && isEnterKey;
+        if (isAfterDocComment) {
+            return false;
         }
 
         // NG: '////'
-        const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
-        if (isActivationKey) {
+        if (isActivationKey || isActivateKeyDelimited) {
             // NG: '////'
             if (!SyntacticAnalysisCSharp.IsDocCommentStrict(activeLine, this._config.syntax)) {
                 return false;
@@ -67,9 +78,8 @@ export class DocommentDomainCSharp extends DocommentDomain {
                 return false;
             }
         }
-
         // Comment Line
-        if (isEnterKey) {
+        else if (isEnterKey) {
             // NG: '////'
             const isInsertLineAbove = SyntacticAnalysisCSharp.IsInsertLineAbove(activeLine);
             if (isInsertLineAbove) {
