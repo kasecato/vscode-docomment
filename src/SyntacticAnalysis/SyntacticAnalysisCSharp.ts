@@ -12,8 +12,8 @@ export class SyntacticAnalysisCSharp {
     /*-------------------------------------------------------------------------
      * Public Method: Comment Type
      *-----------------------------------------------------------------------*/
-    public static IsEnterKey(activeChar: string, text: string): boolean {
-        return (activeChar === '') && (text.startsWith('\n') || text.startsWith("\r\n"));
+    public static IsEnterKey(text: string): boolean {
+        return (text.startsWith('\n') || text.startsWith("\r\n"));
     }
 
     public static IsInsertLineAbove(activeLine: string): boolean {
