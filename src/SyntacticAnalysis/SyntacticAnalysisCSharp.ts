@@ -12,8 +12,12 @@ export class SyntacticAnalysisCSharp {
     /*-------------------------------------------------------------------------
      * Public Method: Comment Type
      *-----------------------------------------------------------------------*/
-    public static IsEnterKey(text: string): boolean {
-        return (text.startsWith('\n') || text.startsWith("\r\n"));
+    public static IsEnterKey(eventText: string): boolean {
+        return (eventText.startsWith('\n') || eventText.startsWith("\r\n"));
+    }
+
+    public static IsAfterDocomment(eventText: string): boolean {
+        return eventText.match(/^\n[ \t]+[\S]+/) !== null || eventText.match(/^\r\n[ \t]+[\S]+/) !== null;
     }
 
     public static IsInsertLineAbove(activeLine: string): boolean {
@@ -47,7 +51,7 @@ export class SyntacticAnalysisCSharp {
             case CommentSyntax.single:
                 return activeLine.match(/\/{3}/) !== null;
             case CommentSyntax.delimited:
-                return activeLine.match(/^[ \t]*\*{1}[^\/]/) !== null;
+                return ((activeLine.match(/^[ \t]*\*{1}[^\/]/) !== null) || this.IsDocCommentStrict(activeLine, syntax));
         }
     }
 
@@ -134,8 +138,7 @@ export class SyntacticAnalysisCSharp {
 
     public static IsComment(code: string): boolean {
         if (code === null) return false;
-        if (code === '') return true;
-        return code.match(/[ \t]+/) !== null;
+        return true;
     }
 
     public static GetCommentSyntax(syntax: CommentSyntax): string {
