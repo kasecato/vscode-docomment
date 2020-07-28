@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.17 (July 28, 2020)
+
+* bug fix - extra "///" before comment block. See [#108](https://github.com/kasecato/vscode-docomment/issues/108).
+* revert - ctrl-enter (insert line below, insert line above) in middle of line not adding `///`. See [#98](https://github.com/kasecato/vscode-docomment/issues/98).
+
 ## 0.1.16 (July 27, 2020)
 
 * bug fix - ctrl-enter (insert line below, insert line above) in middle of line not adding `///`. See [#98](https://github.com/kasecato/vscode-docomment/issues/98).

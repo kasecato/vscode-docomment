@@ -5,7 +5,6 @@ import { SyntacticAnalysisCSharp } from '../../SyntacticAnalysis/SyntacticAnalys
 import { StringUtil } from '../../Utility/StringUtil';
 import { DocommentDomain } from '../DocommentDomain';
 import { CodeType } from '../IDocommentDomain';
-import { CommentSyntax } from '../../Entity/Config/Contributes/Configuration';
 
 export class DocommentDomainCSharp extends DocommentDomain {
 
@@ -40,67 +39,62 @@ export class DocommentDomainCSharp extends DocommentDomain {
             return false;
         }
 
-        // NG: KeyCode is NOT '/' or Enter
-        const isActivationKey: boolean = SyntacticAnalysisCSharp.IsActivationKey(activeChar, this._config.syntax);
-        const isEnterKey: boolean = SyntacticAnalysisCSharp.IsEnterKey(eventText);
-        if (!isActivationKey && !isEnterKey) {
+        // NG: After Insert Docomment
+        const isAfterDocomment: boolean = SyntacticAnalysisCSharp.IsAfterDocomment(eventText);
+        if (isAfterDocomment) {
             return false;
         }
-        this._isEnterKey = isEnterKey;
 
-        // NG: Activate on Enter NOT '/'
-        const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
-        let isActivateKeyDelimited: boolean;
+        const isActivationKey: boolean = SyntacticAnalysisCSharp.IsActivationKey(activeChar, this._config.syntax);
+        if (isActivationKey) {
+            return this.IsTriggerDocommentByActivationKey();
+        }
+
+        this._isEnterKey = SyntacticAnalysisCSharp.IsEnterKey(eventText);
+        if (this._isEnterKey) {
+            return this.IsTriggerDocommentByEnterKey(eventText);
+        }
+
+        return false;
+    }
+
+    private IsTriggerDocommentByActivationKey(): boolean {
+
         if (this._config.activateOnEnter) {
-            if (!isEnterKey) {
+            if (!this._isEnterKey) {
                 return false;
             }
-            if (this._config.syntax === CommentSyntax.delimited) {
-                isActivateKeyDelimited = SyntacticAnalysisCSharp.IsDocCommentStrict(activeLine, this._config.syntax);
-            }
         }
 
-        // NG: After Insert DocComment
-        const isAfterDocComment: boolean = (activeChar == ' ') && !isActivationKey && isEnterKey;
-        if (isAfterDocComment) {
-            return false;
-        }
+        const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
 
         // NG: '////'
-        if (isActivationKey || isActivateKeyDelimited) {
-            // NG: '////'
-            if (!SyntacticAnalysisCSharp.IsDocCommentStrict(activeLine, this._config.syntax)) {
-                return false;
-            }
-
-            // NG: '/' => Insert => Event => ' /// '
-            if (SyntacticAnalysisCSharp.IsDoubleDocComment(activeLine, this._config.syntax)) {
-                return false;
-            }
-        }
-        // Comment Line
-        else if (isEnterKey) {
-            // NG: '////'
-            const isInsertLineAbove = SyntacticAnalysisCSharp.IsInsertLineAbove(activeLine);
-            if (isInsertLineAbove) {
-                const nextLine = this._vsCodeApi.ReadNextLineFromCurrent();
-                const isInsertDocCommentLineAbove = SyntacticAnalysisCSharp.IsDocComment(nextLine, this._config.syntax);
-                if (!isInsertDocCommentLineAbove) {
-                    return false;
-                }
-                this._isInsertDocCommentLineAbove = isInsertDocCommentLineAbove;
-            } else {
-                if (!SyntacticAnalysisCSharp.IsDocComment(activeLine, this._config.syntax)) {
-                    return false;
-                }
-            }
-            // NG: Undo comment lines with the enter key
-            if (SyntacticAnalysisCSharp.IsDocComment(eventText, this._config.syntax)) {
-                return false;
-            }
+        if (!SyntacticAnalysisCSharp.IsDocCommentStrict(activeLine, this._config.syntax)) {
+            return false;
         }
 
-        // OK
+        // NG: '/' => Insert => Event => ' /// '
+        if (SyntacticAnalysisCSharp.IsDoubleDocComment(activeLine, this._config.syntax)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private IsTriggerDocommentByEnterKey(eventText: string): boolean {
+
+        const activeLine: string = this._vsCodeApi.ReadLineAtCurrent();
+
+        // NG: '////'
+        if (!SyntacticAnalysisCSharp.IsDocComment(activeLine, this._config.syntax)) {
+            return false;
+        }
+
+        // NG: Undo comment lines with the enter key
+        if (SyntacticAnalysisCSharp.IsDocComment(eventText, this._config.syntax)) {
+            return false;
+        }
+
         return true;
     }
 
