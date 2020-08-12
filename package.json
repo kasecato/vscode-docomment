@@ -225,7 +225,8 @@
     ],
     "keywords": [
         "XML Documentation Comments",
-        "C#"
+        "C#",
+        "Blazor"
     ],
     "dependencies": {},
     "devDependencies": {

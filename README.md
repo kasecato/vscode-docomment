@@ -90,6 +90,7 @@ To enable publishing XML documentation:
 ## Supported Languages
 
 - C#
+- Blazor
 
 
 ## Contributing to the Code
