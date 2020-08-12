@@ -1,0 +1,22 @@
+@page "/"
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+@code {
+    public string Test<T>(T obj) where T : class { }
+    public static BoolVector operator |(BoolScalar a, BoolVector b) { }
+    public string[] ss = new string[2] { }
+    public string Foo { get; set; }
+    public string Bar { get; set; } = "bar";
+
+    class SuperKeyType<K, V, U>
+        where U : System.IComparable<U>
+        where V : new()
+    { }
+
+    public bool DoesntHas(IList<int> a, int b) => a.Any(x => x != b);
+
+    public IEnumerable<int> ZipAdd(IList<int> a, IList<int> b) => a.Zip(b, (s, t) => s + t);
+}

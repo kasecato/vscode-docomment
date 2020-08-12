@@ -220,7 +220,8 @@
         }
     },
     "activationEvents": [
-        "onLanguage:csharp"
+        "onLanguage:csharp",
+        "onLanguage:aspnetcorerazor"
     ],
     "keywords": [
         "XML Documentation Comments",

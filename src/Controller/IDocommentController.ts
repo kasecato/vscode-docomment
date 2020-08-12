@@ -9,14 +9,11 @@ export interface IDocommentController {
      *-----------------------------------------------------------------------*/
     _languageId: string;
     _disposable: Disposable;
-    _docommentDomain: IDocommentDomain;
-    _config: Configuration;
-
 
     /*-------------------------------------------------------------------------
      * Public Method
      *-----------------------------------------------------------------------*/
-    dispose();
+    dispose(): void;
 
 }
 
