@@ -3,6 +3,7 @@
 ## 0.1.18 (Aug 12, 2020)
 
 * enhancement - add support for Blazor .razor files. See [#110](https://github.com/kasecato/vscode-docomment/issues/110)
+* upgrade libs
 
 ## 0.1.17 (July 28, 2020)
 
