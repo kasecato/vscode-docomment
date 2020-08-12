@@ -45,6 +45,7 @@ export class DocommentDomain implements IDocommentDomain {
 
         // Can Fire Document Comment
         if (!this.IsTriggerDocomment()) return;
+        if (!this.IsInScope()) return;
 
         // Get Code
         const code: string = this.GetCode();
@@ -79,6 +80,11 @@ export class DocommentDomain implements IDocommentDomain {
 
     /* @implements */
     public IsTriggerDocomment(): boolean {
+        return false;
+    }
+
+    /* @implements */
+    public IsInScope(): boolean {
         return false;
     }
 

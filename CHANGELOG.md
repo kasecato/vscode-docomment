@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.18 (Aug 12, 2020)
+
+* enhancement - add support for Blazor .razor files. See [#110](https://github.com/kasecato/vscode-docomment/issues/110)
+
 ## 0.1.17 (July 28, 2020)
 
 * bug fix - extra "///" before comment block. See [#108](https://github.com/kasecato/vscode-docomment/issues/108).

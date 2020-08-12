@@ -15,20 +15,13 @@ export class DocommentController implements IDocommentController {
     /* @implements */
     public _disposable: Disposable;
 
-    /* @implements */
-    public _docommentDomain: IDocommentDomain;
-
-    /* @implements */
-    public _config: Configuration;
-
     /*-------------------------------------------------------------------------
      * Entry Constructor
      *-----------------------------------------------------------------------*/
     public constructor(docommentDomain: IDocommentDomain) {
-        this._docommentDomain = docommentDomain;
 
         /* Load Configuration File (.vscode/settings.json) */
-        this.loadConfig();
+        const config = this.loadConfig();
 
         const subscriptions: Disposable[] = [];
 
@@ -36,7 +29,7 @@ export class DocommentController implements IDocommentController {
         workspace.onDidChangeTextDocument(event => {
             const activeEditor: TextEditor = window.activeTextEditor;
             if (activeEditor && event.document === activeEditor.document) {
-                this._onEvent(activeEditor, event.contentChanges[0]);
+                this._onEvent(activeEditor, event.contentChanges[0], config, docommentDomain);
             }
         }, this, subscriptions);
 
@@ -61,26 +54,32 @@ export class DocommentController implements IDocommentController {
     /*-------------------------------------------------------------------------
      * Private Method
      *-----------------------------------------------------------------------*/
-    private loadConfig() {
+    private loadConfig(): Configuration {
         const confDocomment: WorkspaceConfiguration = workspace.getConfiguration(Configuration.KEY_DOCOMMENT);
         const confFiles: WorkspaceConfiguration = workspace.getConfiguration(Configuration.KEY_FILES);
         const confEditor: WorkspaceConfiguration = workspace.getConfiguration(Configuration.KEY_EDITOR);
 
-        this._config = new Configuration();
-        this._config.syntax = CommentSyntax[confDocomment.get<string>(Configuration.SYNTAX, CommentSyntax.single)];
-        this._config.activateOnEnter = confDocomment.get<boolean>(Configuration.ACTIVATE_ON_ENTER, false);
-        this._config.advanced = confDocomment.get<Object>(Configuration.ADVANCED);
-        this._config.eol = confFiles.get<string>(Configuration.EOL, '\n');
-        this._config.insertSpaces = confEditor.get<boolean>(Configuration.INSERT_SPACES, false);
-        this._config.detectIdentation = confEditor.get<boolean>(Configuration.DETECT_IDENTATION, true);
+        const config = new Configuration();
+        config.syntax = CommentSyntax[confDocomment.get<string>(Configuration.SYNTAX, CommentSyntax.single)];
+        config.activateOnEnter = confDocomment.get<boolean>(Configuration.ACTIVATE_ON_ENTER, false);
+        config.advanced = confDocomment.get<Object>(Configuration.ADVANCED);
+        config.eol = confFiles.get<string>(Configuration.EOL, '\n');
+        config.insertSpaces = confEditor.get<boolean>(Configuration.INSERT_SPACES, false);
+        config.detectIdentation = confEditor.get<boolean>(Configuration.DETECT_IDENTATION, true);
+
+        return config;
     }
 
     /*-------------------------------------------------------------------------
      * Event
      *-----------------------------------------------------------------------*/
-    private _onEvent(activeEditor: TextEditor, event: TextDocumentContentChangeEvent) {
+    private _onEvent(
+        activeEditor: TextEditor, 
+        event: TextDocumentContentChangeEvent, 
+        config: Configuration,
+        domain: IDocommentDomain) {
         // Insert XML document comment
-        this._docommentDomain.Execute(activeEditor, event, this._languageId, this._config);
+        domain.Execute(activeEditor, event, this._languageId, config);
     }
 
 }

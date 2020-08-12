@@ -44,6 +44,7 @@ export interface IDocommentDomain {
      *-----------------------------------------------------------------------*/
     Init();
     IsTriggerDocomment(): boolean;
+    IsInScope(): boolean;
     GetCode(): string;
     GetCodeType(code: string): CodeType;
     GeneDocomment(code: string, codeType: CodeType): string;

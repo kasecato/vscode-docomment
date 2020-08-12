@@ -98,6 +98,11 @@ export class DocommentDomainCSharp extends DocommentDomain {
         return true;
     }
 
+    /* @implements */
+    public IsInScope(): boolean {
+        return true;
+    }
+
     /* @override */
     public GetCode(): string {
         const code: string = this._vsCodeApi.ReadNextCodeFromCurrent(this._config.eol);
