@@ -189,7 +189,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
             case CodeType.Method:
                 genericList = SyntacticAnalysisCSharp.GetGenericMethodsList(code);
                 paramNameList = SyntacticAnalysisCSharp.GetMethodParamNameList(code);
-                hasReturn = SyntacticAnalysisCSharp.HasMethodReturn(code);
+                    hasReturn = SyntacticAnalysisCSharp.HasMethodReturn(code);
                 break;
             case CodeType.Field:
                 break;
