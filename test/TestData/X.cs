@@ -90,6 +90,14 @@ namespace N  // "N:N"
     public IEnumerable<int> ZipAdd(IList<int> a, IList<int> b) => a.Zip(b, (s, t) => s + t);
 
     private void CSVStringToIntArray( ref string[] pCSVData, ref int[,] pZone) { }
+
+    bool ArgsValid(
+      string commandName,
+      IReadOnlyList<string> requiredArgs,
+      int length,
+      IReadOnlyList<(string name, string value)> namedArgs,
+      IReadOnlyList<string> argNames
+    ) { }
 }
 
 namespace ns {
