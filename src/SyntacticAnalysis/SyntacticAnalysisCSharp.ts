@@ -199,7 +199,7 @@ export class SyntacticAnalysisCSharp {
         const removedExtendsCode: string = removedAttrCode.replace(/:.+/, ''); // FIXME:
         const removedLamdaCode: string = removedExtendsCode.replace(/=>.*/, ''); // FIXME:
         const removedArrayCode: string = removedLamdaCode.replace(/\[.*?\]/g, ''); // FIXME:
-        const params: RegExpMatchArray = removedArrayCode.match(/.+\(([^)]*)\)/);
+        const params: RegExpMatchArray = removedArrayCode.match(/\((.+)\)/s);
 
         const isMatched = (params === null || params.length !== 2);
         if (isMatched) return null;

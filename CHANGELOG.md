@@ -3,6 +3,7 @@
 ## 0.1.19 (Nov 14, 2020)
 
 * bug fix - Type is detected as parameter. See [#113](https://github.com/kasecato/vscode-docomment/issues/113).
+* bug fix - Generates param tags for inner tuple type instead of method parameters. See [#115](https://github.com/kasecato/vscode-docomment/issues/115).
 * upgrade libs
 
 ## 0.1.18 (Aug 12, 2020)
