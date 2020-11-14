@@ -88,6 +88,8 @@ namespace N  // "N:N"
     public bool Has(IList<int> a, int b) => a.Any(x => x == b);
     public bool DoesntHas(IList<int> a, int b) => a.Any(x => x != b);
     public IEnumerable<int> ZipAdd(IList<int> a, IList<int> b) => a.Zip(b, (s, t) => s + t);
+
+    private void CSVStringToIntArray( ref string[] pCSVData, ref int[,] pZone) { }
 }
 
 namespace ns {

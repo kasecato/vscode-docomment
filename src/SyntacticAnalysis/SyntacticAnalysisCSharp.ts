@@ -198,7 +198,8 @@ export class SyntacticAnalysisCSharp {
         const removedAttrCode: string = code.replace(/^\s*\[.+?\]/, '');       // FIXME:
         const removedExtendsCode: string = removedAttrCode.replace(/:.+/, ''); // FIXME:
         const removedLamdaCode: string = removedExtendsCode.replace(/=>.*/, ''); // FIXME:
-        const params: RegExpMatchArray = removedLamdaCode.match(/.+\(([^)]*)\)/);
+        const removedArrayCode: string = removedLamdaCode.replace(/\[.*?\]/g, ''); // FIXME:
+        const params: RegExpMatchArray = removedArrayCode.match(/.+\(([^)]*)\)/);
 
         const isMatched = (params === null || params.length !== 2);
         if (isMatched) return null;
