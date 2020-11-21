@@ -28,7 +28,7 @@ export class DocommentDomainCSharp extends DocommentDomain {
     public IsTriggerDocomment(): boolean {
 
         // NG: KeyCode is EMPTY
-        const eventText: string = this._event.text;
+        const eventText: string = this._event?.text;
         if (eventText == null || eventText === '') {
             return false;
         }
