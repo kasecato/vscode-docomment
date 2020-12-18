@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.20 (Dec 18, 2020)
+
+* deplicated announcement
+* upgrade libs
+
 ## 0.1.19 (Nov 14, 2020)
 
 * bug fix - Type is detected as parameter. See [#113](https://github.com/kasecato/vscode-docomment/issues/113).

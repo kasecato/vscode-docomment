@@ -4,6 +4,11 @@
 
 Generate XML documentation comments for Visual Studio Code.
 
+## Deprecated Announcement
+
+`C# for Visual Studio Code (powered by OmniSharp)` now officially supports the documentation comment from [v1.23.8](https://github.com/OmniSharp/omnisharp-vscode/releases/tag/v1.23.8) (December 18th, 2020). You can use the official one by turning on `Editor: Format On Type`.
+
+This extension will be deprecated in the future. Thanks to the users who have supported me so far.
 
 ## Usage
 
