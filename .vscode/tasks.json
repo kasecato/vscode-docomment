@@ -3,12 +3,10 @@
     "tasks": [
         {
             "type": "npm",
-            "label": "compile",
-            "script": "compile",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            "script": "watch",
+            "group": "build",
+            "isBackground": true,
+            "problemMatcher": ["$ts-webpack-watch"]
         }
     ]
 }

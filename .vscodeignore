@@ -12,3 +12,4 @@ misc/**
 .travis.yml
 coverage/**
 .vscode-test/**
+webpack.config.js
