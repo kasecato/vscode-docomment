@@ -252,6 +252,7 @@
         "vscode:prepublish": "npm run package",
         "compile": "webpack",
         "watch": "webpack --watch",
+        "package": "webpack --mode production --devtool hidden-source-map",
         "coverage_travis": "./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js",
         "coverage": "./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js"
     },
