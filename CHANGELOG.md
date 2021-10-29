@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.30 (Oct 30, 2021)
+
+* enhancement - Support Visual Studio Code Web
+* upgrade libs
+
 ## 0.1.20 (Dec 18, 2020)
 
 * deplicated announcement
