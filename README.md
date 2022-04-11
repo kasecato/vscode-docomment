@@ -80,6 +80,17 @@ To enable publishing XML documentation:
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>bin\YourApi.XML</DocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+```
+
+When `DocumentationFile` compiler option was specified, but one or more constructs did not have comments, it will produce [CS1591](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/cs1591) warning. You can optionally add a `<NoWarn>$(NoWarn);1591</NoWarn>` property to avoid these warnings.
+
+```xml
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\YourApi.XML</DocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 ```
 
