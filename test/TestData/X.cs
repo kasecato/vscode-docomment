@@ -98,6 +98,18 @@ namespace N  // "N:N"
       IReadOnlyList<(string name, string value)> namedArgs,
       IReadOnlyList<string> argNames
     ) { }
+
+    public static Vector2 averageAcceleration(params (float, Vector2)[] bodies, params object[] list, string value)
+    {
+        Vector2 finalAcceleration = Vector2.zero;
+
+        for (int i = 0; i < bodies.Length; i++)
+        {
+            finalAcceleration += accelearation(bodies[i].Item1, bodies[i].Item2);
+        }
+
+        return finalAcceleration;
+    }
 }
 
 namespace ns {
