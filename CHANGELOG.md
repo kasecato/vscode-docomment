@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.31 (May 21, 2022)
+
+* enhancement - Update README.md. See [#127](https://github.com/kasecato/vscode-docomment/pull/127).
+* bug fix - Issue with tuples and params. See [#129](https://github.com/kasecato/vscode-docomment/issues/129).
+* upgrade libs
+
 ## 0.1.30 (Oct 30, 2021)
 
 * enhancement - Support Visual Studio Code Web

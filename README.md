@@ -140,6 +140,7 @@ when changes are saved.
 * [@ivanz](https://github.com/ivanz)
 * [@PJB3005](https://github.com/PJB3005)
 * [@Acid147](https://github.com/Acid147)
+* [@doggy8088](https://github.com/doggy8088)
 
 
 ## License
