@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.32 (Jan 4, 2023)
+
+* upgrade libs
+
 ## 0.1.31 (May 21, 2022)
 
 * enhancement - Update README.md. See [#127](https://github.com/kasecato/vscode-docomment/pull/127).
