@@ -13,4 +13,3 @@ misc/**
 coverage/**
 .vscode-test/**
 webpack.config.js
-.nyc_output/**

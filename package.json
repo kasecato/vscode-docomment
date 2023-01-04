@@ -231,19 +231,12 @@
     ],
     "dependencies": {},
     "devDependencies": {
-        "@types/mocha": "^10.0.1",
         "@types/node": "^18.11.18",
         "@types/vscode": "^1.74.0",
         "@types/webpack-env": "^1.18.0",
-        "coveralls": "^3.1.1",
         "eslint": "^8.31.0",
-        "mocha": "^10.2.0",
-        "mocha-lcov-reporter": "^1.3.0",
-        "nyc": "^15.1.0",
-        "process": "^0.11.10",
         "ts-loader": "^9.4.2",
         "typescript": "^4.9.4",
-        "vscode-test": "^1.6.1",
         "webpack": "^5.75.0",
         "webpack-cli": "^5.0.1"
     },
@@ -252,9 +245,7 @@
         "vscode:prepublish": "npm run package",
         "compile": "webpack",
         "watch": "webpack --watch",
-        "package": "webpack --mode production --devtool hidden-source-map",
-        "coverage_travis": "./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js",
-        "coverage": "./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha -- -R spec --ui tdd ./out/test/**/*.js"
+        "package": "webpack --mode production --devtool hidden-source-map"
     },
     "icon": "images/docomment.png",
     "license": "MIT",

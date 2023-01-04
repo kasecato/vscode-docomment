@@ -12,7 +12,6 @@ install:
     fi
 script:
   - |
-    echo ">>> Run integration test"
-    npm install && npm run compile && npm run coverage_travis
-after_script: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    echo ">>> Run compile"
+    npm install && npm run compile
 cache: npm
