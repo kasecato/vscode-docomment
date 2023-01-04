@@ -256,5 +256,8 @@
     },
     "bugs": {
         "url": "https://github.com/kasecato/vscode-docomment/issues"
+    },
+    "sponsor": {
+        "url": "https://github.com/sponsors/kasecato"
     }
 }
