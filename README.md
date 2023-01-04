@@ -1,6 +1,6 @@
 # XML Documentation Comments Support for Visual Studio Code
 
-[![Build Status](https://travis-ci.org/kasecato/vscode-docomment.svg?branch=master)](https://travis-ci.org/kasecato/vscode-docomment) [![Coverage Status](https://coveralls.io/repos/kasecato/vscode-docomment/badge.svg?branch=master&service=github)](https://coveralls.io/github/kasecato/vscode-docomment?branch=master) [![License: MIT](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![Marketplace Version](https://vsmarketplacebadge.apphb.com/version/k--kato.docomment.svg)](https://marketplace.visualstudio.com/items?itemName=k--kato.docomment) [![Install](https://vsmarketplacebadge.apphb.com/installs-short/k--kato.docomment.svg)](https://marketplace.visualstudio.com/items?itemName=k--kato.docomment)
+[![Build Status](https://travis-ci.org/kasecato/vscode-docomment.svg?branch=master)](https://travis-ci.org/kasecato/vscode-docomment) [![Coverage Status](https://coveralls.io/repos/kasecato/vscode-docomment/badge.svg?branch=master&service=github)](https://coveralls.io/github/kasecato/vscode-docomment?branch=master) [![License: MIT](https://img.shields.io/badge/license-MIT-orange.svg)](LICENSE) [![Marketplace Version](https://vsmarketplacebadges.dev/version/k--kato.docomment.svg)](https://marketplace.visualstudio.com/items?itemName=k--kato.docomment) [![Install](https://vsmarketplacebadges.dev/installs-short/k--kato.docomment.svg)](https://marketplace.visualstudio.com/items?itemName=k--kato.docomment)
 
 Generate XML documentation comments for Visual Studio Code.
 
