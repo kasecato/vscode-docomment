@@ -8,7 +8,8 @@ Generate XML documentation comments for Visual Studio Code.
 
 `C# for Visual Studio Code (powered by OmniSharp)` now officially supports the documentation comment from [v1.23.8](https://github.com/OmniSharp/omnisharp-vscode/releases/tag/v1.23.8) (December 18th, 2020). You can use the official one by turning on `Editor: Format On Type`.
 
-This extension will be deprecated in the future. Thanks to the users who have supported me so far.
+~~This extension will be deprecated in the future. Thanks to the users who have supported me so far.~~
+2023/3/11 No features will be added, but only maintenance of the library will continue at the user's request.
 
 ## Usage
 
@@ -96,7 +97,7 @@ When `DocumentationFile` compiler option was specified, but one or more construc
 
 ## Installation
 
-1. Install Visual Studio Code 1.61.0 or higher
+1. Install Visual Studio Code 1.76.0 or higher
 1. Launch Code
 1. From the extension view `Ctrl`-`Shift`-`X` (Windows, Linux) or `Cmd`-`Shift`-`X` (macOS)
 1. Search and Choose the extension `C# XML Documentation Comments`
