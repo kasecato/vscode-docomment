@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.2 (Feb 22, 2025)
+
+* upgrade libs
+
 ## 1.0.1 (Nov 1, 2025)
 
 * upgrade libs
