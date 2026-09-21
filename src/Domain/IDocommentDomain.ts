@@ -33,6 +33,7 @@ export interface IDocommentDomain {
     /*-------------------------------------------------------------------------
      * Entry Method
      *-----------------------------------------------------------------------*/
+    // @ts-expect-error
     Execute(activeEditor: TextEditor
     , event: TextDocumentContentChangeEvent
     , languageId: string
@@ -42,6 +43,7 @@ export interface IDocommentDomain {
     /*-------------------------------------------------------------------------
      * Domain Method
      *-----------------------------------------------------------------------*/
+    // @ts-expect-error
     Init();
     IsTriggerDocomment(): boolean;
     IsInScope(): boolean;

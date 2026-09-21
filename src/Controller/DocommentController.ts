@@ -60,6 +60,7 @@ export class DocommentController implements IDocommentController {
         const confEditor: WorkspaceConfiguration = workspace.getConfiguration(Configuration.KEY_EDITOR);
 
         const config = new Configuration();
+        // @ts-expect-error
         config.syntax = CommentSyntax[confDocomment.get<string>(Configuration.SYNTAX, CommentSyntax.single)];
         config.activateOnEnter = confDocomment.get<boolean>(Configuration.ACTIVATE_ON_ENTER, false);
         config.advanced = confDocomment.get<Object>(Configuration.ADVANCED);

@@ -5,7 +5,9 @@
 		"lib": [
 			"ESNext"
 		],
-		"sourceMap": true
+		"sourceMap": true,
+		"types": ["node"],
+		"strictNullChecks": false,
 	},
 	"exclude": [
 		"node_modules",
